@@ -1,8 +1,19 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { ARTICLES, CONTACT, QUICK_LOOK, REVIEWS, SITE } from '@/lib/site';
+import { ARTICLES, CONTACT, QUICK_LOOK, REVIEWS, SITE, THINGS_TO_DO } from '@/lib/site';
 import Icon from './Icon';
+
+const ACTIVITY_QUERIES = [
+  { words: ['sunset', 'sundowner', 'golden hour'], slug: 'sunset-experiences' },
+  { words: ['guided tour', 'guided walk', 'rainforest', 'falls tour', 'waterfall tour', 'walking tour'], slug: 'victoria-falls-guided-tours' },
+  { words: ['cruise', 'river cruise', 'boat cruise', 'zambezi cruise'], slug: 'zambezi-river-cruises' },
+  { words: ['raft', 'rafting', 'white water', 'white-water'], slug: 'white-water-rafting' },
+  { words: ['helicopter', 'flight of the angels', 'scenic flight', 'aerial', 'fly over'], slug: 'helicopter-flights' },
+  { words: ['safari', 'game drive', 'game viewing', 'wildlife', 'elephants', 'national park'], slug: 'wildlife-safaris' },
+  { words: ['bungee', 'bridge jump', 'gorge swing'], slug: 'bungee-jumping' },
+  { words: ['cultural', 'village', 'heritage', 'local culture', 'tradition'], slug: 'cultural-experiences' },
+];
 
 const CHIPS = [
   { label: 'Tell me about the house', question: 'Tell me about the house' },
@@ -235,14 +246,24 @@ export function getAssistantReply(input) {
   if (has(['outdoor', 'outside', 'veranda', 'garden', 'gardens', 'star', 'stars', 'outdoor living']))
     return 'Outdoor living is one of our highlights: an outdoor bath and shower beneath the African stars with the roar of the Victoria Falls waterfall in the background, plus a braai/barbeque facility for outdoor cooking and exclusive use of our tropical gardens.';
 
+  const activity = ACTIVITY_QUERIES.find(({ words }) => has(words));
+  if (activity) {
+    const a = THINGS_TO_DO.activities.find((x) => x.slug === activity.slug);
+    if (a)
+      return `${a.title} — ${a.tagline}. ${a.description} You can read more on our What to Do page at /things-to-do/${a.slug}, and we're glad to arrange it for you — visit /contact, email ${CONTACT.email} or call ${CONTACT.phone}. Right now the details above are general: operators, availability, schedules and pricing are confirmed on enquiry.`;
+  }
+
   if (has(['waterfall', 'the falls', 'the waterfall', 'fall', 'seven wonders', 'walking distance', 'town centre', 'town center', 'falls']))
     return "Victoria Falls is one of the Seven Wonders of the World and it's right on our doorstep! The Art House is within easy walking distance of the town centre and the magnificent falls.";
+
+  if (has(['how far', 'distance', 'km', 'kilometres', 'kilometers', 'minutes away', 'drive from', 'get there', 'getting to']))
+    return "We're within easy walking distance of the Victoria Falls town centre and the magnificent waterfall. We don't list exact distances in kilometres on our website — get in touch at " + CONTACT.email + ' and our team will point you in the right direction.';
 
   if (has(['forest', 'rainforest', 'rain forest', 'hike', 'trail', 'wildlife', 'sunset', 'cruise', 'helicopter', 'bungee', 'rafting', 'zip', 'canoe', 'flight']))
     return 'Victoria Falls is the adventure capital of Africa, with everything from the Falls and rainforest trails to helicopter flights, white-water rafting, bungee jumping, sunset cruises and wildlife encounters. Tell us what you would like to do and we will help you book it.';
 
   if (has(['activity', 'activities', 'tour', 'tours', 'things to do', 'adventure', 'book a tour', 'book activities', 'excursion', 'excursions']))
-    return "We're in the adventure capital of Africa! We provide a comprehensive, personalised service for tours, activities and holiday planning - and we can arrange transfers too - at no additional cost. Just tell us what you'd like to do, or visit our Things to Do page for inspiration, and we'll take care of the rest.";
+    return "We're in the adventure capital of Africa! We provide a comprehensive, personalised service for tours, activities and holiday planning - and we can arrange transfers too - at no additional cost. Every activity on our What to Do page (/things-to-do) has its own page with more details, and each one can be arranged through us - just tell us what you'd like to do, or visit /contact to enquire.";
 
   if (has(['transfer', 'transfers', 'airport', 'pick-up', 'pickup', 'pick up', 'transport', 'taxi', 'drive', 'getting around', 'shuttle']))
     return 'We can assist with transfers to and from the airport, as well as transport and holiday planning for your whole trip - arranged for you at no additional cost. Just let our team know your details.';

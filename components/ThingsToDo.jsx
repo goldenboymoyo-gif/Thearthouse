@@ -5,7 +5,7 @@ import { SITE, THINGS_TO_DO } from '@/lib/site';
 
 export default function ThingsToDo({ limit, headingLevel, intro }) {
   const full = !limit;
-  const list = limit ? THINGS_TO_DO.images.slice(0, limit) : THINGS_TO_DO.images;
+  const list = limit ? THINGS_TO_DO.activities.slice(0, limit) : THINGS_TO_DO.activities;
   return (
     <Section id="things-to-do" title={THINGS_TO_DO.title} headingLevel={headingLevel}>
       {full ? (
@@ -20,13 +20,19 @@ export default function ThingsToDo({ limit, headingLevel, intro }) {
       {intro ? <p className="intro-text">{intro}</p> : null}
 
       <div className="ttd-grid">
-        {list.map((im) => (
-          <figure className="ttd-card" key={im.src}>
-            <img src={im.src} alt="Victoria Falls experiences" loading="lazy" />
-            <figcaption className="ttd-card-cap">
-              <span>Victoria Falls</span>
-            </figcaption>
-          </figure>
+        {list.map((a) => (
+          <Link className="ttd-card" href={`/things-to-do/${a.slug}`} key={a.slug}>
+            <figure className="ttd-media">
+              <img src={a.image} alt={a.title} loading="lazy" />
+            </figure>
+            <span className="ttd-card-body">
+              <span className="ttd-card-title">{a.title}</span>
+              <span className="ttd-card-hint">{a.tagline}</span>
+              <span className="ttd-card-more" aria-hidden="true">
+                Learn More <span className="ttd-arrow">&rarr;</span>
+              </span>
+            </span>
+          </Link>
         ))}
       </div>
 
