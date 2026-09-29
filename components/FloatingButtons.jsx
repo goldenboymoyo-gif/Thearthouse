@@ -83,7 +83,16 @@ export default function FloatingButtons() {
         >
           {shareOpen ? <Icon name="times" className="close-icon" /> : <Icon name="share-alt" />}
         </button>
-        <Chatbot />
+        <div className="chat-launcher">
+          <span className={`chat-launcher-label ${greeting ? 'hidden' : ''}`} aria-hidden="true">
+            <span className="chat-launcher-dot" />
+            <span className="chat-launcher-text">
+              <span>Need help?</span>
+              <strong>Ask The Art House Assistant</strong>
+            </span>
+          </span>
+          <Chatbot />
+        </div>
         <div className={`greeting ${greeting ? 'open' : ''}`} role="status" aria-hidden={!greeting}>
           <div className="greeting-head">
             <button type="button" onClick={closeGreeting} aria-label="Close message" tabIndex={greeting ? 0 : -1}>

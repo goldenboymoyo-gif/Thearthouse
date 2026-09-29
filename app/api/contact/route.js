@@ -20,6 +20,11 @@ export async function POST(req) {
   const email = clean(body.email, 200);
   const phone = clean(body.phone, 60);
   const message = clean(body.message, 5000);
+  const isBooking = body.type === 'booking';
+  const checkIn = clean(body.checkIn, 20);
+  const checkOut = clean(body.checkOut, 20);
+  const adults = clean(body.adults, 10);
+  const children = clean(body.children, 10);
   if (!name || !EMAIL_RE.test(email)) {
     return Response.json({ ok: false, message: 'Please provide your name and a valid email address.' }, { status: 400 });
   }
@@ -27,7 +32,24 @@ export async function POST(req) {
   const key = process.env.RESEND_API_KEY;
   if (!key) return Response.json({ ok: true, delivered: false });
 
-  const text = [`Name: ${name}`, phone ? `Phone: ${phone}` : null, `Email: ${email}`, '', message]
+  const bookingLines = isBooking
+    ? [
+        '----- Booking enquiry -----',
+        `Check-in: ${checkIn}`,
+        `Check-out: ${checkOut}`,
+        `Adults: ${adults}`,
+        `Children: ${children}`,
+        '---------------------------',
+      ].filter(Boolean)
+    : [];
+  const text = [
+    `Name: ${name}`,
+    phone ? `Phone: ${phone}` : null,
+    `Email: ${email}`,
+    '',
+    ...bookingLines,
+    message,
+  ]
     .filter((l) => l !== null)
     .join('\n');
   try {
@@ -38,7 +60,7 @@ export async function POST(req) {
         from: process.env.CONTACT_FROM || 'The Art House Website <onboarding@resend.dev>',
         to: [process.env.CONTACT_TO || CONTACT.email],
         reply_to: email,
-        subject: `Website enquiry from ${name}`,
+        subject: isBooking ? `Booking enquiry from ${name}` : `Website enquiry from ${name}`,
         text,
       }),
     });

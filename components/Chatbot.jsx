@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { ARTICLES, CONTACT, QUICK_LOOK, REVIEWS, SITE, THINGS_TO_DO } from '@/lib/site';
+import { AROUND, ARTICLES, CONTACT, QUICK_LOOK, REVIEWS, SITE, THINGS_TO_DO } from '@/lib/site';
+import { advance, createFlow, extractDates, formatDate, wantsBooking } from '@/lib/chat-booking';
 import Icon from './Icon';
 
 const ACTIVITY_QUERIES = [
@@ -15,31 +16,41 @@ const ACTIVITY_QUERIES = [
   { words: ['cultural', 'village', 'heritage', 'local culture', 'tradition'], slug: 'cultural-experiences' },
 ];
 
+// Suggested actions shown beneath the welcome message (H + M). The greeting
+// ruby's "Make a Booking Enquiry" button launches the conversational flow.
 const CHIPS = [
-  { label: 'Tell me about the house', question: 'Tell me about the house' },
-  { label: 'Booking enquiries', question: 'Booking enquiries' },
-  { label: 'Activities', question: 'What activities can I book?' },
-  { label: 'Location', question: 'Where are you located?' },
+  { label: 'About The Art House', question: 'Tell me about the house' },
+  { label: 'Facilities', question: 'What facilities does the house have?' },
+  { label: 'Activities', question: 'What can we do in Victoria Falls?' },
+  { label: "What's Around", question: 'What is nearby?' },
+  { label: 'Guest Reviews', question: 'What do previous guests say?' },
+  { label: 'Make a Booking Enquiry', question: 'I would like to make a booking enquiry' },
 ];
 
-// Floating AI assistant. It answers from verified site content through the
-// rule-based getAssistantReply below. Swap that function for a call to a real
-// assistant/AI backend later without changing the UI.
+const FLOW_STAGES = ['checkin', 'checkout', 'guests', 'name', 'email', 'phone', 'notes', 'review', 'editpick'];
+
+// Floating AI assistant. Information answers come from the rule-based
+// getAssistantReply below; booking enquiries go through the shared /api/contact
+// infrastructure (the same channel as the website contact form). Swap
+// getAssistantReply for a real assistant/AI backend later without changing the UI.
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       from: 'bot',
-      text: "Hello! Welcome to The Art House, Victoria Falls. I'm your virtual assistant. How can I help you today?",
+      text: "Hello! Welcome to The Art House, Victoria Falls. I'm your virtual assistant — ask me anything about the house, Victoria Falls, activities or booking.",
     },
   ]);
   const [input, setInput] = useState('');
-  const [bookStep, setBookStep] = useState(0);
-  const [bookInfo, setBookInfo] = useState({});
+  const [flow, setFlow] = useState(() => createFlow());
+  const [actions, setActions] = useState([]);
 
+  const flowRef = useRef(flow);
   const endRef = useRef(null);
   const inputRef = useRef(null);
   const launcherRef = useRef(null);
+
+  const inFlow = FLOW_STAGES.includes(flow.stage);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -49,7 +60,7 @@ export default function Chatbot() {
 
   useEffect(() => {
     if (endRef.current) endRef.current.scrollIntoView({ block: 'nearest' });
-  }, [messages]);
+  }, [messages, actions]);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -63,40 +74,60 @@ export default function Chatbot() {
     return () => document.removeEventListener('keydown', onKey);
   }, [open]);
 
-  const pushBubbles = (userText, botText) => {
-    setMessages((m) => [...m, { from: 'user', text: userText }, { from: 'bot', text: botText }]);
+  const postEnquiry = async (payload) => {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json().catch(() => ({}));
+    return { delivered: Boolean(res.ok && data.delivered) };
   };
 
-  const nextBookingStep = (text) => {
-    let info = { ...bookInfo };
-    let reply = '';
-    let next = bookStep;
-    if (bookStep === 1) {
-      info.dates = text;
-      reply = 'Thank you! How many adults and children will be staying?';
-      next = 2;
-    } else if (bookStep === 2) {
-      info.guests = text;
-      reply = 'Great. May I have your name and the best email or phone number to reach you on?';
-      next = 3;
-    } else if (bookStep === 3) {
-      info.contact = text;
-      reply = `Thank you! Here's what to do next:\n\n• Check live availability and book instantly at ${SITE.bookingUrl}, or\n• Email ${CONTACT.email} or call ${CONTACT.phone} and we'll confirm your stay personally.\n\nPlease note I haven't made a reservation yet - availability and final confirmation are handled by our booking channel or our team. We look forward to welcoming you!`;
-      next = 0;
-      info = {};
+  const config = () => ({
+    bookingUrl: SITE.bookingUrl,
+    email: CONTACT.email,
+    phone: CONTACT.phone,
+    submit: postEnquiry,
+  });
+
+  const pushBot = (text) => setMessages((m) => [...m, { from: 'bot', text }]);
+
+  const applyFlowResult = ({ flow: f, replies, actions: acts }) => {
+    flowRef.current = f;
+    setFlow(f);
+    if (replies && replies.length) setMessages((m) => [...m, ...replies.map((r) => ({ from: 'bot', text: r }))]);
+    setActions(acts || []);
+  };
+
+  // Feed one line of user text into the booking flow. advance() can return a
+  // Promise (submission) so we normalise it.
+  const stepFlow = (inputText, userLabel) => {
+    const res = advance(flowRef.current, inputText, config());
+    Promise.resolve(res).then(applyFlowResult);
+    if (userLabel) setMessages((m) => [...m, { from: 'user', text: userLabel }]);
+  };
+
+  const startBookingFlow = (triggerText) => {
+    const f = createFlow();
+    f.stage = 'checkin';
+    const d = extractDates(triggerText);
+    if (d.checkIn) f.checkIn = d.checkIn;
+    if (d.checkOut) f.checkOut = d.checkOut;
+    flowRef.current = f;
+    setFlow(f);
+    setMessages((m) => [
+      ...m,
+      { from: 'user', text: triggerText },
+      { from: 'bot', text: "Absolutely — I can help you with a booking enquiry. Let's gather your details." },
+    ]);
+    if (f.checkIn && !f.checkOut) {
+      f.stage = 'checkout';
+      pushBot(`Great — I've noted your check-in on ${formatDate(f.checkIn)}. What date would you like to check out?`);
+      return;
     }
-    setBookInfo(info);
-    setBookStep(next);
-    pushBubbles(text, reply);
-    return true;
-  };
-
-  const startBookingFlow = () => {
-    setBookStep(1);
-    pushBubbles(
-      'Booking enquiries',
-      "I'd be happy to help you book your stay at The Art House! Could you tell me your preferred check-in and check-out dates?"
-    );
+    const res = advance(f, triggerText, config());
+    Promise.resolve(res).then(applyFlowResult);
   };
 
   const send = (raw) => {
@@ -104,28 +135,31 @@ export default function Chatbot() {
     if (!text) return;
     setInput('');
 
-    if (bookStep > 0) {
-      const lower = text.toLowerCase();
-      if (['cancel', 'stop', 'never mind', 'nevermind', 'restart'].some((w) => lower.includes(w))) {
-        setBookStep(0);
-        setBookInfo({});
-        pushBubbles(text, "No problem - I've cancelled the booking enquiry. Just let me know if there's anything else I can help you with!");
-        return;
-      }
-      nextBookingStep(text);
+    if (FLOW_STAGES.includes(flowRef.current.stage)) {
+      stepFlow(text, text);
       return;
     }
 
-    if (isBookingIntro(text)) {
-      startBookingFlow();
+    if (wantsBooking(text)) {
+      startBookingFlow(text);
       return;
     }
 
-    const reply = getAssistantReply(text);
-    pushBubbles(text, reply);
+    setMessages((m) => [...m, { from: 'user', text }, { from: 'bot', text: getAssistantReply(text) }]);
   };
 
   const quick = (q) => send(q);
+
+  const tapAction = (a) => {
+    if (a.href) {
+      window.open(a.href, '_blank', 'noopener');
+      return;
+    }
+    if (a.send) {
+      if (FLOW_STAGES.includes(flowRef.current.stage)) stepFlow(a.send, a.label);
+      else send(a.send);
+    }
+  };
 
   return (
     <>
@@ -134,7 +168,7 @@ export default function Chatbot() {
         type="button"
         className="magic-btn chat"
         onClick={() => setOpen((v) => !v)}
-        aria-label={open ? 'Close chat assistant' : 'Open chat assistant'}
+        aria-label={open ? 'Close chat assistant' : 'Open The Art House AI assistant'}
         aria-haspopup="dialog"
         aria-expanded={open}
       >
@@ -150,6 +184,9 @@ export default function Chatbot() {
               </span>
               <div>
                 <span id="chat-title">The Art House Assistant</span>
+                <span className="chat-subtitle">
+                  Ask me anything about The Art House, your stay, Victoria Falls, activities or booking.
+                </span>
                 <span className="chat-status">Online · replies instantly</span>
               </div>
             </div>
@@ -164,9 +201,22 @@ export default function Chatbot() {
                 <span className="msg-bubble">{msg.text}</span>
               </div>
             ))}
-            {bookStep === 0 ? (
+            {(inFlow || flow.stage === 'done') && actions.length ? (
+              <div className="chat-actions" role="group" aria-label="Booking actions">
+                {actions.map((a) => (a.href ? (
+                    <a key={a.label} className="chat-action chat-action-link" href={a.href} target="_blank" rel="noopener">
+                      {a.label}
+                    </a>
+                  ) : (
+                    <button key={a.label} type="button" className="chat-action" onClick={() => tapAction(a)}>
+                      {a.label}
+                    </button>
+                  )))}
+              </div>
+            ) : null}
+            {!inFlow && flow.stage !== 'done' ? (
               <div className="chat-quick">
-                <span className="chat-quick-label">Try asking:</span>
+                <span className="chat-quick-label">How can I help?</span>
                 <div className="chat-quick-buttons">
                   {CHIPS.map((c) => (
                     <button key={c.label} type="button" onClick={() => quick(c.question)}>
@@ -185,7 +235,7 @@ export default function Chatbot() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder={bookStep > 0 ? 'Type your answer…' : 'Type your message…'}
+              placeholder={inFlow ? 'Type your answer…' : 'Type your message…'}
               aria-label="Type your message"
               autoComplete="off"
             />
@@ -208,34 +258,37 @@ export function getAssistantReply(input) {
   const all = (words) => words.every((w) => q.includes(w));
 
   if (has(['hello', 'hi', 'hey', 'howdy', 'good morning', 'good afternoon', 'good evening']))
-    return "Hi there! Welcome to The Art House, Victoria Falls. I'm here to help with your stay - ask me about the house, booking, activities and more.";
+    return "Hi there! Welcome to The Art House, Victoria Falls. I'm here to help with your stay — ask me about the house, booking, activities and more.";
 
   if (has(['tell me about the house', 'about the house', 'tell me about it', 'tell me more', 'the house itself', 'whole house', 'exclusive', 'private use', 'all to ourselves', 'other guests']))
     return 'The Art House is offered as an exclusive-use property: when you book, the whole house is yours alone. It is a 4 bedroom family home sleeping 8 guests (3 doubles and 1 twin), with 3 bathrooms, a private swimming pool, reliable WiFi and Netflix, air conditioning, and a large, lush tropical garden with plenty of bird life. It is serviced daily, and we keep a seasonal kitchen garden with herbs and vegetables for our guests.';
 
   if (has(['bedroom', 'bedrooms', 'room', 'rooms', 'sleeps', 'sleep', 'accommodat', 'how many people', 'how many guests']))
-    return 'The Art House has 4 bedrooms sleeping 8 guests (3 doubles and 1 twin). We also have stretcher beds to accommodate more guests and a baby cot available - perfect for families and groups.';
+    return 'The Art House has 4 bedrooms sleeping 8 guests (3 doubles and 1 twin). We also have stretcher beds to accommodate more guests and a baby cot available — perfect for families and groups.';
 
-  if (has(['family', 'families', 'kids', 'children', 'child', 'baby', 'cot' ]))
-    return 'The Art House is a warm family home, ideal for families and groups: 4 bedrooms sleeping 8 (with stretcher beds and a baby cot available), a private pool, large gardens and daily servicing. The whole house is yours exclusively during your stay.';
+  if (/\b(max(imum)?|capacity)\b/.test(q) || /can\s+(\w+|\d{1,2})\s*(people|guests|persons?|adults?|kids?|children)\s+stay/.test(q))
+    return 'The Art House sleeps 8 guests (4 bedrooms: 3 doubles and 1 twin). We also have stretcher beds to accommodate more guests on request, plus a baby cot — so larger groups and families are welcome. Need specific numbers? Just ask and we\u2019ll confirm.';
+
+  if (has(['family', 'families', 'kids', 'children', 'child', 'baby', 'cot']))
+    return 'The Art House is a warm family home, ideal for families and groups: 4 bedrooms sleeping 8 (with stretcher beds and a baby cot available), a private pool, large gardens and daily servicing. During your stay the whole house is yours exclusively.';
 
   if (has(['servic', 'clean', 'maid', 'housekeeping', 'tidy']))
     return 'The Art House is serviced daily, so you can relax and make the most of your stay.';
 
   if (has(['bathroom', 'bathrooms', 'bath', 'shower', 'hot tub', 'jacuzzi']))
-    return 'There are 3 bathrooms: 1 en-suite bathroom, 1 guest bathroom and 1 outside bathroom with a hot tub and shower - plus the famous outdoor bath beneath the African stars!';
+    return 'There are 3 bathrooms: 1 en-suite bathroom, 1 guest bathroom and 1 outside bathroom with a hot tub and shower — plus the famous outdoor bath beneath the African stars!';
 
   if (has(['pool', 'swim', 'swimming']))
-    return 'Yes! The Art House has a private swimming pool set in our large, lush gardens - plunge, cool down, relax!';
+    return 'Yes! The Art House has a private swimming pool set in our large, lush gardens — plunge, cool down, relax!';
 
   if (has(['wifi', 'wi-fi', 'netflix', 'internet', 'inter-net', 'stream']))
-    return 'Yes - there is reliable WiFi throughout the house and Netflix for streaming. Enjoy staying connected!';
+    return 'Yes — there is reliable WiFi throughout the house and Netflix for streaming. Enjoy staying connected!';
 
   if (has(['pet', 'dog', 'dogs', 'cat', 'animals', 'animal']))
-    return 'Absolutely - The Art House is pet friendly, so no worries to bring them along!';
+    return 'Absolutely — The Art House is pet friendly, so no worries about bringing them along!';
 
   if (has(['aircon', 'air-con', 'air condition', 'cooling', 'air conditioning']))
-    return 'All rooms are fitted with efficient, eco-friendly air conditioning units - and we have backup solar and water supply as well, so you stay comfortable throughout.';
+    return 'All rooms are fitted with efficient, eco-friendly air conditioning units — and we have backup solar and water supply as well, so you stay comfortable throughout.';
 
   if (has(['solar', 'power', 'electricity', 'load shedding', 'water backup', 'water supply', 'backup']))
     return 'The house is fitted with backup solar and water supply, so power cuts and water interruptions are not a concern during your stay.';
@@ -259,23 +312,26 @@ export function getAssistantReply(input) {
   if (has(['how far', 'distance', 'km', 'kilometres', 'kilometers', 'minutes away', 'drive from', 'get there', 'getting to']))
     return "We're within easy walking distance of the Victoria Falls town centre and the magnificent waterfall. We don't list exact distances in kilometres on our website — get in touch at " + CONTACT.email + ' and our team will point you in the right direction.';
 
+  if (has(['nearby', 'around', 'what is near', 'whats near', 'in the area', 'what is there to do', 'things to see', 'restaurants', 'food']))
+    return `Around ${AROUND.title.toLowerCase()} there's ${AROUND.items.map((i) => i.title.toLowerCase()).join(', ')}. ${AROUND.items[0].paragraphs[0]} For activities, food and entertainment in Victoria Falls, just ask — we'll point you in the right direction.`;
+
   if (has(['forest', 'rainforest', 'rain forest', 'hike', 'trail', 'wildlife', 'sunset', 'cruise', 'helicopter', 'bungee', 'rafting', 'zip', 'canoe', 'flight']))
     return 'Victoria Falls is the adventure capital of Africa, with everything from the Falls and rainforest trails to helicopter flights, white-water rafting, bungee jumping, sunset cruises and wildlife encounters. Tell us what you would like to do and we will help you book it.';
 
   if (has(['activity', 'activities', 'tour', 'tours', 'things to do', 'adventure', 'book a tour', 'book activities', 'excursion', 'excursions']))
-    return "We're in the adventure capital of Africa! We provide a comprehensive, personalised service for tours, activities and holiday planning - and we can arrange transfers too - at no additional cost. Every activity on our What to Do page (/things-to-do) has its own page with more details, and each one can be arranged through us - just tell us what you'd like to do, or visit /contact to enquire.";
+    return "We're in the adventure capital of Africa! We provide a comprehensive, personalised service for tours, activities and holiday planning — and we can arrange transfers too — at no additional cost. Every activity on our What to Do page (/things-to-do) has its own page with more details, and each one can be arranged through us — just tell us what you'd like to do, or visit /contact to enquire.";
 
   if (has(['transfer', 'transfers', 'airport', 'pick-up', 'pickup', 'pick up', 'transport', 'taxi', 'drive', 'getting around', 'shuttle']))
-    return 'We can assist with transfers to and from the airport, as well as transport and holiday planning for your whole trip - arranged for you at no additional cost. Just let our team know your details.';
+    return 'We can assist with transfers to and from the airport, as well as transport and holiday planning for your whole trip — arranged for you at no additional cost. Just let our team know your details.';
 
   if (has(['food', 'eat', 'restaurant', 'restaurants', 'drink', 'bar', 'bite', 'local', 'where to eat']))
-    return "Locals know best! We'd be glad to recommend great spots for a bite or a few drinks in Victoria Falls, matched to your taste - just ask us when you arrive.";
+    return "Locals know best! We'd be glad to recommend great spots for a bite or a few drinks in Victoria Falls, matched to your taste — just ask us when you arrive.";
 
   if (has(['review', 'reviews', 'guest', 'guests', 'guests say', 'testimonial']))
     return `Our guests love the exclusive whole-house experience, the tranquil gardens and the bird life, and braais on the veranda with the sound of the Falls in the background. You can read reviews from ${REVIEWS.items.map((r) => r.name).join(', ')} and more on our Guest Reviews page.`;
 
   if (has(['article', 'articles', 'press', 'journal', 'lost executive', 'featured']))
-    return `The Art House has been featured in a published article: "${ARTICLES.items[0].name} - ${ARTICLES.items[0].linkLabel}". You can read it on our Journal page.`;
+    return `The Art House has been featured in a published article: "${ARTICLES.items[0].name} — ${ARTICLES.items[0].linkLabel}". You can read it on our Journal page.`;
 
   if (has(['contact', 'phone', 'call', 'email', 'mail', 'address', 'location', 'where are you', 'map', 'directions', 'reach']))
     return `You can reach us at ${CONTACT.email} or call ${CONTACT.phone}. We're at ${CONTACT.address} and are available ${CONTACT.hours} to help.`;
@@ -289,29 +345,10 @@ export function getAssistantReply(input) {
   if (has(['price', 'pricing', 'how much', 'cost', 'rates', 'rate', 'availability', 'available', 'reserve', 'reservation', 'reservations', 'book', 'booking', 'vacancy', 'vacancies', 'when can i']))
     return `You can check live availability and book instantly through our secure Book Now button: ${SITE.bookingUrl}. We also welcome direct bookings and we'd gladly arrange your tours, activities and transfers at no additional cost. For any questions just email ${CONTACT.email} or call ${CONTACT.phone}.`;
 
-  return "I'd love to help with that! I can answer questions about the house, booking and pricing, activities, location, facilities, what's around, reviews and articles. Try asking \"Tell me about the house\", \"Booking enquiries\", \"Activities\" or \"Location\".";
+  return "I'd love to help with that! I can answer questions about the house, booking and pricing, activities, location, facilities, what's around, reviews and articles — or help you make a booking enquiry. Try asking \"Tell me about the house\", \"Facilities\", \"Activities\", \"What's Around\", \"Guest Reviews\" or \"Make a Booking Enquiry\".";
 }
 
 // Detect a request to start the guided booking enquiry flow.
-export function isBookingIntro(text) {
-  const t = text.toLowerCase();
-  const intents = [
-    'booking enquiries',
-    'book a stay',
-    'book your stay',
-    'book now',
-    'help me book',
-    'make a booking',
-    'i want to book',
-    "i'd like to book",
-    'how do i book',
-    'how can i book',
-    'want to book',
-    'start a booking',
-    'check availability',
-    'make a reservation',
-    'i would like to make a booking',
-    'place a booking',
-  ];
-  return intents.some((phrase) => t === phrase || t.startsWith(`${phrase} `) || t.startsWith(`${phrase}?`));
+export function isBookingIntro(input) {
+  return wantsBooking(input);
 }
