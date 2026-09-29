@@ -10,7 +10,6 @@
     "fetch-assets": "node scripts/fetch-assets.mjs"
   },
   "dependencies": {
-    "@next/swc-win32-x64-msvc": "^15.5.26",
     "express": "^4.19.2",
     "next": "^15.5.26",
     "react": "^19.0.0",
