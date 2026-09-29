@@ -1,0 +1,333 @@
+/* Global Layout 2 - Three Column Vertical Scrolling Layout
+   This CSS provides the structure for a reusable three-column scrolling layout
+   that can be used across different modules
+----------------------------------*/
+
+/* Lazy loading styles removed */
+
+/* Keyframes for infinite vertical scrolling animation - Top to Bottom (Column 2) */
+@keyframes global-layout-2-slide-top-to-bottom {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%); /* Move exactly one set height */
+  }
+}
+
+/* Keyframes for infinite vertical scrolling animation - Bottom to Top (Columns 1 & 3) */
+@keyframes global-layout-2-slide-bottom-to-top {
+  from {
+    transform: translateY(-50%); /* Start from one set height up */
+  }
+  to {
+    transform: translateY(0); /* Move to original position */
+  }
+}
+
+/* CSS Variables */
+.global-layout-2 {
+  --item-width: 280px;
+  --mobile-item-width: 250px;
+  --column-height: 600px;
+  --mobile-column-height: 500px;
+}
+
+/* Main container - Three columns layout */
+.global-layout-2-container {
+  width: 100% !important;
+  height: var(--column-height) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0 !important;
+}
+
+/* Columns wrapper - flex container for three columns */
+.global-layout-2-columns-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+  padding: 0px 18%; /* Desktop: 18% left/right padding */
+  background: transparent;
+}
+
+/* Gradient overlays for smooth fade effect - now vertical - inherit section background color */
+.global-layout-2-container:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 45px; /* Reduced by 25% from 80px */
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to bottom, var(--modules_color_second), transparent);
+}
+
+.global-layout-2-container:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 45px; /* Reduced by 25% from 80px */
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to top, var(--modules_color_second), transparent);
+}
+
+/* Primary section background (bg-primary class) */
+.global-layout-2.bg-primary .global-layout-2-container:before {
+  background: linear-gradient(to bottom, var(--modules_color), transparent) !important;
+}
+
+.global-layout-2.bg-primary .global-layout-2-container:after {
+  background: linear-gradient(to top, var(--modules_color), transparent) !important;
+}
+
+/* Background color class gradients - match section background */
+.global-layout-2.bg-primary-white .global-layout-2-container:before {
+  background: linear-gradient(to bottom, white, transparent) !important;
+}
+
+.global-layout-2.bg-primary-white .global-layout-2-container:after {
+  background: linear-gradient(to top, white, transparent) !important;
+}
+
+.global-layout-2.bg-primary-black .global-layout-2-container:before {
+  background: linear-gradient(to bottom, black, transparent) !important;
+}
+
+.global-layout-2.bg-primary-black .global-layout-2-container:after {
+  background: linear-gradient(to top, black, transparent) !important;
+}
+
+.global-layout-2.bg-primary-gray .global-layout-2-container:before {
+  background: linear-gradient(to bottom, #ebedf0, transparent) !important;
+}
+
+.global-layout-2.bg-primary-gray .global-layout-2-container:after {
+  background: linear-gradient(to top, #ebedf0, transparent) !important;
+}
+
+.global-layout-2.background-primary-color .global-layout-2-container:before {
+  background: linear-gradient(to bottom, var(--global_main_color), transparent) !important;
+}
+
+.global-layout-2.background-primary-color .global-layout-2-container:after {
+  background: linear-gradient(to top, var(--global_main_color), transparent) !important;
+}
+/* Layout columns - vertical layout */
+.global-layout-2-column {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout grid with infinite vertical animation */
+.global-layout-2-grid {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  height: fit-content;
+  margin: 0 !important;
+}
+
+/* Each item set contains all items for vertical stacking */
+.global-layout-2-grid .item-set-1,
+.global-layout-2-grid .item-set-2 {
+  display: flex;
+  flex-direction: column;
+  height: 50%; /* Each set is exactly half the grid height for seamless loop */
+  width: 100%;
+  flex-shrink: 0; /* Prevent sets from shrinking */
+}
+
+/* Down scrolling animation - Column 2 (starts at top, moves down) */
+.global-layout-2-column.scroll-down .global-layout-2-grid {
+  animation: global-layout-2-slide-top-to-bottom infinite linear;
+  animation-duration: 20.16s; /* Slow default to match 10.08s per item (2 items), will be overridden by JavaScript */
+  transform: translateY(0); /* Start at top */
+}
+
+/* Up scrolling animation - Columns 1 and 3 (starts offset, moves up) */
+.global-layout-2-column.scroll-up .global-layout-2-grid {
+  animation: global-layout-2-slide-bottom-to-top infinite linear;
+  animation-duration: 20.16s; /* Slow default to match 10.08s per item (2 items), will be overridden by JavaScript */
+  transform: translateY(-50%); /* Start position offset for seamless loop */
+}
+
+/* Pause animation on hover */
+.global-layout-2-column:hover .global-layout-2-grid {
+  animation-play-state: paused;
+}
+
+/* Individual layout items */
+.global-layout-2-item {
+  display: block;
+  border: 1px solid var(--modules_color_text_box);
+  border-radius: 12px;
+  width: 100%;
+  min-height: var(--item-width);
+  max-height: fit-content;
+  padding: 0;
+  overflow: hidden;
+  white-space: normal;
+  background: var(--modules_color_box);
+  color: var(--modules_color_text_box);
+  margin-bottom: 10px;
+}
+
+/* Primary section layout items */
+.global-layout-2.bg-primary .global-layout-2-item {
+  background: var(--modules_color_box);
+  color: var(--modules_color_text_box);
+  border-color: var(--modules_color_text_box);
+}
+
+/* Box color overrides - higher specificity ensures these override the default */
+/* Specificity: .global-layout-2.bg-primary .global-layout-2-item.box-primary = 0,3,0 */
+/* vs default: .global-layout-2.bg-primary .global-layout-2-item = 0,2,0 */
+.global-layout-2-item.box-primary,
+.global-layout-2.bg-primary .global-layout-2-item.box-primary {
+  background: var(--modules_color_box);
+  color: var(--modules_color_text_box);
+  border-color: var(--modules_color_text_box);
+}
+
+.global-layout-2-item.background-primary-color,
+.global-layout-2.bg-primary .global-layout-2-item.background-primary-color {
+  background: var(--global_main_color);
+  color: var(--global_main_color_text);
+  border-color: var(--global_main_color);
+}
+
+.global-layout-2-item.bg-primary-black,
+.global-layout-2.bg-primary .global-layout-2-item.bg-primary-black {
+  background: #1a1a1a;
+  color: #fff;
+  border-color: #fff;
+}
+
+.global-layout-2-item.bg-primary-white,
+.global-layout-2.bg-primary .global-layout-2-item.bg-primary-white {
+  background: #fff;
+  color: #333;
+  border-color: #ddd;
+}
+
+.global-layout-2-item.bg-primary-gray,
+.global-layout-2.bg-primary .global-layout-2-item.bg-primary-gray {
+  background: #ebedf0;
+  color: #333;
+  border-color: #ccc;
+}
+
+/* Layout content container */
+.global-layout-2-content {
+  padding: 20px;
+  min-height: var(--item-width);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Mobile responsive adjustments - 1 column */
+@media (max-width: 767px) {
+
+  .global-layout-2-container {
+    height: var(--mobile-column-height) !important;
+  }
+
+  .global-layout-2-columns-wrapper {
+    gap: 15px;
+    padding: 0px 10px; /* Mobile: 10px left/right padding */
+    justify-content: center; /* Center single column */
+  }
+  
+  /* All columns remain flex on mobile - JavaScript will handle the redistribution */
+  .global-layout-2-column {
+    flex: 1;
+    max-width: 100%;
+  }
+
+  .global-layout-2-item {
+    min-height: var(--mobile-item-width);
+    max-height: fit-content;
+    height: fit-content;
+  }
+
+  .global-layout-2-content {
+    min-height: var(--mobile-item-width);
+    max-height: fit-content;
+    height: fit-content;
+  }
+  
+  .global-layout-2-container:before,
+  .global-layout-2-container:after {
+    height: 45px; /* Reduced by 25% from 60px */
+  }
+}
+
+/* Tablet responsive adjustments - 2 columns */
+@media (min-width: 768px) and (max-width: 991px) {
+  .global-layout-2-container {
+    height: 550px !important;
+  }
+
+  .global-layout-2-columns-wrapper {
+    gap: 18px;
+    padding: 0px 10%; /* Tablet: 10% left/right padding */
+  }
+  
+  /* All columns remain flex on tablet - JavaScript will handle the redistribution */
+  .global-layout-2-column {
+    flex: 1;
+  }
+
+  .global-layout-2-item {
+    min-height: var(--mobile-item-width);
+    max-height: fit-content;
+    height: fit-content;
+  }
+
+  .global-layout-2-content {
+    min-height: var(--mobile-item-width);
+    max-height: fit-content;
+    height: fit-content;
+  }
+}
+
+/* On page load hide the items so the user won't see the loading */
+.global-layout-2-container .global-layout-2-category:not([data-categories-filter="s123-g-show-all"]) {
+  display: none;
+}
+
+
+
+/* Dark theme support - gradients only (colors now use global variables) */
+
+/* Dark theme gradients also inherit section background color */
+.dark-theme .global-layout-2-container:before {
+  background: linear-gradient(to bottom, var(--modules_color_second), transparent);
+}
+
+.dark-theme .global-layout-2-container:after {
+  background: linear-gradient(to top, var(--modules_color_second), transparent);
+}
+
+.dark-theme .global-layout-2.bg-primary .global-layout-2-container:before {
+  background: linear-gradient(to bottom, var(--modules_color), transparent);
+}
+
+.dark-theme .global-layout-2.bg-primary .global-layout-2-container:after {
+  background: linear-gradient(to top, var(--modules_color), transparent);
+}

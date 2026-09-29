@@ -1,0 +1,19 @@
+{
+  "name": "the-art-house-victoria-falls",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server/index.js",
+    "build": "next build",
+    "start": "node server/index.js --prod",
+    "lint": "next lint",
+    "fetch-assets": "node scripts/fetch-assets.mjs"
+  },
+  "dependencies": {
+    "@next/swc-win32-x64-msvc": "^15.5.26",
+    "express": "^4.19.2",
+    "next": "^15.5.26",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
