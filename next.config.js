@@ -2,9 +2,9 @@
 const path = require('path');
 const projectRoot = __dirname;
 const tempBase = process.env.NEXT_DIST_DIR;
-const relativeDist = tempBase
-  ? path.relative(projectRoot, tempBase)
-  : path.relative(projectRoot, 'C:\\Users\\Admin\\AppData\\Local\\Temp\\opencode\\arth-next');
+// Only override the build output directory when explicitly requested (e.g. a
+// local temp dir on Windows). On Vercel/Linux this stays the default `.next`.
+const relativeDist = tempBase ? path.relative(projectRoot, tempBase) : null;
 
 // Old Site123 addresses, so existing links and search results keep working.
 const OLD_URLS = [
@@ -19,10 +19,10 @@ const OLD_URLS = [
 ];
 
 const nextConfig = {
-  distDir: relativeDist,
   images: {
     unoptimized: true,
   },
+  ...(relativeDist ? { distDir: relativeDist } : {}),
   async redirects() {
     return OLD_URLS.map(([source, destination]) => ({ source, destination, permanent: true }));
   },
