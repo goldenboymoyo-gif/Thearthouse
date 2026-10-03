@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
 import { CONTACT, NAV, SITE } from '@/lib/site';
 import { img } from '@/lib/assets';
 import Icon from './Icon';
@@ -41,45 +40,20 @@ function PopupWin({ name, className = '', closeLeft = false, label, children }) 
 
 export function MobileMenu() {
   const { pathname, setOpen } = useChrome();
-  const [openMenu, setOpenMenu] = useState(null);
   return (
     <PopupWin name="menu" className="mobile-menu" closeLeft label="Menu">
       <ul className="mobile-menu-list">
-        {NAV.map((item, index) =>
-          item.dropdown ? (
-            <li key={item.label} className={`has-submenu ${openMenu === index ? 'open' : ''}`}>
-              <button
-                type="button"
-                className={index === openMenu ? 'active' : ''}
-                aria-haspopup="true"
-                aria-expanded={openMenu === index}
-                onClick={() => setOpenMenu((v) => (v === index ? null : index))}
-              >
-                {item.label}
-                <Icon name="caret-down" className="caret" />
-              </button>
-              <ul className="mobile-menu-sub">
-                {item.dropdown.map((child) => (
-                  <li key={child.href}>
-                    <Link
-                      href={child.href}
-                      className={isActive(pathname, child.href) ? 'active' : ''}
-                      onClick={() => setOpen(null)}
-                    >
-                      {child.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ) : (
-            <li key={item.href}>
-              <Link href={item.href} className={isActive(pathname, item.href) ? 'active' : ''} onClick={() => setOpen(null)}>
-                {item.label}
-              </Link>
-            </li>
-          )
-        )}
+        {NAV.map((item) => (
+          <li key={item.href}>
+            <Link
+              href={item.href}
+              className={isActive(pathname, item.href, item.match) ? 'active' : ''}
+              onClick={() => setOpen(null)}
+            >
+              {item.label}
+            </Link>
+          </li>
+        ))}
       </ul>
       <div className="mobile-menu-actions">
         <div className="icons">

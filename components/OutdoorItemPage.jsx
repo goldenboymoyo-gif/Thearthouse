@@ -32,7 +32,7 @@ export default function OutdoorItemPage({ slug }) {
             </div>
           ))}
           <div className="back-link">
-            <Link className="btn btn-xl" href="/outdoor-living">
+            <Link className="btn btn-xl" href="/the-art-house#outdoor-living">
               Outdoor Living at its finest
             </Link>
           </div>

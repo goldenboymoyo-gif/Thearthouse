@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { SITE, THINGS_TO_DO } from '@/lib/site';
 import SmartImage from './SmartImage';
 
-export default function ThingsToDo({ limit, headingLevel, intro }) {
+export default function ThingsToDo({ limit, headingLevel, intro, alt = false }) {
   const full = !limit;
   const list = limit ? THINGS_TO_DO.activities.slice(0, limit) : THINGS_TO_DO.activities;
   return (
-    <Section id="things-to-do" title={THINGS_TO_DO.title} headingLevel={headingLevel}>
+    <Section id="things-to-do" title={THINGS_TO_DO.title} alt={alt} headingLevel={headingLevel}>
       {full ? (
         <div className="ttd-intro">
           <h3>Unforgettable Experiences in Victoria Falls</h3>
@@ -55,7 +55,7 @@ export default function ThingsToDo({ limit, headingLevel, intro }) {
         </div>
       ) : null}
 
-      {limit ? <CTA href="/things-to-do">See More Experiences</CTA> : null}
+      {limit ? <CTA href="/explore#things-to-do">See More Experiences</CTA> : null}
     </Section>
   );
 }

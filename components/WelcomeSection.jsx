@@ -15,7 +15,7 @@ export default function WelcomeSection({ preview = false, headingLevel }) {
         <div className="welcome-text">
           <div>
             <p>{text}</p>
-            {preview ? <CTA href="/about">Explore The Art House</CTA> : null}
+            {preview ? <CTA href="/the-art-house">Explore The Art House</CTA> : null}
           </div>
         </div>
       </div>

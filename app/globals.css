@@ -3654,3 +3654,60 @@ textarea.form-control {
     font-size: 1.15rem;
   }
 }
+
+/* ---------- combined pages: section jump links ---------- */
+
+.s-module[id] {
+  scroll-margin-top: 70px;
+}
+
+.page-sections {
+  background: var(--color-white);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: calc(var(--nav-height) + 22px) 0 22px;
+}
+
+.page-sections ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-sections a {
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid var(--color-primary);
+  border-radius: 999px;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.page-sections a:hover,
+.page-sections a:focus-visible {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.footer-nav {
+  row-gap: 6px;
+}
+
+@media (max-width: 767px) {
+  .s-module[id] {
+    scroll-margin-top: calc(var(--nav-height-mobile) + 5px);
+  }
+  .page-sections {
+    padding: calc(var(--nav-height-mobile) + 14px) 0 14px;
+  }
+  .page-sections a {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+  }
+}

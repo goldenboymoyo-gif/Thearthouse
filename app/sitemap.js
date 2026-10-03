@@ -5,15 +5,11 @@ export const dynamic = 'force-static';
 
 const STATIC_PATHS = [
   '/',
-  '/about',
+  '/the-art-house',
+  '/explore',
   '/gallery',
-  '/quick-look',
-  '/outdoor-living',
-  '/things-to-do',
-  '/whats-around',
   '/guest-reviews',
   '/articles',
-  '/faq',
   '/contact',
 ];
 

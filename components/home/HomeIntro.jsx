@@ -26,7 +26,7 @@ export default function HomeIntro() {
             Adorned with paintings by renowned African artists, it is within easy walking distance of the town centre and the
             magnificent waterfall.
           </p>
-          <Link className="text-link" href="/about">
+          <Link className="text-link" href="/the-art-house">
             Discover The Art House <span aria-hidden="true">→</span>
           </Link>
         </div>

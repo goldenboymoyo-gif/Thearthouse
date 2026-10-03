@@ -8,7 +8,7 @@ import SmartImage from './SmartImage';
 function actionFor(title) {
   if (title === 'Victoria Falls') {
     return (
-      <Link className="btn btn-sm" href="/things-to-do">
+      <Link className="btn btn-sm" href="/explore#things-to-do">
         Explore Vic Falls Activities
       </Link>
     );
@@ -16,7 +16,7 @@ function actionFor(title) {
   if (title === 'Tours & Activities') {
     return (
       <>
-        <Link className="btn btn-sm" href="/things-to-do">
+        <Link className="btn btn-sm" href="/explore#things-to-do">
           Browse Activities
         </Link>
         <Link className="btn btn-sm btn-outline" href="/contact">
@@ -67,7 +67,7 @@ export default function WhatsAround({ preview = false, headingLevel, alt = true,
         ))}
       </div>
 
-      {preview ? <CTA href="/whats-around">Discover What&apos;s Around</CTA> : null}
+      {preview ? <CTA href="/explore">Discover What&apos;s Around</CTA> : null}
     </Section>
   );
 }

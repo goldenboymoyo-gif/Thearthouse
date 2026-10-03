@@ -6,7 +6,7 @@ export const ChromeContext = createContext({ open: null, setOpen: () => {}, path
 
 export const useChrome = () => useContext(ChromeContext);
 
-export function isActive(pathname, href) {
+export function isActive(pathname, href, match = []) {
   if (href === '/') return pathname === '/';
-  return pathname === href || pathname.startsWith(href + '/');
+  return [href, ...match].some((p) => pathname === p || pathname.startsWith(p + '/'));
 }

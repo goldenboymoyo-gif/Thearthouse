@@ -29,7 +29,7 @@ export default function FaqSection({ headingLevel, limit, alt = false, id = 'faq
           </details>
         ))}
       </div>
-      {limit ? <CTA href="/faq">See All Questions</CTA> : null}
+      {limit ? <CTA href="/the-art-house#faq">See All Questions</CTA> : null}
     </Section>
   );
 }

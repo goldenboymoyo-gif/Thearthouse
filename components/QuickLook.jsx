@@ -32,7 +32,7 @@ export default function QuickLook({ headingLevel, cta = false, alt = true, detai
         ))}
       </div>
       {details ? <StayDetails actions={false} /> : null}
-      {cta ? <CTA href="/quick-look" className="tight">View Quick Look</CTA> : null}
+      {cta ? <CTA href="/the-art-house#quick-look" className="tight">View Quick Look</CTA> : null}
     </Section>
   );
 }

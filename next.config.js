@@ -8,14 +8,21 @@ const relativeDist = tempBase ? path.relative(projectRoot, tempBase) : null;
 
 // Old Site123 addresses, so existing links and search results keep working.
 const OLD_URLS = [
-  ['/welcome-to-the-art-house-4-bedroom-self-catering-home-victoria-falls', '/about'],
-  ['/what-s-around', '/whats-around'],
-  ['/what-to-do-in-vic-falls/:path*', '/things-to-do'],
+  ['/welcome-to-the-art-house-4-bedroom-self-catering-home-victoria-falls', '/the-art-house'],
+  ['/what-s-around', '/explore'],
+  ['/what-to-do-in-vic-falls/:path*', '/explore#things-to-do'],
   ['/what-our-guests-say', '/guest-reviews'],
   ['/published-articles', '/articles'],
   ['/contact-us', '/contact'],
-  ['/outdoor-living-at-its-finest', '/outdoor-living'],
+  ['/outdoor-living-at-its-finest', '/the-art-house#outdoor-living'],
   ['/outdoor-living-at-its-finest/:slug', '/outdoor-living/:slug'],
+  // The former dropdown sub-pages are now sections of two combined pages.
+  ['/about', '/the-art-house'],
+  ['/quick-look', '/the-art-house#quick-look'],
+  ['/outdoor-living', '/the-art-house#outdoor-living'],
+  ['/faq', '/the-art-house#faq'],
+  ['/whats-around', '/explore'],
+  ['/things-to-do', '/explore#things-to-do'],
 ];
 
 const nextConfig = {

@@ -50,7 +50,7 @@ export default function StayDetails({ actions = true }) {
           <a className="btn btn-xl" href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer">
             Check Availability
           </a>
-          <Link className="btn btn-xl btn-outline" href="/faq">
+          <Link className="btn btn-xl btn-outline" href="/the-art-house#faq">
             Read the FAQ
           </Link>
         </div>

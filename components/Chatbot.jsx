@@ -338,7 +338,7 @@ export function getAssistantReply(input) {
     return 'Victoria Falls is the adventure capital of Africa, with everything from the Falls and rainforest trails to helicopter flights, white-water rafting, bungee jumping, sunset cruises and wildlife encounters. Tell us what you would like to do and we will help you book it.';
 
   if (has(['activity', 'activities', 'tour', 'tours', 'things to do', 'adventure', 'book a tour', 'book activities', 'excursion', 'excursions']))
-    return "We're in the adventure capital of Africa! We provide a comprehensive, personalised service for tours, activities and holiday planning — and we can arrange transfers too — at no additional cost. Every activity on our What to Do page (/things-to-do) has its own page with more details, and each one can be arranged through us — just tell us what you'd like to do, or visit /contact to enquire.";
+    return "We're in the adventure capital of Africa! We provide a comprehensive, personalised service for tours, activities and holiday planning — and we can arrange transfers too — at no additional cost. Every activity on our What to Do section (/explore#things-to-do) has its own page with more details, and each one can be arranged through us — just tell us what you'd like to do, or visit /contact to enquire.";
 
   if (has(['transfer', 'transfers', 'airport', 'pick-up', 'pickup', 'pick up', 'transport', 'taxi', 'drive', 'getting around', 'shuttle']))
     return 'We can assist with transfers to and from the airport, as well as transport and holiday planning for your whole trip — arranged for you at no additional cost. Just let our team know your details.';

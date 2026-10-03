@@ -18,7 +18,7 @@ export default function Hero() {
           <a className="btn btn-xl hero-btn" href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer">
             Book Your Stay
           </a>
-          <Link className="btn btn-xl hero-btn ghost" href="/about">
+          <Link className="btn btn-xl hero-btn ghost" href="/the-art-house">
             Explore the Art House
           </Link>
         </div>

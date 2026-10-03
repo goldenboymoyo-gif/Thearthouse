@@ -6,21 +6,21 @@ import { img } from '@/lib/assets';
 
 const CARDS = [
   {
-    href: '/outdoor-living',
+    href: '/the-art-house#outdoor-living',
     title: 'Outdoor Living',
     text: 'An outdoor bath beneath the African stars',
     image: img('800_629b32ebe9f88.png'),
     alt: 'Outdoor bath at The Art House',
   },
   {
-    href: '/things-to-do',
+    href: '/explore#things-to-do',
     title: 'What To Do in Vic Falls',
     text: 'We book your activities at no extra cost',
     image: img('2000_629b7ce577031.jpg'),
     alt: 'White-water rafting below the Victoria Falls',
   },
   {
-    href: '/whats-around',
+    href: '/explore#whats-around',
     title: "What's Around",
     text: 'The Falls, food and entertainment nearby',
     image: img('800_6298f74f99c75.jpg'),
