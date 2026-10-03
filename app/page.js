@@ -1,15 +1,11 @@
 import Hero from '@/components/Hero';
-import WelcomeSection from '@/components/WelcomeSection';
-import QuickLook from '@/components/QuickLook';
 import Promo from '@/components/Promo';
-import GallerySection from '@/components/GallerySection';
-import OutdoorLiving from '@/components/OutdoorLiving';
-import WhatsAround from '@/components/WhatsAround';
-import ThingsToDo from '@/components/ThingsToDo';
-import Reviews from '@/components/Reviews';
-import ArticlePreview from '@/components/ArticlePreview';
-import ContactSection from '@/components/ContactSection';
-import FaqSection from '@/components/FaqSection';
+import HomeHighlights from '@/components/home/HomeHighlights';
+import HomeIntro from '@/components/home/HomeIntro';
+import HomeMosaic from '@/components/home/HomeMosaic';
+import HomeExplore from '@/components/home/HomeExplore';
+import HomePlan from '@/components/home/HomePlan';
+import HomeReview from '@/components/home/HomeReview';
 import { PROMOS, SITE } from '@/lib/site';
 
 export const metadata = {
@@ -17,25 +13,28 @@ export const metadata = {
   alternates: { canonical: '/' },
 };
 
-// Same sections, order and rhythm as the live home page; the longer sections
-// show a preview and link to their own page.
+// A short, photo-led home page: who we are, what it looks like, what there is
+// to do, the practical facts, one guest's words and how to book. Everything
+// else lives on its own page.
 export default function HomePage() {
   return (
     <main className="page-main home">
       <Hero />
-      <WelcomeSection preview />
-      <QuickLook cta />
-      <Promo promo={PROMOS.peaceful} />
-      <GallerySection limit={9} />
-      <OutdoorLiving />
-      <WhatsAround preview />
-      <ThingsToDo limit={6} />
-      <Promo promo={PROMOS.discover} />
-      <Reviews cta />
-      <ArticlePreview cta />
-      <Promo promo={PROMOS.waiting} />
-      <FaqSection limit={6} alt id="faq-preview" />
-      <ContactSection alt={false} />
+      <HomeHighlights />
+      <HomeIntro />
+      <HomeMosaic />
+      <Promo promo={PROMOS.peaceful} shapeColor="var(--color-white)" />
+      <HomeExplore />
+      <HomePlan />
+      <HomeReview />
+      <Promo
+        promo={PROMOS.waiting}
+        shapeColor="var(--color-white)"
+        buttons={[
+          { label: 'Book Now', href: SITE.bookingUrl },
+          { label: 'Contact Us', href: '/contact' },
+        ]}
+      />
     </main>
   );
 }

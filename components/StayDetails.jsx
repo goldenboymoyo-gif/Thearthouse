@@ -1,58 +1,60 @@
-import Icon from './Icon';
-import { DISTANCES, STAY_INFO } from '@/lib/site';
+import Link from 'next/link';
+import LineIcon from './LineIcon';
+import { DISTANCES, SITE, STAY_INFO } from '@/lib/site';
 
-// Rates, house rules and distances — the practical facts guests (and search
-// engines) look for first.
-export default function StayDetails() {
+const FACTS = [
+  { icon: 'tag', label: 'Rates', value: `From ${STAY_INFO.rateFrom}`, sub: 'per night' },
+  { icon: 'bed', label: 'Bedrooms', value: '4 bedrooms', sub: '2 King · 1 Double · 1 Twin' },
+  { icon: 'login', label: 'Check-in', value: STAY_INFO.checkIn, sub: 'from' },
+  { icon: 'logout', label: 'Check-out', value: STAY_INFO.checkOut, sub: 'by' },
+  { icon: 'moon', label: 'Minimum stay', value: '2 nights', sub: '4 nights over major holidays' },
+  { icon: 'utensils', label: 'Meals', value: 'Cook on request', sub: 'or ready-cooked meals, with notice' },
+];
+
+// "Plan Your Stay": the practical facts guests (and search engines) look for
+// first — rates, rooms, times, minimum stay, meals and distances.
+export default function StayDetails({ actions = true }) {
   return (
-    <div className="stay-details" data-aos="fade-up">
-      <div className="stay-col">
-        <h3 className="stay-heading">Good to Know</h3>
-        <dl className="stay-list">
-          <div>
-            <dt>Rates</dt>
-            <dd>From {STAY_INFO.rateFrom} per night</dd>
-          </div>
-          <div>
-            <dt>Check-in</dt>
-            <dd>From {STAY_INFO.checkIn}</dd>
-          </div>
-          <div>
-            <dt>Check-out</dt>
-            <dd>By {STAY_INFO.checkOut}</dd>
-          </div>
-          <div>
-            <dt>Minimum stay</dt>
-            <dd>
-              {STAY_INFO.minimumStay.map((m) => (
-                <span key={m} className="stay-line">
-                  {m}
-                </span>
-              ))}
-            </dd>
-          </div>
-          <div>
-            <dt>Meals</dt>
-            <dd>{STAY_INFO.meals}</dd>
-          </div>
-        </dl>
-      </div>
-      <div className="stay-col">
-        <h3 className="stay-heading">Distances</h3>
-        <dl className="stay-list">
+    <div className="plan" data-aos="fade-up">
+      <ul className="plan-facts">
+        {FACTS.map((f) => (
+          <li key={f.label} className="plan-fact">
+            <LineIcon name={f.icon} className="plan-fact-icon" />
+            <span className="plan-fact-label">{f.label}</span>
+            <span className="plan-fact-value">
+              {f.sub === 'from' || f.sub === 'by' ? `${f.sub === 'from' ? 'From' : 'By'} ${f.value}` : f.value}
+            </span>
+            {f.sub !== 'from' && f.sub !== 'by' ? <span className="plan-fact-sub">{f.sub}</span> : null}
+          </li>
+        ))}
+      </ul>
+
+      <div className="plan-distances">
+        <h3 className="plan-subheading">
+          <LineIcon name="pin" /> How far is everything?
+        </h3>
+        <ul>
           {DISTANCES.map((d) => (
-            <div key={d.place}>
-              <dt>
-                <Icon name="location-arrow" className="stay-pin" />
-                {d.place}
-              </dt>
-              <dd>
-                {d.distance} <span className="stay-note">– {d.note}</span>
-              </dd>
-            </div>
+            <li key={d.place}>
+              <LineIcon name={d.icon} className="plan-d-icon" />
+              <span className="plan-d-km">{d.distance}</span>
+              <span className="plan-d-place">{d.short}</span>
+              <span className="plan-d-note">{d.note.replace(/^about an? /, '≈ ')}</span>
+            </li>
           ))}
-        </dl>
+        </ul>
       </div>
+
+      {actions ? (
+        <div className="plan-actions">
+          <a className="btn btn-xl" href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer">
+            Check Availability
+          </a>
+          <Link className="btn btn-xl btn-outline" href="/faq">
+            Read the FAQ
+          </Link>
+        </div>
+      ) : null}
     </div>
   );
 }
