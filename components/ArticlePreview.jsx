@@ -1,6 +1,7 @@
 import Section from './Section';
 import CTA from './CTA';
 import { ARTICLES, SITE } from '@/lib/site';
+import SmartImage from './SmartImage';
 
 export default function ArticlePreview({ headingLevel, cta = false, alt = true }) {
   const full = !cta;
@@ -21,15 +22,15 @@ export default function ArticlePreview({ headingLevel, cta = false, alt = true }
           const excerpt = a.text.split('\n\n')[0].replace('Follow the link to read more', '').trim();
           return (
             <article className="journal-card" key={a.href}>
-              <a className="journal-media" href={a.href} target="_blank" rel="noopener noreferrer" aria-label={`${a.name} – read the article`}>
-                <img src={a.image} alt={a.linkLabel} loading="lazy" />
+              <a className="journal-media" href={a.href} target="_blank" rel="noopener noreferrer" aria-label={`${a.name} — read the article`}>
+                <SmartImage src={a.image} alt="" sizes="(max-width: 767px) 92vw, 30vw" />
                 <span className="journal-tag">{a.name}</span>
               </a>
               <div className="journal-body">
-                <h4>{a.name}</h4>
+                <h3>{a.name}</h3>
                 <p className="journal-excerpt">{excerpt}</p>
                 <a className="btn btn-sm btn-outline" href={a.href} target="_blank" rel="noopener noreferrer">
-                  Read More
+                  Read {a.name}
                 </a>
               </div>
             </article>

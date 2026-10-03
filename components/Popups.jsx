@@ -7,6 +7,7 @@ import { img } from '@/lib/assets';
 import Icon from './Icon';
 import ContactForm from './ContactForm';
 import { isActive, useChrome } from './chrome-context';
+import SmartImage from './SmartImage';
 
 // The dark full-screen panels that slide down from the top of the live site
 // (menu on phones, and the address / social / email / phone header icons).
@@ -112,13 +113,13 @@ export function AddressPopup() {
         </a>
         <div className="map-apps">
           <a className="circle-link" href={CONTACT.mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Google Maps">
-            <img src={img('google_map_white_small.png')} alt="Google Maps" />
+            <SmartImage src={img('google_map_white_small.png')} alt="Google Maps" sizes="40px" />
           </a>
           <a className="circle-link" href={CONTACT.wazeUrl} target="_blank" rel="noopener noreferrer" aria-label="Waze">
-            <img src={img('waze_white_small.png')} alt="Waze" />
+            <SmartImage src={img('waze_white_small.png')} alt="Waze" sizes="40px" />
           </a>
           <a className="circle-link" href={CONTACT.moovitUrl} target="_blank" rel="noopener noreferrer" aria-label="Moovit">
-            <img src={img('moovit_white_small.png')} alt="Moovit" />
+            <SmartImage src={img('moovit_white_small.png')} alt="Moovit" sizes="40px" />
           </a>
         </div>
       </div>

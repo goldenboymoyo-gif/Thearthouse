@@ -2,6 +2,7 @@ import Section from './Section';
 import CTA from './CTA';
 import Link from 'next/link';
 import { SITE, THINGS_TO_DO } from '@/lib/site';
+import SmartImage from './SmartImage';
 
 export default function ThingsToDo({ limit, headingLevel, intro }) {
   const full = !limit;
@@ -23,7 +24,7 @@ export default function ThingsToDo({ limit, headingLevel, intro }) {
         {list.map((a) => (
           <Link className="ttd-card" href={`/things-to-do/${a.slug}`} key={a.slug}>
             <figure className="ttd-media">
-              <img src={a.image} alt={a.title} loading="lazy" />
+              <SmartImage src={a.image} alt={a.title} sizes="(max-width: 767px) 92vw, 30vw" />
             </figure>
             <span className="ttd-card-body">
               <span className="ttd-card-title">{a.title}</span>

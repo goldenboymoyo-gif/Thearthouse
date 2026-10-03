@@ -7,7 +7,7 @@ export function outdoorMetadata(slug) {
   const item = OUTDOOR.items.find((i) => i.slug === slug);
   return {
     title: item.title,
-    description: item.sections[0].text || `${item.title} – Outdoor Living at The Art House Victoria Falls.`,
+    description: item.sections[0].text || `${item.title} — Outdoor Living at The Art House Victoria Falls.`,
     alternates: { canonical: `/outdoor-living/${slug}` },
   };
 }
@@ -24,7 +24,7 @@ export default function OutdoorItemPage({ slug }) {
             <div key={i}>
               {sec.heading ? (
                 <div className="p-section-text">
-                  <h4>{sec.heading}</h4>
+                  <h3>{sec.heading}</h3>
                   {sec.text ? <p>{sec.text}</p> : null}
                 </div>
               ) : null}

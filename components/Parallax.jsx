@@ -1,11 +1,18 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import { imgDims } from '@/lib/assets';
 
 // Background image parallax, reproducing the parallax.js behaviour the live
 // Site123 site uses for the top image and the promo banners (speed 0.2).
-// Touch devices get a static cover image, as on the live site.
-export default function Parallax({ src, opacity = 1, speed = 0.2 }) {
+// The photograph is served through next/image (responsive srcset, modern
+// formats, optionally preloaded) and the aspect ratio comes from the build-time
+// dimension map, so the browser no longer downloads a second copy of the image
+// just to measure it. Touch devices get a static cover image, as on the live
+// site, and the image is hidden from assistive technology because the same
+// scene is described by the page's heading and text.
+export default function Parallax({ src, opacity = 1, speed = 0.2, priority = false, sizes = '100vw' }) {
   const boxRef = useRef(null);
   const imgRef = useRef(null);
 
@@ -18,7 +25,8 @@ export default function Parallax({ src, opacity = 1, speed = 0.2 }) {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (touch || reduce) return;
 
-    let ratio = 0;
+    const { width, height } = imgDims(String(src || '').split('/').pop());
+    let ratio = width / height;
     let geo = null;
     let frame = 0;
 
@@ -67,12 +75,7 @@ export default function Parallax({ src, opacity = 1, speed = 0.2 }) {
       if (!frame) frame = requestAnimationFrame(render);
     };
 
-    const probe = new Image();
-    probe.onload = () => {
-      ratio = probe.naturalWidth / probe.naturalHeight;
-      refresh();
-    };
-    probe.src = src;
+    refresh();
 
     const ro = new ResizeObserver(() => refresh());
     ro.observe(document.body);
@@ -83,13 +86,15 @@ export default function Parallax({ src, opacity = 1, speed = 0.2 }) {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', refresh);
       if (frame) cancelAnimationFrame(frame);
-      el.style.cssText = `background-image:url(${src});opacity:${opacity}`;
+      el.style.cssText = `width:100%;height:100%;transform:none;opacity:${opacity}`;
     };
   }, [src, speed, opacity]);
 
   return (
     <div className="parallax" ref={boxRef} aria-hidden="true">
-      <div ref={imgRef} className="parallax-img" style={{ backgroundImage: `url(${src})`, opacity }} />
+      <div ref={imgRef} className="parallax-img" style={{ opacity }}>
+        <Image src={src} alt="" fill priority={priority} sizes={sizes} style={{ objectFit: 'cover' }} />
+      </div>
     </div>
   );
 }

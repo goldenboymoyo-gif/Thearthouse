@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { SITE } from '@/lib/site';
 import Icon from './Icon';
 import { useChrome } from './chrome-context';
+import SmartImage from './SmartImage';
 
 // Phone-size header of the live site: menu button left, logo centred, phone
 // and email buttons right.
@@ -27,7 +28,7 @@ export default function MobileHeader() {
         </button>
       </div>
       <Link href="/" className="site-logo" aria-label={SITE.name}>
-        <img src={SITE.logo} alt={SITE.name} width="382" height="213" />
+        <SmartImage src={SITE.logo} alt={SITE.name} sizes="90px" loading="eager" />
       </Link>
       <div className="m-side right">
         <button type="button" className="m-btn" onClick={() => setOpen('phone')} aria-label="Call us">

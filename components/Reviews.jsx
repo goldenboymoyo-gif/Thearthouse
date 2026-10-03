@@ -3,6 +3,7 @@ import CTA from './CTA';
 import Icon from './Icon';
 import Stars from './Stars';
 import { REVIEWS, SITE } from '@/lib/site';
+import SmartImage from './SmartImage';
 
 export default function Reviews({ headingLevel, cta = false }) {
   return (
@@ -20,7 +21,7 @@ export default function Reviews({ headingLevel, cta = false }) {
             </blockquote>
             <figcaption className="review-meta">
               <span className="review-photo">
-                <img src={r.image} alt="" loading="lazy" />
+                <SmartImage src={r.image} alt="" sizes="64px" />
               </span>
               <span className="review-who">
                 <strong>{r.name}</strong>

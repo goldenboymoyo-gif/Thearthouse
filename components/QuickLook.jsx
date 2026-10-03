@@ -2,8 +2,10 @@ import Section from './Section';
 import CTA from './CTA';
 import Icon from './Icon';
 import { QUICK_LOOK } from '@/lib/site';
+import SmartImage from './SmartImage';
+import StayDetails from './StayDetails';
 
-export default function QuickLook({ headingLevel, cta = false, alt = true }) {
+export default function QuickLook({ headingLevel, cta = false, alt = true, details = true }) {
   return (
     <Section id="quick-look" title={QUICK_LOOK.title} alt={alt} headingLevel={headingLevel}>
       <div className="features">
@@ -12,7 +14,7 @@ export default function QuickLook({ headingLevel, cta = false, alt = true }) {
             <a className="feature-link" href={item.href} aria-label={`${item.title} – learn more`}>
               <span className="feature-inner">
                 <span className="feature-media">
-                  <img src={item.image} alt={item.alt || item.title} loading="lazy" />
+                  <SmartImage src={item.image} alt={item.alt || item.title} sizes="(max-width: 767px) 92vw, 30vw" />
                 </span>
                 <span className="feature-body">
                   <span className="feature-heading">
@@ -29,6 +31,7 @@ export default function QuickLook({ headingLevel, cta = false, alt = true }) {
           </div>
         ))}
       </div>
+      {details ? <StayDetails /> : null}
       {cta ? <CTA href="/quick-look" className="tight">View Quick Look</CTA> : null}
     </Section>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import SmartImage from './SmartImage';
 
 const Chevron = ({ dir }) => (
   <svg viewBox="0 0 32 64" aria-hidden="true">
@@ -70,7 +71,7 @@ export default function Lightbox({ images, index, onClose, onIndex }) {
         <button type="button" className="lb-close" onClick={onClose} aria-label="Close">
           ×
         </button>
-        <img src={current.full} alt={current.alt || ''} onClick={() => count > 1 && go(1)} />
+        <SmartImage src={current.full} alt={current.alt || ''} onClick={() => count > 1 && go(1)} sizes="100vw" priority />
         {count > 1 ? (
           <figcaption className="lb-counter">
             {index + 1} of {count}

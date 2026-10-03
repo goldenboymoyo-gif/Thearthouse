@@ -9,10 +9,11 @@ import ThingsToDo from '@/components/ThingsToDo';
 import Reviews from '@/components/Reviews';
 import ArticlePreview from '@/components/ArticlePreview';
 import ContactSection from '@/components/ContactSection';
-import { PROMOS } from '@/lib/site';
+import FaqSection from '@/components/FaqSection';
+import { PROMOS, SITE } from '@/lib/site';
 
 export const metadata = {
-  title: { absolute: 'The Art House Victoria Falls - 4 Bedroom self-catering accommodation' },
+  title: { absolute: SITE.title },
   alternates: { canonical: '/' },
 };
 
@@ -33,7 +34,8 @@ export default function HomePage() {
       <Reviews cta />
       <ArticlePreview cta />
       <Promo promo={PROMOS.waiting} />
-      <ContactSection />
+      <FaqSection limit={6} alt id="faq-preview" />
+      <ContactSection alt={false} />
     </main>
   );
 }

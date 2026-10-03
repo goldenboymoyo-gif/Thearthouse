@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { AROUND, ARTICLES, CONTACT, QUICK_LOOK, REVIEWS, SITE, THINGS_TO_DO } from '@/lib/site';
+import { AROUND, ARTICLES, CONTACT, DISTANCES, QUICK_LOOK, REVIEWS, SITE, STAY_INFO, THINGS_TO_DO } from '@/lib/site';
 import { advance, createFlow, extractDates, formatDate, wantsBooking } from '@/lib/chat-booking';
 import Icon from './Icon';
 
@@ -254,20 +254,39 @@ export default function Chatbot() {
 export function getAssistantReply(input) {
   const q = input.toLowerCase();
 
-  const has = (words) => words.some((w) => q.includes(w));
-  const all = (words) => words.every((w) => q.includes(w));
+  // Match whole words (or word starts, e.g. 'servic' → 'serviced') so that
+  // 'hi' does not fire on 'this' or 'which'.
+  const hit = (w) =>
+    new RegExp(`(^|[^a-z0-9])${w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}${w.length <= 3 ? '(?![a-z])' : ''}`).test(q);
+  const has = (words) => words.some(hit);
+  const all = (words) => words.every(hit);
 
   if (has(['hello', 'hi', 'hey', 'howdy', 'good morning', 'good afternoon', 'good evening']))
     return "Hi there! Welcome to The Art House, Victoria Falls. I'm here to help with your stay — ask me about the house, booking, activities and more.";
 
   if (has(['tell me about the house', 'about the house', 'tell me about it', 'tell me more', 'the house itself', 'whole house', 'exclusive', 'private use', 'all to ourselves', 'other guests']))
-    return 'The Art House is offered as an exclusive-use property: when you book, the whole house is yours alone. It is a 4 bedroom family home sleeping 8 guests (3 doubles and 1 twin), with 3 bathrooms, a private swimming pool, reliable WiFi and Netflix, air conditioning, and a large, lush tropical garden with plenty of bird life. It is serviced daily, and we keep a seasonal kitchen garden with herbs and vegetables for our guests.';
+    return 'The Art House is offered as an exclusive-use property: when you book, the whole house is yours alone. It is a 4 bedroom family home sleeping 8 guests (2 kings, 1 double and 1 twin), with 3 bathrooms, a private swimming pool, reliable WiFi and Netflix, air conditioning, and a large, lush tropical garden with plenty of bird life. It is serviced daily, and we keep a seasonal kitchen garden with herbs and vegetables for our guests.';
+
+  if (has(['minimum stay', 'minimum night', 'min stay', 'how many nights', 'shortest stay', 'minimum']))
+    return `The minimum stay is ${STAY_INFO.minimumStay[0]} and ${STAY_INFO.minimumStay[1]}.`;
+
+  if (has(['check-in', 'check in', 'checkin', 'check-out', 'check out', 'checkout', 'arrival time', 'departure time']))
+    return `Check-in is from ${STAY_INFO.checkIn} and check-out is by ${STAY_INFO.checkOut}.`;
+
+  if (has(['price', 'pricing', 'how much', 'cost', 'rates', 'rate', 'per night', 'expensive', 'cheap']))
+    return `${STAY_INFO.rateNote} The minimum stay is ${STAY_INFO.minimumStay[0]} and ${STAY_INFO.minimumStay[1]}. You can check availability and book direct here: ${SITE.bookingUrl} — or email ${CONTACT.email} for a quote.`;
+
+  if (has(['chef', 'cook', 'meals', 'meal', 'dinner cooked', 'catering', 'food provided']) && !has(['self-catering', 'self catering']))
+    return `${STAY_INFO.meals} The Art House also has a kitchen, a braai/barbeque facility and a seasonal kitchen garden if you prefer to cook yourselves.`;
+
+  if (has(['how far', 'distance', 'km', 'kilometres', 'kilometers', 'minutes away', 'airport', 'supermarket', 'pick n pay', 'shop', 'shops', 'store', 'groceries', 'convenience', '7/11', '7-eleven', 'seven to eleven', 'seven eleven', 'how close', 'nearby shop']))
+    return `Approximate distances from The Art House: ${DISTANCES.map((d) => `${d.place} ${d.distance} (${d.note})`).join('; ')}. We can also arrange airport transfers for you.`;
 
   if (has(['bedroom', 'bedrooms', 'room', 'rooms', 'sleeps', 'sleep', 'accommodat', 'how many people', 'how many guests']))
-    return 'The Art House has 4 bedrooms sleeping 8 guests (3 doubles and 1 twin). We also have stretcher beds to accommodate more guests and a baby cot available — perfect for families and groups.';
+    return 'The Art House has 4 bedrooms sleeping 8 guests (2 kings, 1 double and 1 twin). We also have stretcher beds to accommodate more guests and a baby cot available — perfect for families and groups.';
 
   if (/\b(max(imum)?|capacity)\b/.test(q) || /can\s+(\w+|\d{1,2})\s*(people|guests|persons?|adults?|kids?|children)\s+stay/.test(q))
-    return 'The Art House sleeps 8 guests (4 bedrooms: 3 doubles and 1 twin). We also have stretcher beds to accommodate more guests on request, plus a baby cot — so larger groups and families are welcome. Need specific numbers? Just ask and we\u2019ll confirm.';
+    return 'The Art House sleeps 8 guests (4 bedrooms: 2 kings, 1 double and 1 twin). We also have stretcher beds to accommodate more guests on request, plus a baby cot — so larger groups and families are welcome. Need specific numbers? Just ask and we\u2019ll confirm.';
 
   if (has(['family', 'families', 'kids', 'children', 'child', 'baby', 'cot']))
     return 'The Art House is a warm family home, ideal for families and groups: 4 bedrooms sleeping 8 (with stretcher beds and a baby cot available), a private pool, large gardens and daily servicing. During your stay the whole house is yours exclusively.';
@@ -294,7 +313,7 @@ export function getAssistantReply(input) {
     return 'The house is fitted with backup solar and water supply, so power cuts and water interruptions are not a concern during your stay.';
 
   if (has(['kitchen', 'cook', 'cooking', 'self-catering', 'self catering', 'vegetables', 'herbs', 'garden food', 'braai', 'barbecue', 'barbeque']))
-    return 'The Art House is a self-catering home with a well-equipped kitchen, and we keep a seasonal kitchen garden with herbs and vegetables. There is also a braai/barbeque facility for outdoor cooking, and our team can arrange a chef to do the cooking for you if you wish.';
+    return 'The Art House is a self-catering home with a well-equipped kitchen, and we keep a seasonal kitchen garden with herbs and vegetables. There is also a braai/barbeque facility for outdoor cooking, and a cook can be arranged with due notice, or ready-cooked meals can be provided.';
 
   if (has(['outdoor', 'outside', 'veranda', 'garden', 'gardens', 'star', 'stars', 'outdoor living']))
     return 'Outdoor living is one of our highlights: an outdoor bath and shower beneath the African stars with the roar of the Victoria Falls waterfall in the background, plus a braai/barbeque facility for outdoor cooking and exclusive use of our tropical gardens.';
@@ -334,10 +353,10 @@ export function getAssistantReply(input) {
     return `The Art House has been featured in a published article: "${ARTICLES.items[0].name} — ${ARTICLES.items[0].linkLabel}". You can read it on our Journal page.`;
 
   if (has(['contact', 'phone', 'call', 'email', 'mail', 'address', 'location', 'where are you', 'map', 'directions', 'reach']))
-    return `You can reach us at ${CONTACT.email} or call ${CONTACT.phone}. We're at ${CONTACT.address} and are available ${CONTACT.hours} to help.`;
+    return `You can reach us at ${CONTACT.email} or call ${CONTACT.phone}. We're at ${CONTACT.address}. ${CONTACT.hours}.`;
 
   if (has(['check-in', 'check in', 'check-out', 'check out', 'hours', 'reception', 'arrival']))
-    return `Our team is available ${CONTACT.hours} to welcome you and answer any questions.`;
+    return `Check-in is from ${STAY_INFO.checkIn} and check-out is by ${STAY_INFO.checkOut}. ${CONTACT.hours}.`;
 
   if (has(['quick look', 'facilities', 'amenities', 'what does it have', 'features', 'what is included', 'whats included', 'what do you provide']))
     return `Here's a quick look at The Art House: ${QUICK_LOOK.items.map((i) => `${i.title} (${i.text})`).join('; ')}. The house is offered as an exclusive-use property and is serviced daily.`;

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Icon from './Icon';
 import Lightbox from './Lightbox';
+import SmartImage from './SmartImage';
 
 // Masonry photo gallery of the live site: three columns with 5px gutters,
 // photographs at their natural proportions, green overlay with an eye on
@@ -47,9 +48,9 @@ export default function Gallery({ images, limit }) {
                       e.preventDefault();
                       setOpen(i);
                     }}
-                    aria-label={`Open photo ${i + 1} of ${list.length}`}
+                    aria-label={`Open photo ${i + 1} of ${list.length}${im.alt ? `: ${im.alt}` : ''}`}
                   >
-                    <img src={im.src} alt="" width={im.width} height={im.height} loading="lazy" decoding="async" />
+                    <SmartImage src={im.src} alt={im.alt || ""} sizes="(max-width: 767px) 33vw, 25vw" />
                     <span className="overlay" />
                     <span className="eye">
                       <Icon name="eye" />

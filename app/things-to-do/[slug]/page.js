@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import SmartImage from '@/components/SmartImage';
 import { CONTACT, SITE, THINGS_TO_DO } from '@/lib/site';
 
 export function generateStaticParams() {
@@ -31,7 +32,7 @@ export default function ActivityPage({ params }) {
 
         <article>
           <header className="activity-hero">
-            <img src={activity.full} alt={activity.title} />
+            <SmartImage src={activity.full} alt={activity.title} sizes="(max-width: 767px) 100vw, 1200px" priority />
             <div className="activity-hero-caption">
               <span className="activity-kicker">Victoria Falls</span>
               <h1>{activity.title}</h1>

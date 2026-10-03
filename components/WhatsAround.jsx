@@ -3,6 +3,7 @@ import CTA from './CTA';
 import Link from 'next/link';
 import { img } from '@/lib/assets';
 import { AROUND } from '@/lib/site';
+import SmartImage from './SmartImage';
 
 function actionFor(title) {
   if (title === 'Victoria Falls') {
@@ -44,7 +45,7 @@ export default function WhatsAround({ preview = false, headingLevel, alt = true,
             </p>
           </div>
           <div className="around-intro-media">
-            <img src={img('800_6298f74f99c75.jpg')} alt="The mighty Victoria Falls" loading="lazy" />
+            <SmartImage src={img('800_6298f74f99c75.jpg')} alt="The mighty Victoria Falls" sizes="(max-width: 767px) 92vw, 46vw" />
           </div>
         </div>
       ) : null}
@@ -53,10 +54,10 @@ export default function WhatsAround({ preview = false, headingLevel, alt = true,
         {AROUND.items.map((item, index) => (
           <article className={`around-item ${index % 2 === 1 ? 'reversed' : ''}`} key={item.title}>
             <div className="around-media">
-              <img src={item.image} alt={item.title} loading="lazy" />
+              <SmartImage src={item.image} alt={item.title} sizes="(max-width: 767px) 92vw, 46vw" />
             </div>
             <div className="around-content">
-              <h4>{item.title}</h4>
+              <h3>{item.title}</h3>
               {(preview ? item.paragraphs.slice(0, 1) : item.paragraphs).map((p, i) => (
                 <p key={i}>{p}</p>
               ))}

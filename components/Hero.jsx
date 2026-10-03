@@ -9,11 +9,11 @@ import { HERO_IMAGE, SITE } from '@/lib/site';
 export default function Hero() {
   return (
     <section className="hero" id="top-section" aria-label="The Art House Victoria Falls">
-      <Parallax src={HERO_IMAGE.src} opacity={0.8} />
+      <Parallax src={HERO_IMAGE.src} opacity={0.8} priority sizes="100vw" />
       <div className="hero-overlay" aria-hidden="true" />
       <div className="hero-content">
-        <h1>Experience the Art of Living in Victoria Falls</h1>
-        <p>Discover comfort, nature and unforgettable experiences at The Art House, your home away from home in Victoria Falls.</p>
+        <h1>The Art House – 4-Bedroom Self-Catering House with Pool, Victoria Falls</h1>
+        <p>Experience the art of living in Victoria Falls — comfort, nature and unforgettable experiences in your home away from home.</p>
         <div className="hero-actions">
           <a className="btn btn-xl hero-btn" href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer">
             Book Your Stay

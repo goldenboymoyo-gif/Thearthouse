@@ -5,7 +5,7 @@ import { PROMOS } from '@/lib/site';
 export const metadata = {
   title: 'Quick Look',
   description:
-    'The Art House at a glance: 4 bedrooms sleeping 8, 3 bathrooms, swimming pool, WiFi & Netflix, pet friendly and air conditioned.',
+    'The Art House at a glance: 4 bedrooms (2 kings, 1 double, 1 twin) sleeping 8, 3 bathrooms, pool, WiFi, pet friendly, aircon. Rates from US$300, check-in 2pm.',
   alternates: { canonical: '/quick-look' },
 };
 

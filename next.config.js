@@ -19,10 +19,40 @@ const OLD_URLS = [
 ];
 
 const nextConfig = {
+  // Do not advertise the framework: keeps responses tidy and one less thing to
+  // fingerprint.
+  poweredByHeader: false,
+  compress: true,
   images: {
-    unoptimized: true,
+    // Real optimization: responsive srcset, WebP, lazy loading and reserved
+    // space. Requires the `sharp` package (already installed).
+    // WebP rather than AVIF: encoding is 3-5x cheaper, so the first (cold)
+    // request for each size returns fast instead of stalling the LCP image.
+    formats: ['image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1600, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
   },
   ...(relativeDist ? { distDir: relativeDist } : {}),
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()' },
+          { key: 'X-DNS-Prefetch-Control', value: 'on' },
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
+        ],
+      },
+      {
+        source: '/images/:path*',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+      },
+    ];
+  },
   async redirects() {
     return OLD_URLS.map(([source, destination]) => ({ source, destination, permanent: true }));
   },

@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { NAV, SITE } from '@/lib/site';
 import Icon from './Icon';
 import { isActive, useChrome } from './chrome-context';
+import SmartImage from './SmartImage';
 
 // Desktop header. The primary navigation is fixed to the five main links,
 // with "The Art House" and "Explore" opening dropdown menus. The logo, the
@@ -54,7 +55,7 @@ export default function Header() {
     >
       <div className="nav-inner">
         <Link href="/" className="site-logo" aria-label={SITE.name}>
-          <img src={SITE.logo} alt={SITE.name} width="382" height="213" />
+          <SmartImage src={SITE.logo} alt={SITE.name} sizes="(max-width: 1199px) 100px, 120px" priority />
         </Link>
 
         <div className="nav-pages-wrap">
