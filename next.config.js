@@ -25,6 +25,12 @@ const OLD_URLS = [
   ['/things-to-do', '/explore#things-to-do'],
 ];
 
+// Address of the Express backend (the /backend folder, deployed as its own
+// Vercel project), e.g. https://thearthouse-api.vercel.app. When set, every
+// /api/* request is forwarded to it, so the browser only ever talks to the
+// website's own address (cookies and forms keep working unchanged).
+const BACKEND_URL = (process.env.BACKEND_URL || '').replace(/\/+$/, '');
+
 const nextConfig = {
   // Do not advertise the framework: keeps responses tidy and one less thing to
   // fingerprint.
@@ -59,6 +65,10 @@ const nextConfig = {
         headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
       },
     ];
+  },
+  async rewrites() {
+    if (!BACKEND_URL) return [];
+    return [{ source: '/api/:path*', destination: `${BACKEND_URL}/api/:path*` }];
   },
   async redirects() {
     return OLD_URLS.map(([source, destination]) => ({ source, destination, permanent: true }));

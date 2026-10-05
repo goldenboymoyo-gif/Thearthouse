@@ -1,0 +1,19 @@
+{
+  "name": "the-art-house-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Express backend for The Art House Victoria Falls website (contact form, admin dashboard, enquiries, photo uploads).",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

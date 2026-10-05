@@ -78,10 +78,15 @@ function Login({ session, onDone }) {
       <form className="adm-login-box" onSubmit={submit}>
         <img src="/images/400_6298f24fee429.png" alt="The Art House Victoria Falls" width="160" />
         <h1>Website admin</h1>
-        {!session.configured ? (
+        {session.offline ? (
           <div className="adm-note error">
-            The admin password has not been set up yet. Add <code>ADMIN_PASSWORD</code> to the Vercel environment variables (or to
-            <code> .env.local</code> on your computer) and restart. See ADMIN.md.
+            The backend can&apos;t be reached right now. Check that the backend is deployed and that <code>BACKEND_URL</code> is set in the
+            website&apos;s Vercel project (see ADMIN.md), then reload this page.
+          </div>
+        ) : !session.configured ? (
+          <div className="adm-note error">
+            The admin password has not been set up yet. Add <code>ADMIN_PASSWORD</code> to the backend&apos;s Vercel environment variables (or
+            to <code>.env.local</code> on your computer) and restart. See ADMIN.md.
           </div>
         ) : (
           <>
@@ -115,7 +120,7 @@ function Overview({ session, content, enquiries, go }) {
     <Panel title="Welcome back" intro="Choose what you would like to change. Nothing changes on the website until you press Save.">
       {session.storage === 'none' ? (
         <div className="adm-note error">
-          Saving is not set up yet: add <code>ADMIN_GITHUB_TOKEN</code> in the Vercel project settings (see ADMIN.md). You can look around, but
+          Saving is not set up yet: add <code>ADMIN_GITHUB_TOKEN</code> to the backend&apos;s Vercel environment variables (see ADMIN.md). You can look around, but
           changes can&apos;t be saved.
         </div>
       ) : null}
@@ -173,7 +178,7 @@ export default function AdminApp() {
     try {
       setSession(await api('/api/admin/login'));
     } catch {
-      setSession({ loggedIn: false, configured: true });
+      setSession({ loggedIn: false, configured: true, offline: true });
     }
   }, []);
 

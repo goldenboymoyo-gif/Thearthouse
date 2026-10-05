@@ -1,4 +1,4 @@
-// Shape of content/site-content.json. Everything the dashboard saves is
+// Shape of content/site-content.json (the website's editable content). Everything the dashboard saves is
 // checked against this, so a bad save can never break the website build.
 const str = (max = 300, opts = {}) => ({ t: 'str', max, ...opts });
 const text = (max = 3000) => ({ t: 'str', max, multiline: true });
@@ -8,9 +8,9 @@ const list = (of, max = 100, min = 0) => ({ t: 'list', of, max, min });
 const obj = (fields) => ({ t: 'obj', fields });
 const int = (min, max) => ({ t: 'int', min, max });
 
-export const DISTANCE_ICONS = ['water', 'town', 'store', 'cart', 'plane', 'pin'];
+const DISTANCE_ICONS = ['water', 'town', 'store', 'cart', 'plane', 'pin'];
 
-export const SCHEMA = obj({
+const SCHEMA = obj({
   _note: str(300, { optional: true }),
   site: obj({ bookingUrl: url() }),
   contact: obj({
@@ -116,7 +116,7 @@ function check(spec, value, where) {
 }
 
 // Returns { ok: true, content } with cleaned content, or { ok: false, error }.
-export function validateContent(input) {
+function validateContent(input) {
   try {
     const content = check(SCHEMA, input, '');
     const slugs = new Set();
@@ -130,3 +130,5 @@ export function validateContent(input) {
     throw e;
   }
 }
+
+module.exports = { SCHEMA, DISTANCE_ICONS, validateContent };

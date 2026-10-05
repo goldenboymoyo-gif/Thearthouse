@@ -174,7 +174,7 @@ async function resizeToBase64(file) {
   ctx.drawImage(bitmap, 0, 0, width, height);
   let quality = 0.85;
   let dataUrl = canvas.toDataURL('image/jpeg', quality);
-  while (dataUrl.length > 4.4e6 && quality > 0.4) {
+  while (dataUrl.length > 4.2e6 && quality > 0.4) {
     quality -= 0.1;
     dataUrl = canvas.toDataURL('image/jpeg', quality);
   }

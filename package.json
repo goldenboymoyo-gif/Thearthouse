@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "node server/index.js --prod",
     "lint": "next lint",
-    "fetch-assets": "node scripts/fetch-assets.mjs"
+    "fetch-assets": "node scripts/fetch-assets.mjs",
+    "test:api": "npm --prefix backend test"
   },
   "dependencies": {
     "express": "^4.19.2",

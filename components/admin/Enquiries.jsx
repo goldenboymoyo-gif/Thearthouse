@@ -30,7 +30,7 @@ export default function Enquiries({ state, reload, setStatus }) {
       <Panel title="Enquiries" intro="Messages from the contact form and booking requests from the chat assistant.">
         <div className="adm-note">
           The enquiries inbox is not switched on yet. Guests&apos; details must be kept private, so they are saved in a separate
-          <strong> private</strong> GitHub repository. Set <code>GITHUB_DATA_REPO</code> in Vercel (see ADMIN.md). Until then,
+          <strong> private</strong> GitHub repository. Set <code>GITHUB_DATA_REPO</code> in the backend&apos;s Vercel project (see ADMIN.md). Until then,
           enquiries still arrive by email if email sending is set up.
         </div>
       </Panel>

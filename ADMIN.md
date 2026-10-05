@@ -18,55 +18,68 @@ The owner can change the website at **/admin** (for example
 
 Everything the dashboard edits is stored in `content/site-content.json`.
 
-## How saving works
+## How it fits together
 
-When the owner presses **Save changes**, the dashboard commits the new
+```
+Browser ──► website (Next.js, Vercel project 1)
+              │  /api/*  is forwarded (BACKEND_URL)
+              ▼
+            backend (Express, /backend, Vercel project 2)
+              ├─► GitHub: website repo  – content/site-content.json, public/images/
+              └─► GitHub: private data repo – enquiries/
+```
+
+The backend is a normal Express app – see **backend/README.md** for its
+endpoints, tests and deployment steps.
+
+When the owner presses **Save changes**, the backend commits the new
 `content/site-content.json` (and any uploaded photos in `public/images/`) to the
-GitHub repository. Vercel sees the commit and republishes the site, so changes
-are live in about 1–2 minutes.
+website repository. Vercel rebuilds the website, so changes are live in about
+1–2 minutes. Enquiries contain guests' names, emails and phone numbers, so they
+are **never** saved in the public website repository – they go to a separate
+**private** repository.
 
-Enquiries contain guests' names, emails and phone numbers, so they are **never**
-saved in the public website repository. They go to a separate **private**
-GitHub repository.
+## One-time setup
 
-## One-time setup (Vercel)
-
-1. **Admin password** – Vercel → Project → Settings → Environment Variables:
-   - `ADMIN_PASSWORD` = a long password for the owner (12+ characters).
-2. **GitHub access token** – on GitHub: Settings → Developer settings →
-   Personal access tokens → *Fine-grained tokens* → Generate new token:
-   - Repository access: *Only select repositories* → `Thearthouse` and the
-     private data repository from step 3.
-   - Permissions → Repository permissions → **Contents: Read and write**.
-   - Add it in Vercel as `ADMIN_GITHUB_TOKEN`.
-3. **Private repository for enquiries** – create a new **private** repository
-   on GitHub (e.g. `thearthouse-data`, tick “Add a README”). Add in Vercel:
+1. **Private repository for enquiries** – on GitHub create a new **private**
+   repository, e.g. `thearthouse-data` (tick “Add a README”).
+2. **GitHub token** – GitHub → Settings → Developer settings → Personal access
+   tokens → *Fine-grained tokens* → Generate new token:
+   - Repository access: *Only select repositories* → `Thearthouse` and
+     `thearthouse-data`.
+   - Repository permissions → **Contents: Read and write**.
+3. **Backend project on Vercel** – Add New… → Project → import `Thearthouse`
+   again → **Root Directory: `backend`** → Environment Variables:
+   - `ADMIN_PASSWORD` – the owner's password
+   - `ADMIN_GITHUB_TOKEN` – the token from step 2
    - `GITHUB_DATA_REPO` = `goldenboymoyo-gif/thearthouse-data`
-4. Optional:
-   - `GITHUB_REPO` (default `goldenboymoyo-gif/Thearthouse`)
-   - `GITHUB_BRANCH` (default `main`)
-   - `RESEND_API_KEY` to also receive every enquiry by email.
-5. Redeploy once (Deployments → ⋯ → Redeploy) so the new variables are used.
+   - optional: `RESEND_API_KEY` (also email every enquiry), `ALLOWED_ORIGINS`
+   Deploy, then check `https://<backend>.vercel.app/api/health`.
+4. **Website project on Vercel** – Settings → Environment Variables:
+   - `BACKEND_URL` = `https://<backend>.vercel.app`
+   Redeploy the website.
 
 ## Trying it on your own computer
 
-Create a file called `.env.local` in the project folder:
+`.env.local` in the project folder (never committed):
 
 ```
-ADMIN_PASSWORD=choose-a-password
+ADMIN_PASSWORD="your-password"
 ```
 
-Run `npm run dev` and open http://localhost:3000/admin. Without
-`ADMIN_GITHUB_TOKEN`, saves are written straight into the project files on your
-computer (and enquiries into the `.data` folder, which git ignores), so you can
-commit and push them yourself.
+Use the quotes – without them a `#` in the password is treated as a comment.
+`npm run dev` runs the website **and** the backend together; open
+http://localhost:3000/admin. Without `ADMIN_GITHUB_TOKEN`, saves are written
+straight into the project files (enquiries into `.data/`, which git ignores).
+Backend tests: `npm run test:api`.
 
 ## Security notes
 
 - One password, checked on the server; the login lasts 7 days in an httpOnly,
   same-site cookie. Changing `ADMIN_PASSWORD` logs everyone out.
 - Five wrong passwords lock that address out for 15 minutes.
-- Every save is checked against a fixed shape (`lib/admin/schema.js`), so a
-  mistake can't break the website build. Only photos (JPG/PNG/WebP) can be
-  uploaded; they are resized to at most 2000px in the browser first.
+- Changes are only accepted from the website's own addresses.
+- Every save is checked against a fixed shape (`backend/src/lib/schema.js`), so
+  a mistake can't break the website build. Only JPG/PNG/WebP photos can be
+  uploaded; the dashboard resizes them to at most 2000px first.
 - `/admin` is hidden from search engines.
