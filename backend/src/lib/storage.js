@@ -18,7 +18,7 @@ function storageMode() {
 }
 
 const notConfigured = () =>
-  new HttpError(503, 'Saving is not set up yet: add ADMIN_GITHUB_TOKEN to the backend’s environment variables (see backend/README.md).');
+  new HttpError(503, 'Saving is not set up yet: add ADMIN_GITHUB_TOKEN to the Vercel environment variables (see ADMIN.md).');
 
 async function gh(url, init = {}) {
   return fetch(`${API}${url}`, {

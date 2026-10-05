@@ -25,16 +25,18 @@ const OLD_URLS = [
   ['/things-to-do', '/explore#things-to-do'],
 ];
 
-// Address of the Express backend (the /backend folder, deployed as its own
-// Vercel project), e.g. https://thearthouse-api.vercel.app. When set, every
-// /api/* request is forwarded to it, so the browser only ever talks to the
-// website's own address (cookies and forms keep working unchanged).
+// The Express backend (/backend) normally runs inside this project:
+// pages/api/[...path].js hands every /api/* request to it. Optionally it can be
+// deployed as its own Vercel project instead – then set BACKEND_URL (e.g.
+// https://thearthouse-api.vercel.app) and /api/* is forwarded there.
 const BACKEND_URL = (process.env.BACKEND_URL || '').replace(/\/+$/, '');
 
 const nextConfig = {
   // Do not advertise the framework: keeps responses tidy and one less thing to
   // fingerprint.
   poweredByHeader: false,
+  // Express is loaded by Node at runtime rather than bundled.
+  serverExternalPackages: ['express'],
   compress: true,
   images: {
     // Real optimization: responsive srcset, WebP, lazy loading and reserved
@@ -68,7 +70,7 @@ const nextConfig = {
   },
   async rewrites() {
     if (!BACKEND_URL) return [];
-    return [{ source: '/api/:path*', destination: `${BACKEND_URL}/api/:path*` }];
+    return { beforeFiles: [{ source: '/api/:path*', destination: `${BACKEND_URL}/api/:path*` }] };
   },
   async redirects() {
     return OLD_URLS.map(([source, destination]) => ({ source, destination, permanent: true }));

@@ -59,19 +59,21 @@ npm run dev            # http://localhost:4000
 npm test
 ```
 
-## Deploying on Vercel (one time)
+## Deploying on Vercel
 
-1. Vercel → **Add New… → Project** → import the same GitHub repository
-   (`Thearthouse`) a second time.
-2. **Root Directory**: `backend`. Framework preset: **Express** (detected
-   automatically). Project name e.g. `thearthouse-api`.
-3. **Environment Variables**: everything in `.env.example`
-   (`ADMIN_PASSWORD`, `ADMIN_GITHUB_TOKEN`, `GITHUB_DATA_REPO`, …).
-4. Deploy, then open `https://<backend-project>.vercel.app/api/health` – it
-   should answer `{"status":"ok"}`.
-5. In the **website** project → Environment Variables add
-   `BACKEND_URL=https://<backend-project>.vercel.app` and redeploy the website.
-   The website now forwards `/api/*` to the backend.
+**Default – inside the website project (nothing extra to deploy).**
+`../pages/api/[...path].js` passes every `/api/*` request to this Express app,
+so it ships with the website. Add the environment variables from
+`.env.example` to the website's Vercel project and redeploy (see ../ADMIN.md).
 
-`vercel.json` skips backend redeploys when a commit doesn't touch `/backend`
-(for example when the owner saves content).
+**Optional – as its own Vercel project.**
+
+1. Vercel → Add New… → Project → import the same repository again.
+2. Root Directory: `backend` (Express is detected automatically).
+3. Add the environment variables from `.env.example`, deploy, and check
+   `https://<backend-project>.vercel.app/api/health`.
+4. In the website project set `BACKEND_URL=https://<backend-project>.vercel.app`
+   and redeploy – `/api/*` is then forwarded to the separate backend.
+
+`vercel.json` skips separate-backend redeploys when a commit doesn't touch
+`/backend` (for example when the owner saves content).

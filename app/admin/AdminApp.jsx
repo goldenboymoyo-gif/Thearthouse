@@ -80,12 +80,12 @@ function Login({ session, onDone }) {
         <h1>Website admin</h1>
         {session.offline ? (
           <div className="adm-note error">
-            The backend can&apos;t be reached right now. Check that the backend is deployed and that <code>BACKEND_URL</code> is set in the
-            website&apos;s Vercel project (see ADMIN.md), then reload this page.
+            The website&apos;s backend can&apos;t be reached right now. Please reload this page in a minute; if it keeps happening, check the
+            latest deployment in Vercel (see ADMIN.md).
           </div>
         ) : !session.configured ? (
           <div className="adm-note error">
-            The admin password has not been set up yet. Add <code>ADMIN_PASSWORD</code> to the backend&apos;s Vercel environment variables (or
+            The admin password has not been set up yet. Add <code>ADMIN_PASSWORD</code> to the Vercel project&apos;s environment variables (or
             to <code>.env.local</code> on your computer) and restart. See ADMIN.md.
           </div>
         ) : (
@@ -120,7 +120,7 @@ function Overview({ session, content, enquiries, go }) {
     <Panel title="Welcome back" intro="Choose what you would like to change. Nothing changes on the website until you press Save.">
       {session.storage === 'none' ? (
         <div className="adm-note error">
-          Saving is not set up yet: add <code>ADMIN_GITHUB_TOKEN</code> to the backend&apos;s Vercel environment variables (see ADMIN.md). You can look around, but
+          Saving is not set up yet: add <code>ADMIN_GITHUB_TOKEN</code> to the Vercel project&apos;s environment variables (see ADMIN.md). You can look around, but
           changes can&apos;t be saved.
         </div>
       ) : null}

@@ -21,16 +21,14 @@ Everything the dashboard edits is stored in `content/site-content.json`.
 ## How it fits together
 
 ```
-Browser ──► website (Next.js, Vercel project 1)
-              │  /api/*  is forwarded (BACKEND_URL)
-              ▼
-            backend (Express, /backend, Vercel project 2)
+Browser ──► website on Vercel (Next.js)
+              │  /api/*  → Express backend (/backend), run by pages/api/[...path].js
               ├─► GitHub: website repo  – content/site-content.json, public/images/
               └─► GitHub: private data repo – enquiries/
 ```
 
-The backend is a normal Express app – see **backend/README.md** for its
-endpoints, tests and deployment steps.
+The backend is a normal Express app (see **backend/README.md**). It runs inside
+the website's own Vercel project, so there is only one thing to deploy.
 
 When the owner presses **Save changes**, the backend commits the new
 `content/site-content.json` (and any uploaded photos in `public/images/`) to the
@@ -48,16 +46,18 @@ are **never** saved in the public website repository – they go to a separate
    - Repository access: *Only select repositories* → `Thearthouse` and
      `thearthouse-data`.
    - Repository permissions → **Contents: Read and write**.
-3. **Backend project on Vercel** – Add New… → Project → import `Thearthouse`
-   again → **Root Directory: `backend`** → Environment Variables:
+3. **Vercel** → the website project → Settings → Environment Variables (all
+   environments):
    - `ADMIN_PASSWORD` – the owner's password
    - `ADMIN_GITHUB_TOKEN` – the token from step 2
    - `GITHUB_DATA_REPO` = `goldenboymoyo-gif/thearthouse-data`
-   - optional: `RESEND_API_KEY` (also email every enquiry), `ALLOWED_ORIGINS`
-   Deploy, then check `https://<backend>.vercel.app/api/health`.
-4. **Website project on Vercel** – Settings → Environment Variables:
-   - `BACKEND_URL` = `https://<backend>.vercel.app`
-   Redeploy the website.
+   - optional: `RESEND_API_KEY` (also email every enquiry)
+4. Deployments → latest → ⋯ → **Redeploy**. Then open `/api/health` on the site
+   – it should answer `{"status":"ok"}` – and log in at `/admin`.
+
+(Optional: the backend can also be deployed as its own Vercel project with
+Root Directory `backend`; then set `BACKEND_URL` in the website project and
+`/api/*` is forwarded there. See backend/README.md.)
 
 ## Trying it on your own computer
 
