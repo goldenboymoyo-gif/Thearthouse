@@ -192,7 +192,7 @@ export async function uploadPhoto(file) {
   });
   const json = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(json.error || 'Upload failed.');
-  return { src: json.src, width, height, preview: dataUrl };
+  return { src: json.src, width: json.width || width, height: json.height || height, preview: dataUrl };
 }
 
 export function PhotoPicker({ content, previews, onPick, onClose }) {

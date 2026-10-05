@@ -10,8 +10,9 @@ backend/
   src/app.js          middleware, routes, JSON error handler
   src/config.js       environment variables
   src/routes/         contact.js, admin.js
-  src/lib/            auth, storage (GitHub / local files), schema, enquiries, mail
-  test/               node --test API tests
+  src/lib/            auth, password, validate (zod), schema, rateLimit, clientIp, log, storage, enquiries, mail
+  scripts/            hash-password.js – makes ADMIN_PASSWORD_HASH
+  test/               node --test API security tests
 ```
 
 ## Endpoints
@@ -28,7 +29,9 @@ backend/
 | GET / PATCH | `/api/admin/enquiries` | list / `{ id, date, status }` |
 
 All `/api/admin/*` routes except login need the session cookie. Every
-POST/PUT/PATCH/DELETE must come from an address in `ALLOWED_ORIGINS`.
+POST/PUT/PATCH/DELETE must come from the site's own origin (or one in
+`ALLOWED_ORIGINS`) with a JSON body. Rate limits, validation and the full
+security model are documented in ../SECURITY.md.
 
 ## Where data is saved
 

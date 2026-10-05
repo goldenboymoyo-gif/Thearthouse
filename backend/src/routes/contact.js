@@ -1,59 +1,51 @@
+// POST /api/contact – public: contact form and the chat assistant's booking
+// requests. Answers { ok, delivered }; when nothing could deliver the
+// message (delivered: false) the website opens the visitor's email app.
 const express = require('express');
 const { route, HttpError } = require('../lib/errors');
-const { sameOrigin } = require('../lib/auth');
+const { body, schemas } = require('../lib/validate');
+const { limit, consume } = require('../lib/rateLimit');
 const { saveEnquiry } = require('../lib/enquiries');
 const { sendEnquiryEmail } = require('../lib/mail');
+const log = require('../lib/log');
 
 const router = express.Router();
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const clean = (v, max) => String(v || '').trim().slice(0, max);
-
-// Light spam protection: at most 8 messages per address every 10 minutes.
-const recent = new Map();
-function tooMany(ip) {
-  const now = Date.now();
-  const list = (recent.get(ip) || []).filter((t) => now - t < 10 * 60 * 1000);
-  list.push(now);
-  recent.set(ip, list);
-  if (recent.size > 5000) recent.clear();
-  return list.length > 8;
-}
-
-// POST /api/contact – contact form and chatbot booking requests.
-// Answers { ok, delivered }. When nothing could deliver the message
-// (delivered: false) the website opens the visitor's email app instead.
 router.post(
   '/',
-  sameOrigin,
+  limit('contact'),
+  body(schemas.contact),
   route(async (req, res) => {
-    const body = req.body || {};
-    if (clean(body.website, 200)) return res.json({ ok: true, delivered: true }); // honeypot
-    if (tooMany(req.ip)) throw new HttpError(429, 'Too many messages – please try again in a few minutes.');
-
-    const fields = {
-      name: clean(body.name, 200),
-      email: clean(body.email, 200),
-      phone: clean(body.phone, 60),
-      message: clean(body.message, 5000),
-    };
-    const isBooking = body.type === 'booking';
-    const booking = isBooking
-      ? { checkIn: clean(body.checkIn, 20), checkOut: clean(body.checkOut, 20), adults: clean(body.adults, 10), children: clean(body.children, 10) }
-      : {};
-    if (!fields.name || !EMAIL_RE.test(fields.email)) {
-      throw new HttpError(400, 'Please provide your name and a valid email address.');
+    const b = req.body;
+    // Honeypot filled in → almost certainly a bot. Pretend success, store nothing.
+    if (b.website) {
+      log.security('contact_honeypot', req);
+      return res.json({ ok: true, delivered: true });
     }
+    // Site-wide cap protects the inbox, GitHub and email quotas from floods
+    // spread over many IP addresses.
+    await consume('contactGlobal', 'all', req);
+
+    const isBooking = b.type === 'booking';
+    const fields = { type: isBooking ? 'booking' : 'contact', name: b.name, email: b.email, phone: b.phone, message: b.message };
+    if (isBooking) Object.assign(fields, { checkIn: b.checkIn, checkOut: b.checkOut, adults: b.adults, children: b.children });
 
     let stored = false;
     try {
-      stored = await saveEnquiry({ type: isBooking ? 'booking' : 'contact', ...fields, ...booking });
+      stored = await saveEnquiry(fields);
     } catch (e) {
-      console.error('Could not store enquiry:', e.message);
+      log.error('enquiry_store_failed', { reason: e.message });
     }
-    const emailed = await sendEnquiryEmail({ ...fields, ...booking, isBooking });
-    res.json({ ok: true, delivered: stored || emailed });
+    const emailed = await sendEnquiryEmail({ ...fields, isBooking });
+    log.audit('enquiry_received', req, { kind: fields.type, stored, emailed });
+    if (!stored && !emailed && !res.headersSent) {
+      // Nothing could take the message: the website falls back to the visitor's email app.
+      return res.json({ ok: true, delivered: false });
+    }
+    return res.json({ ok: true, delivered: true });
   })
 );
+
+router.all('/', (req, res, next) => next(new HttpError(405, 'Method not allowed.')));
 
 module.exports = router;

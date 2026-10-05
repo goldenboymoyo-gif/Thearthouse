@@ -1,4 +1,5 @@
 import Section from './Section';
+import { jsonLd } from '@/lib/jsonld';
 import CTA from './CTA';
 import { FAQ } from '@/lib/faq';
 
@@ -17,7 +18,7 @@ export default function FaqSection({ headingLevel, limit, alt = false, id = 'faq
   };
   return (
     <Section id={id} title={FAQ.title} alt={alt} headingLevel={headingLevel}>
-      {!limit ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /> : null}
+      {!limit ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(schema) }} /> : null}
       <div className="faq-list">
         {items.map((f, i) => (
           <details className="faq-item" key={f.q} open={i === 0}>

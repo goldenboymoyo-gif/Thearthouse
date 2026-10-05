@@ -4,6 +4,7 @@ import SiteChrome from '@/components/SiteChrome';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import { CONTACT, SITE, STAY_INFO } from '@/lib/site';
+import { jsonLd } from '@/lib/jsonld';
 
 // Self-hosted by next/font at build time: no render-blocking third-party
 // stylesheet, no layout shift (automatic font fallback metrics) and one
@@ -61,7 +62,7 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: jsonLd({
               '@context': 'https://schema.org',
               '@type': ['LodgingBusiness', 'VacationRental'],
               '@id': `${SITE.url}/#lodging`,

@@ -10,6 +10,7 @@ export const config = {
     responseLimit: false,
     externalResolver: true, // Express sends the response
   },
+  maxDuration: 20, // seconds – no request can hold a function open longer
 };
 
 export default function handler(req, res) {

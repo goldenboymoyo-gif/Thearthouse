@@ -1,11 +1,17 @@
-// Local development server: one process runs both the website (Next.js) and
-// the Express backend in /backend, so `npm run dev` is all you need.
-// On Vercel the two are deployed as separate projects; the website forwards
-// /api/* to the backend (see BACKEND_URL in next.config.js).
+// Self-hosted / local server: one process runs both the website (Next.js)
+// and the Express backend in /backend.
+//   npm run dev   – development
+//   npm start     – production (after `npm run build`)
+// On Vercel this file is not used: the website runs on Vercel's platform and
+// pages/api/[...path].js hands /api/* to the same Express backend.
 const express = require('express');
 const next = require('next');
 
-const dev = process.env.NODE_ENV !== 'production' && !process.argv.includes('--prod');
+const prod = process.argv.includes('--prod') || process.env.NODE_ENV === 'production';
+// Make sure every part of the app (Next.js, backend cookies/CSP/logging)
+// agrees that this is production.
+if (prod) process.env.NODE_ENV = 'production';
+const dev = !prod;
 const port = parseInt(process.env.PORT, 10) || 3000;
 
 const nextApp = next({ dev });
@@ -16,7 +22,24 @@ nextApp
   .then(() => {
     // Loaded after prepare() so .env.local (ADMIN_PASSWORD etc.) is available.
     const { createApp } = require('../backend/src/app');
+    const config = require('../backend/src/config');
     const app = express();
+    app.disable('x-powered-by');
+    app.set('trust proxy', false);
+
+    // Behind a TLS-terminating proxy (TRUST_PROXY set): send plain-HTTP
+    // visitors to HTTPS. The header is only believed when a proxy is trusted.
+    if (prod && process.env.FORCE_HTTPS !== 'false' && config.trustProxy() !== 'none') {
+      app.use((req, res, nextFn) => {
+        const proto = String(req.headers['x-forwarded-proto'] || '').split(',')[0].trim();
+        if (proto === 'http') {
+          const host = String(req.headers.host || '').replace(/[^A-Za-z0-9.:-]/g, '');
+          return res.redirect(308, `https://${host}${req.originalUrl}`);
+        }
+        return nextFn();
+      });
+    }
+
     app.use(createApp());
     app.all('*', (req, res) => handle(req, res));
 
@@ -26,6 +49,10 @@ nextApp
           `› Backend API on http://localhost:${port}/api – admin at http://localhost:${port}/admin`
       );
     });
+    // Slow-client protection (slowloris): cap header and request times.
+    server.headersTimeout = 20000;
+    server.requestTimeout = 30000;
+    server.keepAliveTimeout = 5000;
 
     server.on('error', (err) => {
       if (err && err.code === 'EADDRINUSE') {

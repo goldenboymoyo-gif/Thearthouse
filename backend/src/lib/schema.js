@@ -1,134 +1,124 @@
-// Shape of content/site-content.json (the website's editable content). Everything the dashboard saves is
-// checked against this, so a bad save can never break the website build.
-const str = (max = 300, opts = {}) => ({ t: 'str', max, ...opts });
-const text = (max = 3000) => ({ t: 'str', max, multiline: true });
-const url = () => ({ t: 'str', max: 500, pattern: /^https?:\/\/\S+$/, msg: 'must be a web address starting with https://' });
-const image = () => ({ t: 'str', max: 200, pattern: /^\/images\/[A-Za-z0-9._-]+$/, msg: 'must be a photo from the site' });
-const list = (of, max = 100, min = 0) => ({ t: 'list', of, max, min });
-const obj = (fields) => ({ t: 'obj', fields });
-const int = (min, max) => ({ t: 'int', min, max });
+// Shape of content/site-content.json – everything the admin dashboard can
+// change. Every save is validated against this, so a mistake (or a stolen
+// session) cannot inject scripts, foreign links or break the website build.
+// Unknown fields are dropped.
+const { z } = require('zod');
+
+const oneLine = (max) =>
+  z
+    .string()
+    .transform((s) => s.replace(/[\u0000-\u001f\u007f]+/g, ' ').replace(/\s+/g, ' ').trim())
+    .pipe(z.string().min(1, 'is empty').max(max, `is too long (max ${max} characters)`));
+const optLine = (max) =>
+  z.preprocess(
+    (v) => (v === '' || v === null ? undefined : v),
+    z
+      .string()
+      .transform((s) => s.replace(/[\u0000-\u001f\u007f]+/g, ' ').replace(/\s+/g, ' ').trim())
+      .pipe(z.string().max(max, `is too long (max ${max} characters)`))
+      .optional()
+  );
+const text = (max) =>
+  z
+    .string()
+    .transform((s) => s.replace(/\r\n?/g, '\n').replace(/[\u0000-\u0008\u000b-\u001f\u007f]/g, '').trim())
+    .pipe(z.string().min(1, 'is empty').max(max, `is too long (max ${max} characters)`));
+// Only https links to other sites (blocks javascript:, data: and http: links).
+const httpsUrl = () =>
+  oneLine(500).refine((s) => {
+    try {
+      const u = new URL(s);
+      return u.protocol === 'https:' && !u.username && !u.password;
+    } catch {
+      return false;
+    }
+  }, 'must be a web address starting with https://');
+// Photos must be files of this website.
+const image = () => z.string().regex(/^\/images\/[A-Za-z0-9][A-Za-z0-9._-]{0,150}$/, 'must be a photo from the site');
+// Links inside the site only (e.g. /the-art-house#faq).
+const localHref = () => z.string().regex(/^\/(?!\/)[A-Za-z0-9\-._~/#]*$/, 'must be a link inside the website').max(200);
+const int = (min, max) => z.coerce.number().int().min(min).max(max);
+const list = (of, max, min = 0) => z.array(of).min(min, `needs at least ${min} item(s)`).max(max, `has too many items (max ${max})`);
 
 const DISTANCE_ICONS = ['water', 'town', 'store', 'cart', 'plane', 'pin'];
 
-const SCHEMA = obj({
-  _note: str(300, { optional: true }),
-  site: obj({ bookingUrl: url() }),
-  contact: obj({
-    address: str(),
-    phone: str(60, { pattern: /\d/, msg: 'must contain a phone number' }),
-    email: str(200, { pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, msg: 'must be an email address' }),
-    hours: str(),
-    facebook: url(),
-    instagram: url(),
+const SCHEMA = z.object({
+  _note: optLine(300),
+  site: z.object({ bookingUrl: httpsUrl() }),
+  contact: z.object({
+    address: oneLine(300),
+    phone: oneLine(60).refine((s) => /^[+()\-.\s\d]{6,}$/.test(s), 'must be a phone number'),
+    email: oneLine(200).refine((s) => /^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/.test(s), 'must be an email address'),
+    hours: oneLine(300),
+    facebook: httpsUrl(),
+    instagram: httpsUrl(),
   }),
-  stay: obj({
-    rateFrom: str(40),
-    rateNote: str(300),
-    checkIn: str(40),
-    checkOut: str(40),
-    minimumStay: list(str(200), 6, 1),
+  stay: z.object({
+    rateFrom: oneLine(40),
+    rateNote: oneLine(300),
+    checkIn: oneLine(40),
+    checkOut: oneLine(40),
+    minimumStay: list(oneLine(200), 6, 1),
     meals: text(600),
   }),
   distances: list(
-    obj({ icon: { t: 'enum', values: DISTANCE_ICONS }, short: str(40), place: str(120), distance: str(30), note: str(200, { optional: true }) }),
+    z.object({ icon: z.enum(DISTANCE_ICONS), short: oneLine(40), place: oneLine(120), distance: oneLine(30), note: optLine(200) }),
     12
   ),
-  welcome: obj({ title: str(200), intro: str(300), image: image(), paragraphs: list(text(), 12, 1) }),
-  quickLook: list(obj({ icon: str(80), title: str(80), text: str(300), image: image(), alt: str(200), href: str(200) }), 12, 1),
-  faq: list(obj({ q: str(300), a: text(2000) }), 60),
-  explore: list(obj({ title: str(120), image: image(), paragraphs: list(text(), 8, 1) }), 3, 3),
-  activities: list(
-    obj({
-      slug: str(80, { pattern: /^[a-z0-9]+(?:-[a-z0-9]+)*$/, msg: 'must be lowercase words joined by dashes' }),
-      title: str(120),
-      tagline: str(200),
-      description: text(3000),
-      highlights: list(str(200), 10),
+  welcome: z.object({ title: oneLine(200), intro: oneLine(300), image: image(), paragraphs: list(text(3000), 12, 1) }),
+  quickLook: list(
+    z.object({
+      icon: z.string().regex(/^[A-Za-z0-9-]{1,80}$/, 'is not a valid icon'),
+      title: oneLine(80),
+      text: oneLine(300),
       image: image(),
-      full: { ...image(), optional: true },
+      alt: oneLine(200),
+      href: localHref(),
+    }),
+    12,
+    1
+  ),
+  faq: list(z.object({ q: oneLine(300), a: text(2000) }), 60),
+  explore: list(z.object({ title: oneLine(120), image: image(), paragraphs: list(text(3000), 8, 1) }), 3, 3),
+  activities: list(
+    z.object({
+      slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'must be lowercase words joined by dashes').max(80),
+      title: oneLine(120),
+      tagline: oneLine(200),
+      description: text(3000),
+      highlights: list(oneLine(200), 10),
+      image: image(),
+      full: image().optional(),
     }),
     40,
     1
   ),
-  reviews: list(obj({ text: text(2000), name: str(120), role: str(120, { optional: true }), image: { ...image(), optional: true }, rating: int(1, 5) }), 60),
-  gallery: list(obj({ src: image(), width: int(1, 10000), height: int(1, 10000), alt: str(200) }), 300),
-  imageDims: { t: 'dims' },
+  reviews: list(
+    z.object({ text: text(2000), name: oneLine(120), role: optLine(120), image: z.preprocess((v) => v || undefined, image().optional()), rating: int(1, 5) }),
+    60
+  ),
+  gallery: list(z.object({ src: image(), width: int(1, 10000), height: int(1, 10000), alt: oneLine(200) }), 300),
+  imageDims: z
+    .record(z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._-]{0,150}$/), z.object({ width: int(1, 10000), height: int(1, 10000) }))
+    .default({})
+    .refine((r) => Object.keys(r).length <= 1000, 'has too many entries'),
 });
 
-class Invalid extends Error {}
-
-function check(spec, value, where) {
-  const fail = (m) => {
-    throw new Invalid(`${where} ${m}`);
-  };
-  switch (spec.t) {
-    case 'str': {
-      if (value === undefined || value === null || value === '') {
-        if (spec.optional) return undefined;
-        fail('is empty');
-      }
-      if (typeof value !== 'string') fail('must be text');
-      const v = spec.multiline ? value.replace(/\r\n/g, '\n').trim() : value.replace(/\s+/g, ' ').trim();
-      if (!v && !spec.optional) fail('is empty');
-      if (v.length > spec.max) fail(`is too long (max ${spec.max} characters)`);
-      if (spec.pattern && v && !spec.pattern.test(v)) fail(spec.msg || 'is not valid');
-      return v || undefined;
-    }
-    case 'int': {
-      const n = Number(value);
-      if (!Number.isInteger(n) || n < spec.min || n > spec.max) fail(`must be a whole number from ${spec.min} to ${spec.max}`);
-      return n;
-    }
-    case 'enum':
-      if (!spec.values.includes(value)) fail('has an unknown value');
-      return value;
-    case 'list': {
-      if (!Array.isArray(value)) fail('must be a list');
-      if (value.length > spec.max) fail(`has too many items (max ${spec.max})`);
-      if (value.length < spec.min) fail(`needs at least ${spec.min} item(s)`);
-      return value.map((v, i) => check(spec.of, v, `${where} #${i + 1}`)).filter((v) => v !== undefined);
-    }
-    case 'obj': {
-      if (!value || typeof value !== 'object' || Array.isArray(value)) fail('is missing');
-      const out = {};
-      for (const [k, s] of Object.entries(spec.fields)) {
-        const v = check(s, value[k], where ? `${where} › ${k}` : k);
-        if (v !== undefined) out[k] = v;
-      }
-      return out;
-    }
-    case 'dims': {
-      const out = {};
-      if (value && typeof value === 'object') {
-        for (const [k, d] of Object.entries(value)) {
-          if (!/^[A-Za-z0-9._-]+$/.test(k)) continue;
-          const w = Number(d?.width);
-          const h = Number(d?.height);
-          if (Number.isInteger(w) && Number.isInteger(h) && w > 0 && h > 0 && w <= 10000 && h <= 10000) out[k] = { width: w, height: h };
-        }
-      }
-      return out;
-    }
-    default:
-      fail('unknown');
-  }
-  return undefined;
-}
+const describe = (issue) => {
+  const where = issue.path.map((p) => (typeof p === 'number' ? `#${p + 1}` : p)).join(' › ');
+  return `${where || 'content'} ${issue.message}`;
+};
 
 // Returns { ok: true, content } with cleaned content, or { ok: false, error }.
 function validateContent(input) {
-  try {
-    const content = check(SCHEMA, input, '');
-    const slugs = new Set();
-    for (const a of content.activities) {
-      if (slugs.has(a.slug)) throw new Invalid(`Two activities share the web address "${a.slug}"`);
-      slugs.add(a.slug);
-    }
-    return { ok: true, content };
-  } catch (e) {
-    if (e instanceof Invalid) return { ok: false, error: e.message.replace(/^ /, '') };
-    throw e;
+  const r = SCHEMA.safeParse(input);
+  if (!r.success) return { ok: false, error: describe(r.error.issues[0]) };
+  const slugs = new Set();
+  for (const a of r.data.activities) {
+    if (slugs.has(a.slug)) return { ok: false, error: `Two activities share the web address "${a.slug}"` };
+    slugs.add(a.slug);
   }
+  return { ok: true, content: r.data };
 }
 
-module.exports = { SCHEMA, DISTANCE_ICONS, validateContent };
+module.exports = { SCHEMA, DISTANCE_ICONS, validateContent, describe };

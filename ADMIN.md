@@ -73,13 +73,12 @@ http://localhost:3000/admin. Without `ADMIN_GITHUB_TOKEN`, saves are written
 straight into the project files (enquiries into `.data/`, which git ignores).
 Backend tests: `npm run test:api`.
 
-## Security notes
+## Security
 
-- One password, checked on the server; the login lasts 7 days in an httpOnly,
-  same-site cookie. Changing `ADMIN_PASSWORD` logs everyone out.
-- Five wrong passwords lock that address out for 15 minutes.
-- Changes are only accepted from the website's own addresses.
-- Every save is checked against a fixed shape (`backend/src/lib/schema.js`), so
-  a mistake can't break the website build. Only JPG/PNG/WebP photos can be
-  uploaded; the dashboard resizes them to at most 2000px first.
-- `/admin` is hidden from search engines.
+See **SECURITY.md** for the full security model, every environment variable,
+the recommended Vercel/Cloudflare firewall rules and the incident checklist.
+In short: one password (best stored as `ADMIN_PASSWORD_HASH`), 12-hour
+httpOnly/Secure/SameSite=Strict session cookie, brute-force lock-out,
+same-origin + JSON checks on every change, strict input validation, real
+image-type checks on uploads, rate limits on every endpoint, structured
+security logs, and `/admin` hidden from search engines.

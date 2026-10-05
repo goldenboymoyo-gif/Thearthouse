@@ -3,8 +3,16 @@ node_modules/
 out/
 .DS_Store
 *.log
-.env*.local
+.vercel
+
+# secrets – never commit
+.env
+.env*
+!.env*.example
+*.pem
+*.key
+*.p12
+*.pfx
+
 # admin dashboard local data (enquiries during development)
 .data/
-
-.env*

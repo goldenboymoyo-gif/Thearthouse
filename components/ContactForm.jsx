@@ -61,6 +61,7 @@ export default function ContactForm({ variant = 'section' }) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const honeypot = e.currentTarget.elements.website?.value || '';
     const found = validate();
     setErrors(found);
     if (Object.keys(found).length) return;
@@ -70,7 +71,8 @@ export default function ContactForm({ variant = 'section' }) {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(values),
+        // "website" is a hidden honeypot field: people never see it, spam bots fill it in.
+        body: JSON.stringify({ ...values, website: honeypot }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.delivered) {
@@ -124,6 +126,12 @@ export default function ContactForm({ variant = 'section' }) {
   return (
     <form className="contact-form" onSubmit={onSubmit} noValidate>
       {status ? <div className={`form-message ${status.type}`} role="status">{status.text}</div> : null}
+      <div className="hp-field" aria-hidden="true">
+        <label>
+          Website
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" />
+        </label>
+      </div>
       <div className="form-row">{halves.map(renderField)}</div>
       {rest.map(renderField)}
       <button type="submit" className="btn btn-block" disabled={sending} aria-label="Contact Us">

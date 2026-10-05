@@ -34,12 +34,24 @@ async function updateMonth(month, fn) {
   return null;
 }
 
+// Only these fields are ever stored (no mass assignment).
+const FIELDS = ['type', 'name', 'email', 'phone', 'message', 'checkIn', 'checkOut', 'adults', 'children'];
+
 async function saveEnquiry(fields) {
   if (!enquiriesEnabled()) return false;
   const date = new Date().toISOString();
-  const entry = { id: crypto.randomBytes(6).toString('hex'), date, status: 'new', ...fields };
-  await updateMonth(monthOf(date), (list) => [...list, entry]);
-  return true;
+  const entry = { id: crypto.randomBytes(6).toString('hex'), date, status: 'new' };
+  for (const k of FIELDS) if (typeof fields[k] === 'string' && fields[k]) entry[k] = fields[k];
+  let stored = true;
+  await updateMonth(monthOf(date), (list) => {
+    // Hard cap so a flood of spam cannot grow the file without limit.
+    if (list.length >= config.enquiriesPerMonth()) {
+      stored = false;
+      return list;
+    }
+    return [...list, entry];
+  });
+  return stored;
 }
 
 async function listEnquiries(months = 12) {
@@ -59,7 +71,7 @@ async function listEnquiries(months = 12) {
 }
 
 async function setEnquiryStatus(id, date, status) {
-  if (!id || !STATUSES.includes(status) || typeof date !== 'string' || !/^\d{4}-\d{2}/.test(date)) {
+  if (!/^[a-f0-9]{12}$/.test(id || '') || !STATUSES.includes(status) || typeof date !== 'string' || !/^\d{4}-\d{2}-/.test(date)) {
     throw new HttpError(400, 'Invalid request.');
   }
   let found = false;

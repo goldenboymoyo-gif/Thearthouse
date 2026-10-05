@@ -8,12 +8,20 @@
     "start": "node server/index.js --prod",
     "lint": "next lint",
     "fetch-assets": "node scripts/fetch-assets.mjs",
-    "test:api": "npm --prefix backend test"
+    "test:api": "npm --prefix backend test",
+    "audit": "npm audit --omit=dev && npm --prefix backend audit --omit=dev"
   },
   "dependencies": {
-    "express": "^4.19.2",
+    "express": "^4.21.2",
     "next": "^15.5.26",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "zod": "^4.6.5"
+  },
+  "overrides": {
+    "postcss": "^8.5.28"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
