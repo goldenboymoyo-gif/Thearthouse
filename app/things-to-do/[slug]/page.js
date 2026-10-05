@@ -27,7 +27,7 @@ export default function ActivityPage({ params }) {
     <main className="page-main inside">
       <div className="container activity-detail">
         <Link className="activity-back" href="/explore#things-to-do">
-          &larr; Back to What to Do in Victoria Falls
+          &larr; Back to Explore Victoria Falls
         </Link>
 
         <article>
@@ -77,7 +77,7 @@ export default function ActivityPage({ params }) {
         </article>
 
         <Link className="activity-back" href="/explore#things-to-do">
-          &larr; Back to What to Do in Victoria Falls
+          &larr; Back to Explore Victoria Falls
         </Link>
       </div>
     </main>

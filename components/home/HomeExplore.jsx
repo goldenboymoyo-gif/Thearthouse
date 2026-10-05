@@ -14,17 +14,17 @@ const CARDS = [
   },
   {
     href: '/explore#things-to-do',
-    title: 'What To Do in Vic Falls',
+    title: 'Things to Do',
     text: 'We book your activities at no extra cost',
     image: img('2000_629b7ce577031.jpg'),
     alt: 'White-water rafting below the Victoria Falls',
   },
   {
-    href: '/explore#whats-around',
-    title: "What's Around",
-    text: 'The Falls, food and entertainment nearby',
-    image: img('800_6298f74f99c75.jpg'),
-    alt: 'Rainbow over the Victoria Falls',
+    href: '/explore#food-and-entertainment',
+    title: 'Food & Entertainment',
+    text: 'Local tips on where to eat and unwind',
+    image: img('800_629a53b525b5e.png'),
+    alt: 'Food and entertainment in Victoria Falls',
   },
 ];
 

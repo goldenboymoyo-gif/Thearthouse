@@ -30,6 +30,9 @@ export default function SiteChrome() {
     return () => document.removeEventListener('keydown', onKey);
   }, [open]);
 
+  // The admin dashboard has its own layout.
+  if (pathname && pathname.startsWith('/admin')) return null;
+
   return (
     <ChromeContext.Provider value={{ open, setOpen, pathname }}>
       <Header />

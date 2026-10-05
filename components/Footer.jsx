@@ -10,6 +10,7 @@ import { isActive } from './chrome-context';
 // social buttons on the right.
 export default function Footer() {
   const pathname = usePathname();
+  if (pathname && pathname.startsWith('/admin')) return null;
 
   return (
     <footer className="site-footer">

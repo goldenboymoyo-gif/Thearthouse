@@ -2,7 +2,6 @@ import WelcomeSection from '@/components/WelcomeSection';
 import QuickLook from '@/components/QuickLook';
 import OutdoorLiving from '@/components/OutdoorLiving';
 import FaqSection from '@/components/FaqSection';
-import PageSections from '@/components/PageSections';
 import Promo from '@/components/Promo';
 import { PROMOS } from '@/lib/site';
 
@@ -16,7 +15,6 @@ export const metadata = {
 export default function TheArtHousePage() {
   return (
     <main className="page-main inside">
-      <PageSections page="artHouse" />
       <WelcomeSection headingLevel="h1" />
       <QuickLook />
       <OutdoorLiving />

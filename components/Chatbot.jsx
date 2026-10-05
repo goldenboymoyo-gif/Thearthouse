@@ -332,7 +332,7 @@ export function getAssistantReply(input) {
     return "We're within easy walking distance of the Victoria Falls town centre and the magnificent waterfall. We don't list exact distances in kilometres on our website — get in touch at " + CONTACT.email + ' and our team will point you in the right direction.';
 
   if (has(['nearby', 'around', 'what is near', 'whats near', 'in the area', 'what is there to do', 'things to see', 'restaurants', 'food']))
-    return `Around ${AROUND.title.toLowerCase()} there's ${AROUND.items.map((i) => i.title.toLowerCase()).join(', ')}. ${AROUND.items[0].paragraphs[0]} For activities, food and entertainment in Victoria Falls, just ask — we'll point you in the right direction.`;
+    return `${AROUND.items[0].paragraphs[0]} For activities, food and entertainment in Victoria Falls, just ask — we'll point you in the right direction.`;
 
   if (has(['forest', 'rainforest', 'rain forest', 'hike', 'trail', 'wildlife', 'sunset', 'cruise', 'helicopter', 'bungee', 'rafting', 'zip', 'canoe', 'flight']))
     return 'Victoria Falls is the adventure capital of Africa, with everything from the Falls and rainforest trails to helicopter flights, white-water rafting, bungee jumping, sunset cruises and wildlife encounters. Tell us what you would like to do and we will help you book it.';

@@ -3655,44 +3655,29 @@ textarea.form-control {
   }
 }
 
-/* ---------- combined pages: section jump links ---------- */
+/* ---------- combined pages ---------- */
 
-.s-module[id] {
+.s-module[id],
+.explore-block[id] {
   scroll-margin-top: 70px;
 }
 
-.page-sections {
-  background: var(--color-white);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  padding: calc(var(--nav-height) + 22px) 0 22px;
+.explore-block {
+  margin-top: 72px;
 }
 
-.page-sections ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.explore-sub {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  margin: 0 0 16px;
+  color: var(--color-text);
 }
 
-.page-sections a {
-  display: inline-block;
-  padding: 8px 18px;
-  border: 1px solid var(--color-primary);
-  border-radius: 999px;
-  color: var(--color-primary);
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.2s, color 0.2s;
-}
-
-.page-sections a:hover,
-.page-sections a:focus-visible {
-  background: var(--color-primary);
-  color: var(--color-white);
+.ttd-intro p + p,
+.around-intro-text p + p {
+  margin-top: 12px;
 }
 
 .footer-nav {
@@ -3700,14 +3685,14 @@ textarea.form-control {
 }
 
 @media (max-width: 767px) {
-  .s-module[id] {
+  .s-module[id],
+  .explore-block[id] {
     scroll-margin-top: calc(var(--nav-height-mobile) + 5px);
   }
-  .page-sections {
-    padding: calc(var(--nav-height-mobile) + 14px) 0 14px;
+  .explore-block {
+    margin-top: 48px;
   }
-  .page-sections a {
-    padding: 6px 14px;
-    font-size: 0.8rem;
+  .explore-sub {
+    font-size: 1.5rem;
   }
 }

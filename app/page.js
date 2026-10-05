@@ -6,6 +6,7 @@ import HomeMosaic from '@/components/home/HomeMosaic';
 import HomeExplore from '@/components/home/HomeExplore';
 import HomePlan from '@/components/home/HomePlan';
 import HomeReview from '@/components/home/HomeReview';
+import ContactSection from '@/components/ContactSection';
 import { PROMOS, SITE } from '@/lib/site';
 
 export const metadata = {
@@ -35,6 +36,7 @@ export default function HomePage() {
           { label: 'Contact Us', href: '/contact' },
         ]}
       />
+      <ContactSection alt={false} />
     </main>
   );
 }

@@ -1,4 +1,5 @@
 import { CONTACT } from '@/lib/site';
+import { saveEnquiry } from '@/lib/enquiries';
 
 export const runtime = 'nodejs';
 
@@ -29,8 +30,23 @@ export async function POST(req) {
     return Response.json({ ok: false, message: 'Please provide your name and a valid email address.' }, { status: 400 });
   }
 
+  // Keep a copy for the admin dashboard's enquiries inbox.
+  let stored = false;
+  try {
+    stored = await saveEnquiry({
+      type: isBooking ? 'booking' : 'contact',
+      name,
+      email,
+      phone,
+      message,
+      ...(isBooking ? { checkIn, checkOut, adults, children } : {}),
+    });
+  } catch {
+    stored = false;
+  }
+
   const key = process.env.RESEND_API_KEY;
-  if (!key) return Response.json({ ok: true, delivered: false });
+  if (!key) return Response.json({ ok: true, delivered: stored });
 
   const bookingLines = isBooking
     ? [
@@ -64,8 +80,8 @@ export async function POST(req) {
         text,
       }),
     });
-    return Response.json({ ok: true, delivered: res.ok });
+    return Response.json({ ok: true, delivered: res.ok || stored });
   } catch {
-    return Response.json({ ok: true, delivered: false });
+    return Response.json({ ok: true, delivered: stored });
   }
 }
