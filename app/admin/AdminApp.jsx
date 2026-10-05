@@ -120,8 +120,8 @@ function Overview({ session, content, enquiries, go }) {
     <Panel title="Welcome back" intro="Choose what you would like to change. Nothing changes on the website until you press Save.">
       {session.storage === 'none' ? (
         <div className="adm-note error">
-          Saving is not set up yet: add <code>ADMIN_GITHUB_TOKEN</code> to the Vercel project&apos;s environment variables (see ADMIN.md). You can look around, but
-          changes can&apos;t be saved.
+          <strong>View-only mode.</strong> Saving is not switched on yet. In Vercel → this project → Settings → Environment Variables,
+          add <code>ADMIN_GITHUB_TOKEN</code> (a GitHub token with “Contents: Read and write”) and redeploy. See ADMIN.md.
         </div>
       ) : null}
       {session.storage === 'local' ? (
@@ -365,7 +365,7 @@ export default function AdminApp() {
       </div>
       {dirty ? (
         <div className="adm-savebar" role="region" aria-label="Unsaved changes">
-          <span>Unsaved changes</span>
+          <span>{session.storage === 'none' ? 'View-only – saving is not switched on yet' : 'Unsaved changes'}</span>
           <div>
             <button type="button" className="adm-btn adm-btn-ghost" onClick={discard} disabled={saving}>
               Discard

@@ -1,5 +1,6 @@
 const crypto = require('crypto');
 const express = require('express');
+const config = require('../config');
 const { route, HttpError } = require('../lib/errors');
 const auth = require('../lib/auth');
 const { validateContent } = require('../lib/schema');
@@ -50,9 +51,21 @@ router.use(auth.requireAdmin);
 
 // ---- content --------------------------------------------------------------
 
+// Without a GitHub token the dashboard still shows the live content (read
+// only) – the website repository is public, so it can be read without one.
+async function publicContent() {
+  const url = `https://raw.githubusercontent.com/${config.siteRepo()}/${config.siteBranch()}/${CONTENT_FILE}`;
+  const r = await fetch(url, { headers: { 'User-Agent': 'art-house-api' } });
+  if (!r.ok) throw new HttpError(502, `Could not load the website content (${r.status}).`);
+  return r.json();
+}
+
 router.get(
   '/content',
   route(async (req, res) => {
+    if (storageMode() === 'none') {
+      return res.json({ content: await publicContent(), sha: null, readOnly: true });
+    }
     const cur = await readFile(CONTENT_FILE);
     if (!cur) throw new HttpError(404, 'content/site-content.json was not found in the website repository.');
     res.json({ content: JSON.parse(cur.text), sha: cur.sha });
