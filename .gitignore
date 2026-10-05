@@ -6,3 +6,5 @@ out/
 .env*.local
 # admin dashboard local data (enquiries during development)
 .data/
+
+.env*
