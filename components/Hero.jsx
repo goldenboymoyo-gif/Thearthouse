@@ -12,8 +12,12 @@ export default function Hero() {
       <Parallax src={HERO_IMAGE.src} opacity={0.8} priority sizes="100vw" />
       <div className="hero-overlay" aria-hidden="true" />
       <div className="hero-content">
-        <h1>The Art House – 4-Bedroom Self-Catering House with Pool, Victoria Falls</h1>
-        <p>Experience the art of living in Victoria Falls — comfort, nature and unforgettable experiences in your home away from home.</p>
+        <h1 className="hero-title">
+          <span className="hero-name">The Art House</span>
+          <span className="hero-place">Victoria Falls, Zimbabwe</span>
+          <span className="hero-tagline">4 Bedroom Self-Catering House with Pool</span>
+        </h1>
+        <p>Experience the art of living in Victoria Falls, comfort, nature and unforgettable experiences in your home away from home.</p>
         <div className="hero-actions">
           <a className="btn btn-xl hero-btn" href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer">
             Book Your Stay

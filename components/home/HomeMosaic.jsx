@@ -18,7 +18,7 @@ export default function HomeMosaic() {
       <div className="container" data-aos="fade-up">
         <div className="mosaic">
           {PHOTOS.map((p) => (
-            <Link key={p.file} href="/gallery" className={`mosaic-item ${p.cls || ''}`} aria-label={`${p.alt} – view the gallery`}>
+            <Link key={p.file} href="/gallery" className={`mosaic-item ${p.cls || ''}`} aria-label={`${p.alt}, view the gallery`}>
               <SmartImage src={img(p.file)} alt={p.alt} sizes="(max-width: 767px) 92vw, 40vw" />
             </Link>
           ))}

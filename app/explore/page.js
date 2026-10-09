@@ -3,7 +3,7 @@ import Promo from '@/components/Promo';
 import { PROMOS } from '@/lib/site';
 
 export const metadata = {
-  title: 'Explore Victoria Falls – Things to Do Near The Art House',
+  title: 'Explore Victoria Falls, Things to Do Near The Art House',
   description:
     'Explore Victoria Falls from The Art House: the Falls on our doorstep, tours and activities we book at no additional cost, and local food and entertainment.',
   alternates: { canonical: '/explore' },

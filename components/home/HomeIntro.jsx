@@ -20,7 +20,7 @@ export default function HomeIntro() {
           <hr />
           <p>
             Set in large, lush gardens in the original quiet suburb of Victoria Falls, The Art House is hired out as a whole
-            — so the house, the pool and the gardens are yours alone.
+, so the house, the pool and the gardens are yours alone.
           </p>
           <p>
             Adorned with paintings by renowned African artists, it is within easy walking distance of the town centre and the

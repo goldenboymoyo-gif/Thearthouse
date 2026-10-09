@@ -9,7 +9,6 @@ const STATIC_PATHS = [
   '/explore',
   '/gallery',
   '/guest-reviews',
-  '/articles',
   '/contact',
 ];
 

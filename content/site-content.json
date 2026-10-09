@@ -5,7 +5,7 @@
   },
   "contact": {
     "address": "360 Gibson Road, Victoria Falls, Zimbabwe",
-    "phone": "+263- 77 260 6233",
+    "phone": "+263 77 260 6233",
     "email": "thearthousevf@gmail.com",
     "hours": "Enquiries answered 7 days a week",
     "facebook": "https://www.facebook.com/profile.php?id=100084946857420",
@@ -28,40 +28,40 @@
       "short": "The Falls",
       "place": "The Victoria Falls (main entrance)",
       "distance": "3 km",
-      "note": "about a 35-minute walk or 7 minutes by car"
+      "note": "about a 35 minute walk or 7 minutes by car"
     },
     {
       "icon": "town",
       "short": "Town centre",
       "place": "Victoria Falls town centre",
       "distance": "2 km",
-      "note": "about a 25-minute walk"
+      "note": "about a 25 minute walk"
     },
     {
       "icon": "store",
       "short": "Seven to Eleven",
       "place": "Seven to Eleven convenience store",
       "distance": "1.1 km",
-      "note": "about a 15-minute walk or 2 minutes by car"
+      "note": "about a 15 minute walk or 2 minutes by car"
     },
     {
       "icon": "cart",
       "short": "Pick n Pay",
       "place": "Pick n Pay supermarket",
       "distance": "1.4 km",
-      "note": "about a 20-minute walk or 4 minutes by car"
+      "note": "about a 20 minute walk or 4 minutes by car"
     },
     {
       "icon": "plane",
       "short": "Airport",
       "place": "Victoria Falls International Airport",
       "distance": "21 km",
-      "note": "about a 22-minute drive"
+      "note": "about a 22 minute drive"
     }
   ],
   "welcome": {
-    "title": "WELCOME TO THE ART HOUSE – 4-Bedroom Self-Catering Home, Victoria Falls",
-    "intro": "The Art House – 4-Bedroom Self-Catering Home, Victoria Falls",
+    "title": "WELCOME TO THE ART HOUSE, 4 Bedroom Self-Catering Home, Victoria Falls",
+    "intro": "The Art House, 4 Bedroom Self-Catering Home, Victoria Falls",
     "image": "/images/2000_631a060b744a7.png",
     "paragraphs": [
       "Welcome to our beautiful family home, set in large, lush gardens in the heart of Victoria Falls, Zimbabwe. The Art House is available for private short-term hire and makes for a wonderfully quiet and comfortable self-catering experience when travelling with friends and family to Victoria Falls.",
@@ -129,23 +129,23 @@
     },
     {
       "q": "How far is The Art House from the Victoria Falls?",
-      "a": "The main entrance to the Victoria Falls is 3 km from the house — about a 35-minute walk or 7 minutes by car. You can hear the roar of the Falls from the garden."
+      "a": "The main entrance to the Victoria Falls is 3 km from the house, about a 35 minute walk or 7 minutes by car. You can hear the roar of the Falls from the garden."
     },
     {
       "q": "How far is The Art House from Victoria Falls Airport?",
-      "a": "Victoria Falls International Airport is 21 km away, about a 22-minute drive. We are glad to arrange your airport transfers for you."
+      "a": "Victoria Falls International Airport is 21 km away, about a 22 minute drive. We are glad to arrange your airport transfers for you."
     },
     {
       "q": "How far is the town centre?",
-      "a": "The Victoria Falls town centre is 2 km away — about a 25-minute walk."
+      "a": "The Victoria Falls town centre is 2 km away, about a 25 minute walk."
     },
     {
       "q": "Where are the nearest shops?",
-      "a": "The Seven to Eleven convenience store is 1.1 km away (about a 15-minute walk or 2 minutes by car) and the Pick n Pay supermarket is 1.4 km away (about a 20-minute walk or 4 minutes by car)."
+      "a": "The Seven to Eleven convenience store is 1.1 km away (about a 15 minute walk or 2 minutes by car) and the Pick n Pay supermarket is 1.4 km away (about a 20 minute walk or 4 minutes by car)."
     },
     {
       "q": "How many people does The Art House sleep?",
-      "a": "The Art House has 4 bedrooms — 2 kings, 1 double and 1 twin — and sleeps 8. We also have stretcher beds to accommodate more guests, and a baby cot."
+      "a": "The Art House has 4 bedrooms, 2 kings, 1 double and 1 twin, and sleeps 8. We also have stretcher beds to accommodate more guests, and a baby cot."
     },
     {
       "q": "How many bathrooms are there?",
@@ -165,23 +165,23 @@
     },
     {
       "q": "Do we have the whole house to ourselves?",
-      "a": "Yes. The Art House is only hired out as a whole unit, so you have exclusive use of the property and all four bedrooms without sharing with any other guests."
+      "a": "Yes. The Art House is only hired out as a whole unit, so you have exclusive use of the entire property, including all four bedrooms, the private garden and the swimming pool, without sharing with any other guests."
     },
     {
       "q": "Is The Art House self-catering? Can meals be provided?",
-      "a": "Yes, it is self-catering with a kitchen, a braai/barbeque facility for outdoor cooking and a seasonal kitchen garden. A cook can be arranged with due notice, or ready-cooked meals can be provided."
+      "a": "Yes, it is self-catering with a fully equipped kitchen, a braai/barbeque facility for outdoor cooking and a seasonal kitchen garden. A cook can be arranged with due notice, or ready-cooked meals can be provided."
     },
     {
       "q": "Is The Art House pet friendly?",
-      "a": "Yes — The Art House is pet friendly, so no worries about bringing them along!"
+      "a": "Yes, The Art House welcomes friendly pets, so no worries about bringing them along!"
     },
     {
       "q": "Do you have backup power and water?",
       "a": "Yes. The house has backup solar power and a backup water supply."
     },
     {
-      "q": "Is there WiFi, air conditioning and a pool?",
-      "a": "Yes. There is reliable WiFi and Netflix, the rooms are fitted with efficient eco-friendly air conditioning units, and you have your own private swimming pool in the garden."
+      "q": "Is there WiFi, air conditioning and a smart television?",
+      "a": "Yes. There is reliable WiFi, a smart television with Netflix, and the rooms are fitted with efficient eco-friendly air conditioning units."
     },
     {
       "q": "Is the house serviced during our stay?",
@@ -189,11 +189,11 @@
     },
     {
       "q": "Can you book activities for us?",
-      "a": "Yes. We would be glad to book your tours, activities and transfers for you at no additional cost — just let us know what you would like to see and do."
+      "a": "Yes. We would be glad to book your tours, activities and transfers for you at no additional cost, just let us know what you would like to see and do."
     },
     {
       "q": "How do I book?",
-      "a": "You can book direct online at https://book.nightsbridge.com/35154, or contact us on +263- 77 260 6233 or thearthousevf@gmail.com. Enquiries are answered 7 days a week."
+      "a": "You can book right here on our website, just hit \"BOOK NOW\". You can also contact us on +263 77 260 6233 or thearthousevf@gmail.com. Enquiries are answered 7 days a week."
     }
   ],
   "explore": [
@@ -201,7 +201,7 @@
       "title": "The Falls on Our Doorstep",
       "image": "/images/800_6298f74f99c75.jpg",
       "paragraphs": [
-        "Victoria Falls is one of the Seven Wonders of the World, and it's right here on our doorstep! Hear the continuous roar of the Falls as you relax in the garden before stepping out to explore this exciting little paradise!",
+        "Victoria Falls is one of the Seven Wonders of the World, and it's right here on our doorstep! Hear the continuous roar of the Falls, you can hear it from the garden or while relaxing in the hot tub, before stepping out to explore this exciting little paradise!",
         "We have a wealth of local knowledge that we are always keen to share, so please don't be shy to ask us for any advice or information you may need, we'll gladly point you in the right direction."
       ]
     },
@@ -227,9 +227,9 @@
       "slug": "victoria-falls-guided-tours",
       "title": "Victoria Falls Guided Tours",
       "tagline": "See the magnificent Victoria Falls with a local guide",
-      "description": "The Victoria Falls and their surrounding rainforest are right on our doorstep — within easy walking distance of The Art House. Guided tours take you through the lush rainforest on the Zimbabwean side of the Falls, with thrilling viewpoints across the gorge and the famous spray.",
+      "description": "The Victoria Falls and their surrounding rainforest are right on our doorstep, with a short transfer to the waterfall from The Art House. Guided tours take you through the lush rainforest on the Zimbabwean side of the Falls, with thrilling viewpoints across the gorge and the famous spray.",
       "highlights": [
-        "Within easy walking distance of The Art House",
+        "Transfer to the waterfall from The Art House",
         "Guided walks through the Victoria Falls rainforest",
         "Viewpoints across the gorge and the Falls",
         "Local knowledge and advice from our team"
@@ -241,9 +241,10 @@
       "slug": "zambezi-river-cruises",
       "title": "Zambezi River Cruises",
       "tagline": "Cruise the mighty Zambezi above the Falls",
-      "description": "A river cruise along the calm stretches of the Zambezi River above the Falls is a relaxing way to take in the river, its banks and its wildlife — often timed for golden-hour light as the sun drops over the water.",
+      "description": "A river cruise along the calm stretches of the Zambezi River above the Falls is a relaxing way to take in the river, its banks and its wildlife, with delicious food and beverages on board, often timed for golden-hour light as the sun drops over the water.",
       "highlights": [
         "Relaxed cruise on the Zambezi above the Falls",
+        "Delicious food and beverages on board",
         "River views and wildlife along the banks",
         "Sunset cruise timings available"
       ],
@@ -254,9 +255,9 @@
       "slug": "white-water-rafting",
       "title": "White-Water Rafting",
       "tagline": "Raft the world-famous rapids below the Falls",
-      "description": "White-water rafting on the Zambezi below Victoria Falls is one of the great adventures of the adventure capital of Africa — navigating the rapids of the Batoka Gorge with experienced guides.",
+      "description": "White-water rafting on the Zambezi below Victoria Falls is one of the great adventures of the adventure capital of Africa, navigating the Grade 5 rapids of the Batoka Gorge with experienced guides.",
       "highlights": [
-        "World-famous rapids in the Batoka Gorge",
+        "World-famous Grade 5 rapids in the Batoka Gorge",
         "Experienced rafting operators",
         "A bucket-list adventure experience"
       ],
@@ -267,7 +268,7 @@
       "slug": "helicopter-flights",
       "title": "Helicopter Flights",
       "tagline": "See the Falls from the air",
-      "description": "Flights over the Falls and the Zambezi give you the classic aerial view of the Falls, its gorges and the river beyond — an unforgettable way to appreciate the sheer scale of this natural wonder.",
+      "description": "Flights over the Falls and the Zambezi give you the classic aerial view of the Falls, its gorges and the river beyond, an unforgettable way to appreciate the sheer scale of this natural wonder.",
       "highlights": [
         "Panoramic flight over Victoria Falls",
         "Views of the gorge and the Zambezi",
@@ -279,24 +280,26 @@
     {
       "slug": "wildlife-safaris",
       "title": "Wildlife Safaris",
-      "tagline": "Meet the wildlife of Zimbabwe",
-      "description": "Game drives and safari experiences in the national parks around Victoria Falls offer the chance to encounter African wildlife — from elephants and buffalo to a wealth of birdlife.",
+      "tagline": "Experience the incredible landscapes and wildlife of Africa",
+      "description": "Experience the incredible landscapes and wildlife of Africa, with a wealth of river and birdlife and the big cats. Safaris run in the nearby National Parks, private game reserves and Chobe National Park, by boat and by vehicle. See rhino, lion, leopard, elephant, buffalo, hippopotamus, crocodile and many more, with a stunning array of birdlife.",
       "highlights": [
-        "Safari experiences in nearby national parks",
-        "Chance to see elephants and buffalo",
-        "Birdlife-rich surroundings"
+        "Nearby National Parks, private game reserves and Chobe National Park",
+        "Rhino, lion, leopard, elephant, buffalo, hippopotamus, crocodile and many more",
+        "A stunning array of birdlife",
+        "Game viewing by boat and by vehicle"
       ],
       "image": "/images/2000_629b79db9ef7a.jpg",
       "full": "/images/2000_629b79db9ef7a.jpg"
     },
     {
-      "slug": "bungee-jumping",
-      "title": "Bungee Jumping",
-      "tagline": "Take the leap over the Zambezi gorge",
-      "description": "For the thrill-seekers: bungee jumping from the bridge spanning the Zambezi gorge below the Falls — an iconic adrenaline experience in Victoria Falls.",
+      "slug": "adrenaline-experiences",
+      "title": "Adrenaline Experiences",
+      "tagline": "Bungee, bridge and gorge swing, ziplines and canopy tour",
+      "description": "For the thrill seekers: bungee jumping from the bridge spanning the Zambezi gorge below the Falls, the bridge and gorge swing, ziplines and a canopy tour through the trees. The iconic adrenaline experiences of Victoria Falls.",
       "highlights": [
-        "Iconic bridge leap over the gorge",
-        "An adrenaline experience for thrill-seekers",
+        "Bungee jumping from the Victoria Falls Bridge",
+        "Bridge and gorge swing",
+        "Ziplines and canopy tour",
         "Arranged for you by The Art House team"
       ],
       "image": "/images/800_629b79db9dedd.jpg",
@@ -306,9 +309,10 @@
       "slug": "cultural-experiences",
       "title": "Cultural Experiences",
       "tagline": "Discover the heritage of Victoria Falls",
-      "description": "Cultural experiences and village visits offer a window into the local life, crafts and history of the Victoria Falls area, guided by people who know it best.",
+      "description": "Cultural experiences and village visits offer a window into the local life, crafts and history of the Victoria Falls area, with exquisite local cuisine, dance and interactive drumming, guided by people who know it best.",
       "highlights": [
         "Local village and culture tours",
+        "Exquisite local cuisine, dance and interactive drumming",
         "Crafts and heritage of the region",
         "Personal recommendations from our team"
       ],
@@ -316,14 +320,15 @@
       "full": "/images/2000_629b7a638cb12.png"
     },
     {
-      "slug": "sunset-experiences",
-      "title": "Sunset Experiences",
-      "tagline": "Watch the sky turn gold over the Zambezi",
-      "description": "Sunset cruises and sundowner experiences are a classic Victoria Falls evening — watching the sky change colour over the river while you relax and take it all in.",
+      "slug": "food-and-drink-experience",
+      "title": "The Food and Drink Experience",
+      "tagline": "From local traditional delights to 5 star international menus",
+      "description": "There is a wide array of choices from local traditional delights, to 5 star menus featuring international flavour. Restaurants overlook the Mighty Zambezi River, a wildlife waterhole, the cavernous Batoka Gorge, vibe in the Township, or rock in the town centre. The list is vast and eclectic. There is locally crafted beer and gin on offer, and a tour of the Brewery and Distillery too.",
       "highlights": [
-        "Sundowner cruises and river views",
-        "Golden light over the Zambezi",
-        "A perfect way to end the day"
+        "Local traditional delights to 5 star international menus",
+        "Restaurants overlooking the Zambezi, a waterhole and the Batoka Gorge",
+        "Locally crafted beer and gin",
+        "Brewery and Distillery tours"
       ],
       "image": "/images/800_6298f8f03a19e.png",
       "full": "/images/800_6298f8f03a19e.png"

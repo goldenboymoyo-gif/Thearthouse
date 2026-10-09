@@ -93,7 +93,7 @@ export default function RootLayout({ children }) {
               petsAllowed: true,
               containsPlace: {
                 '@type': 'Accommodation',
-                name: 'The Art House – whole house',
+                name: 'The Art House, whole house',
                 numberOfBedrooms: 4,
                 numberOfBathroomsTotal: 3,
                 occupancy: { '@type': 'QuantitativeValue', maxValue: 8 },

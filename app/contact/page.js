@@ -3,7 +3,7 @@ import ContactSection from '@/components/ContactSection';
 export const metadata = {
   title: 'Contact us',
   description:
-    'Contact The Art House Victoria Falls – 360 Gibson Road, Victoria Falls, Zimbabwe. +263 77 260 6233, thearthousevf@gmail.com.',
+    'Contact The Art House Victoria Falls, 360 Gibson Road, Victoria Falls, Zimbabwe. +263 77 260 6233, thearthousevf@gmail.com.',
   alternates: { canonical: '/contact' },
 };
 

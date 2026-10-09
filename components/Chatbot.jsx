@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { AROUND, ARTICLES, CONTACT, DISTANCES, QUICK_LOOK, REVIEWS, SITE, STAY_INFO, THINGS_TO_DO } from '@/lib/site';
+import { AROUND, CONTACT, DISTANCES, QUICK_LOOK, REVIEWS, SITE, STAY_INFO, THINGS_TO_DO } from '@/lib/site';
 import { advance, createFlow, extractDates, formatDate, wantsBooking } from '@/lib/chat-booking';
 import Icon from './Icon';
 
@@ -38,7 +38,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState([
     {
       from: 'bot',
-      text: "Hello! Welcome to The Art House, Victoria Falls. I'm your virtual assistant — ask me anything about the house, Victoria Falls, activities or booking.",
+      text: "Hello! Welcome to The Art House, Victoria Falls. I'm your virtual assistant, ask me anything about the house, Victoria Falls, activities or booking.",
     },
   ]);
   const [input, setInput] = useState('');
@@ -119,11 +119,11 @@ export default function Chatbot() {
     setMessages((m) => [
       ...m,
       { from: 'user', text: triggerText },
-      { from: 'bot', text: "Absolutely — I can help you with a booking enquiry. Let's gather your details." },
+      { from: 'bot', text: "Absolutely, I can help you with a booking enquiry. Let's gather your details." },
     ]);
     if (f.checkIn && !f.checkOut) {
       f.stage = 'checkout';
-      pushBot(`Great — I've noted your check-in on ${formatDate(f.checkIn)}. What date would you like to check out?`);
+      pushBot(`Great, I've noted your check-in on ${formatDate(f.checkIn)}. What date would you like to check out?`);
       return;
     }
     const res = advance(f, triggerText, config());
@@ -262,7 +262,7 @@ export function getAssistantReply(input) {
   const all = (words) => words.every(hit);
 
   if (has(['hello', 'hi', 'hey', 'howdy', 'good morning', 'good afternoon', 'good evening']))
-    return "Hi there! Welcome to The Art House, Victoria Falls. I'm here to help with your stay — ask me about the house, booking, activities and more.";
+    return "Hi there! Welcome to The Art House, Victoria Falls. I'm here to help with your stay, ask me about the house, booking, activities and more.";
 
   if (has(['tell me about the house', 'about the house', 'tell me about it', 'tell me more', 'the house itself', 'whole house', 'exclusive', 'private use', 'all to ourselves', 'other guests']))
     return 'The Art House is offered as an exclusive-use property: when you book, the whole house is yours alone. It is a 4 bedroom family home sleeping 8 guests (2 kings, 1 double and 1 twin), with 3 bathrooms, a private swimming pool, reliable WiFi and Netflix, air conditioning, and a large, lush tropical garden with plenty of bird life. It is serviced daily, and we keep a seasonal kitchen garden with herbs and vegetables for our guests.';
@@ -274,7 +274,7 @@ export function getAssistantReply(input) {
     return `Check-in is from ${STAY_INFO.checkIn} and check-out is by ${STAY_INFO.checkOut}.`;
 
   if (has(['price', 'pricing', 'how much', 'cost', 'rates', 'rate', 'per night', 'expensive', 'cheap']))
-    return `${STAY_INFO.rateNote} The minimum stay is ${STAY_INFO.minimumStay[0]} and ${STAY_INFO.minimumStay[1]}. You can check availability and book direct here: ${SITE.bookingUrl} — or email ${CONTACT.email} for a quote.`;
+    return `${STAY_INFO.rateNote} The minimum stay is ${STAY_INFO.minimumStay[0]} and ${STAY_INFO.minimumStay[1]}. You can check availability and book direct here: ${SITE.bookingUrl}, or email ${CONTACT.email} for a quote.`;
 
   if (has(['chef', 'cook', 'meals', 'meal', 'dinner cooked', 'catering', 'food provided']) && !has(['self-catering', 'self catering']))
     return `${STAY_INFO.meals} The Art House also has a kitchen, a braai/barbeque facility and a seasonal kitchen garden if you prefer to cook yourselves.`;
@@ -283,10 +283,10 @@ export function getAssistantReply(input) {
     return `Approximate distances from The Art House: ${DISTANCES.map((d) => `${d.place} ${d.distance} (${d.note})`).join('; ')}. We can also arrange airport transfers for you.`;
 
   if (has(['bedroom', 'bedrooms', 'room', 'rooms', 'sleeps', 'sleep', 'accommodat', 'how many people', 'how many guests']))
-    return 'The Art House has 4 bedrooms sleeping 8 guests (2 kings, 1 double and 1 twin). We also have stretcher beds to accommodate more guests and a baby cot available — perfect for families and groups.';
+    return 'The Art House has 4 bedrooms sleeping 8 guests (2 kings, 1 double and 1 twin). We also have stretcher beds to accommodate more guests and a baby cot available, perfect for families and groups.';
 
   if (/\b(max(imum)?|capacity)\b/.test(q) || /can\s+(\w+|\d{1,2})\s*(people|guests|persons?|adults?|kids?|children)\s+stay/.test(q))
-    return 'The Art House sleeps 8 guests (4 bedrooms: 2 kings, 1 double and 1 twin). We also have stretcher beds to accommodate more guests on request, plus a baby cot — so larger groups and families are welcome. Need specific numbers? Just ask and we\u2019ll confirm.';
+    return 'The Art House sleeps 8 guests (4 bedrooms: 2 kings, 1 double and 1 twin). We also have stretcher beds to accommodate more guests on request, plus a baby cot, so larger groups and families are welcome. Need specific numbers? Just ask and we\u2019ll confirm.';
 
   if (has(['family', 'families', 'kids', 'children', 'child', 'baby', 'cot']))
     return 'The Art House is a warm family home, ideal for families and groups: 4 bedrooms sleeping 8 (with stretcher beds and a baby cot available), a private pool, large gardens and daily servicing. During your stay the whole house is yours exclusively.';
@@ -295,19 +295,19 @@ export function getAssistantReply(input) {
     return 'The Art House is serviced daily, so you can relax and make the most of your stay.';
 
   if (has(['bathroom', 'bathrooms', 'bath', 'shower', 'hot tub', 'jacuzzi']))
-    return 'There are 3 bathrooms: 1 en-suite bathroom, 1 guest bathroom and 1 outside bathroom with a hot tub and shower — plus the famous outdoor bath beneath the African stars!';
+    return 'There are 3 bathrooms: 1 en-suite bathroom, 1 guest bathroom and 1 outside bathroom with a hot tub and shower, plus the famous outdoor bath beneath the African stars!';
 
   if (has(['pool', 'swim', 'swimming']))
-    return 'Yes! The Art House has a private swimming pool set in our large, lush gardens — plunge, cool down, relax!';
+    return 'Yes! The Art House has a private swimming pool set in our large, lush gardens, plunge, cool down, relax!';
 
   if (has(['wifi', 'wi-fi', 'netflix', 'internet', 'inter-net', 'stream']))
-    return 'Yes — there is reliable WiFi throughout the house and Netflix for streaming. Enjoy staying connected!';
+    return 'Yes, there is reliable WiFi throughout the house and Netflix for streaming. Enjoy staying connected!';
 
   if (has(['pet', 'dog', 'dogs', 'cat', 'animals', 'animal']))
-    return 'Absolutely — The Art House is pet friendly, so no worries about bringing them along!';
+    return 'Absolutely, The Art House is pet friendly, so no worries about bringing them along!';
 
   if (has(['aircon', 'air-con', 'air condition', 'cooling', 'air conditioning']))
-    return 'All rooms are fitted with efficient, eco-friendly air conditioning units — and we have backup solar and water supply as well, so you stay comfortable throughout.';
+    return 'All rooms are fitted with efficient, eco-friendly air conditioning units, and we have backup solar and water supply as well, so you stay comfortable throughout.';
 
   if (has(['solar', 'power', 'electricity', 'load shedding', 'water backup', 'water supply', 'backup']))
     return 'The house is fitted with backup solar and water supply, so power cuts and water interruptions are not a concern during your stay.';
@@ -322,35 +322,33 @@ export function getAssistantReply(input) {
   if (activity) {
     const a = THINGS_TO_DO.activities.find((x) => x.slug === activity.slug);
     if (a)
-      return `${a.title} — ${a.tagline}. ${a.description} You can read more on our What to Do page at /things-to-do/${a.slug}, and we're glad to arrange it for you — visit /contact, email ${CONTACT.email} or call ${CONTACT.phone}. Right now the details above are general: operators, availability, schedules and pricing are confirmed on enquiry.`;
+      return `${a.title}, ${a.tagline}. ${a.description} You can read more on our What to Do page at /things-to-do/${a.slug}, and we're glad to arrange it for you, visit /contact, email ${CONTACT.email} or call ${CONTACT.phone}. Right now the details above are general: operators, availability, schedules and pricing are confirmed on enquiry.`;
   }
 
   if (has(['waterfall', 'the falls', 'the waterfall', 'fall', 'seven wonders', 'walking distance', 'town centre', 'town center', 'falls']))
     return "Victoria Falls is one of the Seven Wonders of the World and it's right on our doorstep! The Art House is within easy walking distance of the town centre and the magnificent falls.";
 
   if (has(['how far', 'distance', 'km', 'kilometres', 'kilometers', 'minutes away', 'drive from', 'get there', 'getting to']))
-    return "We're within easy walking distance of the Victoria Falls town centre and the magnificent waterfall. We don't list exact distances in kilometres on our website — get in touch at " + CONTACT.email + ' and our team will point you in the right direction.';
+    return "We're within easy walking distance of the Victoria Falls town centre and the magnificent waterfall. We don't list exact distances in kilometres on our website, get in touch at " + CONTACT.email + ' and our team will point you in the right direction.';
 
   if (has(['nearby', 'around', 'what is near', 'whats near', 'in the area', 'what is there to do', 'things to see', 'restaurants', 'food']))
-    return `${AROUND.items[0].paragraphs[0]} For activities, food and entertainment in Victoria Falls, just ask — we'll point you in the right direction.`;
+    return `${AROUND.items[0].paragraphs[0]} For activities, food and entertainment in Victoria Falls, just ask, we'll point you in the right direction.`;
 
   if (has(['forest', 'rainforest', 'rain forest', 'hike', 'trail', 'wildlife', 'sunset', 'cruise', 'helicopter', 'bungee', 'rafting', 'zip', 'canoe', 'flight']))
     return 'Victoria Falls is the adventure capital of Africa, with everything from the Falls and rainforest trails to helicopter flights, white-water rafting, bungee jumping, sunset cruises and wildlife encounters. Tell us what you would like to do and we will help you book it.';
 
   if (has(['activity', 'activities', 'tour', 'tours', 'things to do', 'adventure', 'book a tour', 'book activities', 'excursion', 'excursions']))
-    return "We're in the adventure capital of Africa! We provide a comprehensive, personalised service for tours, activities and holiday planning — and we can arrange transfers too — at no additional cost. Every activity on our What to Do section (/explore#things-to-do) has its own page with more details, and each one can be arranged through us — just tell us what you'd like to do, or visit /contact to enquire.";
+    return "We're in the adventure capital of Africa! We provide a comprehensive, personalised service for tours, activities and holiday planning, and we can arrange transfers too, at no additional cost. Every activity on our What to Do section (/explore#things-to-do) has its own page with more details, and each one can be arranged through us, just tell us what you'd like to do, or visit /contact to enquire.";
 
   if (has(['transfer', 'transfers', 'airport', 'pick-up', 'pickup', 'pick up', 'transport', 'taxi', 'drive', 'getting around', 'shuttle']))
-    return 'We can assist with transfers to and from the airport, as well as transport and holiday planning for your whole trip — arranged for you at no additional cost. Just let our team know your details.';
+    return 'We can assist with transfers to and from the airport, as well as transport and holiday planning for your whole trip, arranged for you at no additional cost. Just let our team know your details.';
 
   if (has(['food', 'eat', 'restaurant', 'restaurants', 'drink', 'bar', 'bite', 'local', 'where to eat']))
-    return "Locals know best! We'd be glad to recommend great spots for a bite or a few drinks in Victoria Falls, matched to your taste — just ask us when you arrive.";
+    return "Locals know best! We'd be glad to recommend great spots for a bite or a few drinks in Victoria Falls, matched to your taste, just ask us when you arrive.";
 
   if (has(['review', 'reviews', 'guest', 'guests', 'guests say', 'testimonial']))
     return `Our guests love the exclusive whole-house experience, the tranquil gardens and the bird life, and braais on the veranda with the sound of the Falls in the background. You can read reviews from ${REVIEWS.items.map((r) => r.name).join(', ')} and more on our Guest Reviews page.`;
 
-  if (has(['article', 'articles', 'press', 'journal', 'lost executive', 'featured']))
-    return `The Art House has been featured in a published article: "${ARTICLES.items[0].name} — ${ARTICLES.items[0].linkLabel}". You can read it on our Journal page.`;
 
   if (has(['contact', 'phone', 'call', 'email', 'mail', 'address', 'location', 'where are you', 'map', 'directions', 'reach']))
     return `You can reach us at ${CONTACT.email} or call ${CONTACT.phone}. We're at ${CONTACT.address}. ${CONTACT.hours}.`;
@@ -364,7 +362,7 @@ export function getAssistantReply(input) {
   if (has(['price', 'pricing', 'how much', 'cost', 'rates', 'rate', 'availability', 'available', 'reserve', 'reservation', 'reservations', 'book', 'booking', 'vacancy', 'vacancies', 'when can i']))
     return `You can check live availability and book instantly through our secure Book Now button: ${SITE.bookingUrl}. We also welcome direct bookings and we'd gladly arrange your tours, activities and transfers at no additional cost. For any questions just email ${CONTACT.email} or call ${CONTACT.phone}.`;
 
-  return "I'd love to help with that! I can answer questions about the house, booking and pricing, activities, location, facilities, what's around, reviews and articles — or help you make a booking enquiry. Try asking \"Tell me about the house\", \"Facilities\", \"Activities\", \"What's Around\", \"Guest Reviews\" or \"Make a Booking Enquiry\".";
+  return "I'd love to help with that! I can answer questions about the house, booking and pricing, activities, location, facilities, what's around and reviews, or help you make a booking enquiry. Try asking \"Tell me about the house\", \"Facilities\", \"Activities\", \"What's Around\", \"Guest Reviews\" or \"Make a Booking Enquiry\".";
 }
 
 // Detect a request to start the guided booking enquiry flow.

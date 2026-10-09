@@ -12,7 +12,9 @@ const OLD_URLS = [
   ['/what-s-around', '/explore'],
   ['/what-to-do-in-vic-falls/:path*', '/explore#things-to-do'],
   ['/what-our-guests-say', '/guest-reviews'],
-  ['/published-articles', '/articles'],
+  ['/published-articles', '/guest-reviews'],
+  // The Journal page was removed.
+  ['/articles', '/guest-reviews'],
   ['/contact-us', '/contact'],
   ['/outdoor-living-at-its-finest', '/the-art-house#outdoor-living'],
   ['/outdoor-living-at-its-finest/:slug', '/outdoor-living/:slug'],
@@ -23,6 +25,9 @@ const OLD_URLS = [
   ['/faq', '/the-art-house#faq'],
   ['/whats-around', '/explore'],
   ['/things-to-do', '/explore#things-to-do'],
+  // Renamed activities.
+  ['/things-to-do/bungee-jumping', '/things-to-do/adrenaline-experiences'],
+  ['/things-to-do/sunset-experiences', '/things-to-do/food-and-drink-experience'],
 ];
 
 // The Express backend (/backend) normally runs inside this project:

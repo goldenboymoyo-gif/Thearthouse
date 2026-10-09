@@ -11,7 +11,7 @@ export default function QuickLook({ headingLevel, cta = false, alt = true, detai
       <div className="features">
         {QUICK_LOOK.items.map((item) => (
           <div className="feature" key={item.title}>
-            <a className="feature-link" href={item.href} aria-label={`${item.title} – learn more`}>
+            <a className="feature-link" href={item.href} aria-label={`${item.title}, learn more`}>
               <span className="feature-inner">
                 <span className="feature-media">
                   <SmartImage src={item.image} alt={item.alt || item.title} sizes="(max-width: 767px) 92vw, 30vw" />

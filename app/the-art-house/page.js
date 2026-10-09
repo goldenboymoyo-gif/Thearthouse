@@ -6,9 +6,9 @@ import Promo from '@/components/Promo';
 import { PROMOS } from '@/lib/site';
 
 export const metadata = {
-  title: 'The Art House – 4-Bedroom Self-Catering Home, Victoria Falls',
+  title: 'The Art House, 4 Bedroom Self-Catering Home, Victoria Falls',
   description:
-    'The Art House, Victoria Falls: a private 4-bedroom self-catering home with pool, sleeping 8. Quick look, outdoor living, rates from US$300 and answers to common questions.',
+    'The Art House, Victoria Falls: a private 4 bedroom self-catering home with pool, sleeping 8. Quick look, outdoor living, rates from US$300 and answers to common questions.',
   alternates: { canonical: '/the-art-house' },
 };
 

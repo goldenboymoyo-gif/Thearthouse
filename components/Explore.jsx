@@ -69,7 +69,7 @@ export default function Explore({ headingLevel = 'h1' }) {
       </div>
 
       <div className="ttd-cta">
-        <p>Tell us what you&apos;d like to see and do – we&apos;ll book your tours, activities and transfers at no additional cost.</p>
+        <p>Tell us what you&apos;d like to see and do, we&apos;ll book your tours, activities and transfers at no additional cost.</p>
         <div className="around-actions">
           <Link className="btn btn-xl" href="/contact">
             Enquire About Activities

@@ -2,7 +2,7 @@ import Section from './Section';
 import CTA from './CTA';
 import Icon from './Icon';
 import Stars from './Stars';
-import { REVIEWS, SITE } from '@/lib/site';
+import { REVIEWS, REVIEW_PLATFORMS, SITE } from '@/lib/site';
 import SmartImage from './SmartImage';
 
 export default function Reviews({ headingLevel, cta = false }) {
@@ -20,9 +20,11 @@ export default function Reviews({ headingLevel, cta = false }) {
               <p>{r.text}</p>
             </blockquote>
             <figcaption className="review-meta">
-              <span className="review-photo">
-                <SmartImage src={r.image} alt="" sizes="64px" />
-              </span>
+              {r.image ? (
+                <span className="review-photo">
+                  <SmartImage src={r.image} alt="" sizes="64px" />
+                </span>
+              ) : null}
               <span className="review-who">
                 <strong>{r.name}</strong>
                 <span>{r.role}</span>
@@ -32,6 +34,22 @@ export default function Reviews({ headingLevel, cta = false }) {
           </figure>
         ))}
       </div>
+
+      {!cta ? (
+        <div className="review-platforms">
+          <h3>More reviews from our guests</h3>
+          <ul>
+            {REVIEW_PLATFORMS.map((p) => (
+              <li key={p.name}>
+                <a href={p.href} target="_blank" rel="noopener noreferrer">
+                  <strong>{p.name}</strong>
+                  <span>{p.note}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
 
       <div className="section-cta row">
         <a className="btn btn-xl" href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer">

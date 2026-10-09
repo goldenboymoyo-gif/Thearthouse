@@ -55,11 +55,11 @@ export default function ActivityPage({ params }) {
               <p>
                 The Art House team is glad to book this activity for you. We offer a comprehensive and highly
                 personalised activity booking service and can also assist with holiday planning, transfers and bookings
-                for surrounding destinations — all arranged on your behalf at no additional cost.
+                for surrounding destinations, all arranged on your behalf at no additional cost.
               </p>
               <p>
                 <strong>Please note:</strong> the details above are general information about the experience. Operators,
-                availability, schedules and pricing are confirmed on enquiry — we never confirm bookings online.
+                availability, schedules and pricing are confirmed on enquiry, we never confirm bookings online.
               </p>
               <div className="around-actions">
                 <Link className="btn btn-xl" href="/contact">
