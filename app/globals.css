@@ -2674,6 +2674,10 @@ textarea.form-control {
   font-size: 26px;
 }
 
+.magic-btn.chat .icon {
+  font-size: 22px;
+}
+
 .magic-btn.chat .icon.close-icon {
   font-size: 22px;
 }

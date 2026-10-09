@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import Icon from './Icon';
-import Chatbot from './Chatbot';
+import { useChrome } from './chrome-context';
 
-// Bottom-right corner: The Art House Assistant (chatbot) and, once the page
-// has been scrolled, the back-to-top button.
+// Bottom-right corner: a "Contact us" email button that opens the contact
+// form popup and, once the page has been scrolled, the back-to-top button.
 export default function FloatingButtons() {
+  const { setOpen } = useChrome();
   const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
@@ -19,16 +20,15 @@ export default function FloatingButtons() {
   return (
     <>
       <div className="magic-buttons">
-        <div className="chat-launcher">
-          <span className="chat-launcher-label" aria-hidden="true">
-            <span className="chat-launcher-dot" />
-            <span className="chat-launcher-text">
-              <span>Need help?</span>
-              <strong>Ask The Art House Assistant</strong>
-            </span>
-          </span>
-          <Chatbot />
-        </div>
+        <button
+          type="button"
+          className="magic-btn chat"
+          onClick={() => setOpen('email')}
+          aria-label="Contact us by email"
+          title="Contact us"
+        >
+          <Icon name="envelope" />
+        </button>
       </div>
 
       <button
