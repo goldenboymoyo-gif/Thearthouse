@@ -15,7 +15,7 @@ export default function Hero() {
         <h1 className="hero-title">
           <span className="hero-name">The Art House</span>
           <span className="hero-place">Victoria Falls, Zimbabwe</span>
-          <span className="hero-tagline">4 Bedroom Self-Catering House with Pool</span>
+          <span className="hero-tagline">4 Bedroom Self-Catering House with Swimming Pool</span>
         </h1>
         <p>Experience the art of living in Victoria Falls, comfort, nature and unforgettable experiences in your home away from home.</p>
         <div className="hero-actions">

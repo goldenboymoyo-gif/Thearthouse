@@ -226,7 +226,7 @@
     {
       "slug": "victoria-falls-guided-tours",
       "title": "Victoria Falls Guided Tours",
-      "tagline": "See the magnificent Victoria Falls with a local guide",
+      "tagline": "Transfer to the waterfall and a guided tour of the Falls",
       "description": "The Victoria Falls and their surrounding rainforest are right on our doorstep, with a short transfer to the waterfall from The Art House. Guided tours take you through the lush rainforest on the Zimbabwean side of the Falls, with thrilling viewpoints across the gorge and the famous spray.",
       "highlights": [
         "Transfer to the waterfall from The Art House",
@@ -240,7 +240,7 @@
     {
       "slug": "zambezi-river-cruises",
       "title": "Zambezi River Cruises",
-      "tagline": "Cruise the mighty Zambezi above the Falls",
+      "tagline": "Cruise the Zambezi with delicious food and beverages",
       "description": "A river cruise along the calm stretches of the Zambezi River above the Falls is a relaxing way to take in the river, its banks and its wildlife, with delicious food and beverages on board, often timed for golden-hour light as the sun drops over the water.",
       "highlights": [
         "Relaxed cruise on the Zambezi above the Falls",
@@ -254,7 +254,7 @@
     {
       "slug": "white-water-rafting",
       "title": "White-Water Rafting",
-      "tagline": "Raft the world-famous rapids below the Falls",
+      "tagline": "Raft the Grade 5 rapids below the Falls",
       "description": "White-water rafting on the Zambezi below Victoria Falls is one of the great adventures of the adventure capital of Africa, navigating the Grade 5 rapids of the Batoka Gorge with experienced guides.",
       "highlights": [
         "World-famous Grade 5 rapids in the Batoka Gorge",
@@ -280,7 +280,7 @@
     {
       "slug": "wildlife-safaris",
       "title": "Wildlife Safaris",
-      "tagline": "Experience the incredible landscapes and wildlife of Africa",
+      "tagline": "Big cats, rhino, elephant and a wealth of river and birdlife",
       "description": "Experience the incredible landscapes and wildlife of Africa, with a wealth of river and birdlife and the big cats. Safaris run in the nearby National Parks, private game reserves and Chobe National Park, by boat and by vehicle. See rhino, lion, leopard, elephant, buffalo, hippopotamus, crocodile and many more, with a stunning array of birdlife.",
       "highlights": [
         "Nearby National Parks, private game reserves and Chobe National Park",
@@ -308,7 +308,7 @@
     {
       "slug": "cultural-experiences",
       "title": "Cultural Experiences",
-      "tagline": "Discover the heritage of Victoria Falls",
+      "tagline": "Local cuisine, dance and interactive drumming",
       "description": "Cultural experiences and village visits offer a window into the local life, crafts and history of the Victoria Falls area, with exquisite local cuisine, dance and interactive drumming, guided by people who know it best.",
       "highlights": [
         "Local village and culture tours",
@@ -322,10 +322,10 @@
     {
       "slug": "food-and-drink-experience",
       "title": "The Food and Drink Experience",
-      "tagline": "From local traditional delights to 5 star international menus",
-      "description": "There is a wide array of choices from local traditional delights, to 5 star menus featuring international flavour. Restaurants overlook the Mighty Zambezi River, a wildlife waterhole, the cavernous Batoka Gorge, vibe in the Township, or rock in the town centre. The list is vast and eclectic. There is locally crafted beer and gin on offer, and a tour of the Brewery and Distillery too.",
+      "tagline": "Local traditional delights to 5 star international flavours",
+      "description": "There is a wide array of choices from local traditional delights, to 5 star menus featuring international flavours. Restaurants overlook the Mighty Zambezi River, a wildlife waterhole, the cavernous Batoka Gorge, vibe in the Township, or rock in the town centre. The list is vast and eclectic. There is locally crafted beer and gin on offer, and a tour of the Brewery and Distillery too.",
       "highlights": [
-        "Local traditional delights to 5 star international menus",
+        "Local traditional delights to 5 star international flavours",
         "Restaurants overlooking the Zambezi, a waterhole and the Batoka Gorge",
         "Locally crafted beer and gin",
         "Brewery and Distillery tours"
