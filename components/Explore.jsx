@@ -41,7 +41,7 @@ export default function Explore({ headingLevel = 'h1' }) {
                 <span className="ttd-card-title">{a.title}</span>
                 <span className="ttd-card-hint">{a.tagline}</span>
                 <span className="ttd-card-more" aria-hidden="true">
-                  Learn More <span className="ttd-arrow">&rarr;</span>
+                  Learn More
                 </span>
               </span>
             </Link>

@@ -31,14 +31,6 @@ export default function FloatingButtons() {
         </button>
       </div>
 
-      <button
-        type="button"
-        className={`goto-top ${showTop ? 'show' : ''}`}
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        aria-label="Back to top"
-      >
-        <Icon name="angle-up" />
-      </button>
     </>
   );
 }

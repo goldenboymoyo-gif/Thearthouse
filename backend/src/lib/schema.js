@@ -89,6 +89,8 @@ const SCHEMA = z.object({
       highlights: list(oneLine(200), 10),
       image: image(),
       full: image().optional(),
+      gallery: list(image(), 12).optional(),
+      arrange: z.preprocess((v) => v || undefined, text(1500).optional()),
     }),
     40,
     1

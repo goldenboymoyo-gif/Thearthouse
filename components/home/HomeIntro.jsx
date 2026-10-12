@@ -27,7 +27,7 @@ export default function HomeIntro() {
             magnificent waterfall.
           </p>
           <Link className="text-link" href="/the-art-house">
-            Discover The Art House <span aria-hidden="true">→</span>
+            Discover The Art House
           </Link>
         </div>
       </div>

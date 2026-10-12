@@ -1922,11 +1922,10 @@ html.aos-ready [data-aos='fade-up']:not(.aos-animate) {
   position: absolute;
   left: 4px;
   top: 17px;
-  width: 9px;
-  height: 9px;
-  border-right: 2px solid var(--color-primary);
-  border-bottom: 2px solid var(--color-primary);
-  transform: rotate(-45deg);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
 }
 
 .activity-info {
@@ -3696,4 +3695,24 @@ textarea.form-control {
 .review-platforms a:focus-visible span,
 .review-platforms a:focus-visible strong {
   color: var(--color-white);
+}
+
+/* ---------- activity photo gallery (e.g. Ayurveda & Yoga) ---------- */
+.activity-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 28px 0;
+}
+.activity-gallery img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 8px;
+}
+@media (max-width: 767px) {
+  .activity-gallery {
+    grid-template-columns: 1fr;
+  }
 }

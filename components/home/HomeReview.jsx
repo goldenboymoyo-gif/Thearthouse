@@ -19,7 +19,7 @@ export default function HomeReview() {
         </figure>
         <div className="section-cta">
           <Link className="text-link" href="/guest-reviews">
-            Read what our guests say <span aria-hidden="true">→</span>
+            Read what our guests say
           </Link>
         </div>
       </div>

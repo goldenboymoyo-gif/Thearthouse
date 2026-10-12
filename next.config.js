@@ -27,7 +27,8 @@ const OLD_URLS = [
   ['/things-to-do', '/explore#things-to-do'],
   // Renamed activities.
   ['/things-to-do/bungee-jumping', '/things-to-do/adrenaline-experiences'],
-  ['/things-to-do/sunset-experiences', '/things-to-do/food-and-drink-experience'],
+  ['/things-to-do/sunset-experiences', '/things-to-do/ayurveda-and-yoga'],
+  ['/things-to-do/food-and-drink-experience', '/things-to-do/ayurveda-and-yoga'],
 ];
 
 // The Express backend (/backend) normally runs inside this project:

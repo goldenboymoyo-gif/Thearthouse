@@ -294,12 +294,12 @@
     {
       "slug": "adrenaline-experiences",
       "title": "Adrenaline Experiences",
-      "tagline": "Bungee, bridge and gorge swing, ziplines and canopy tour",
-      "description": "For the thrill seekers: bungee jumping from the bridge spanning the Zambezi gorge below the Falls, the bridge and gorge swing, ziplines and a canopy tour through the trees. The iconic adrenaline experiences of Victoria Falls.",
+      "tagline": "Bungee, bridge and gorge swing, ziplines and canopy tour down the Batoka Gorge",
+      "description": "For the thrill seekers: bungee jumping from the bridge spanning the Zambezi gorge below the Falls, the bridge and gorge swing, ziplines and a canopy tour down the Batoka Gorge. The iconic adrenaline experiences of Victoria Falls.",
       "highlights": [
         "Bungee jumping from the Victoria Falls Bridge",
         "Bridge and gorge swing",
-        "Ziplines and canopy tour",
+        "Ziplines and canopy tour down the Batoka Gorge",
         "Arranged for you by The Art House team"
       ],
       "image": "/images/800_629b79db9dedd.jpg",
@@ -320,18 +320,23 @@
       "full": "/images/2000_629b7a638cb12.png"
     },
     {
-      "slug": "food-and-drink-experience",
-      "title": "The Food and Drink Experience",
-      "tagline": "Local traditional delights to 5 star international flavours",
-      "description": "There is a wide array of choices from local traditional delights, to 5 star menus featuring international flavours. Restaurants overlook the Mighty Zambezi River, a wildlife waterhole, the cavernous Batoka Gorge, vibe in the Township, or rock in the town centre. The list is vast and eclectic. There is locally crafted beer and gin on offer, and a tour of the Brewery and Distillery too.",
+      "slug": "ayurveda-and-yoga",
+      "title": "Ayurveda & Yoga",
+      "tagline": "Private yoga and Ayurveda consultations with your host, Sara",
+      "description": "Your host Sara has spent years training in India and is a qualified Ayurveda and Yoga Therapy practitioner and a Yoga teacher. When she is in residence, you can book private yoga sessions either at The Art House or in nature and at the waterfall. She is available for Ayurveda Consultations, should you wish to learn more about your health and how to serve your own unique body well. Sara runs Ayurveda and Yoga Retreats Worldwide and is always open to discussing arranging a retreat tailor-made to your interests.",
       "highlights": [
-        "Local traditional delights to 5 star international flavours",
-        "Restaurants overlooking the Zambezi, a waterhole and the Batoka Gorge",
-        "Locally crafted beer and gin",
-        "Brewery and Distillery tours"
+        "Private yoga sessions at The Art House, in nature or at the waterfall",
+        "Ayurveda Consultations with a qualified, India trained practitioner",
+        "Beauty and relaxation treatments in the privacy of The Art House",
+        "Tailor-made Ayurveda and Yoga Retreats"
       ],
-      "image": "/images/800_6298f8f03a19e.png",
-      "full": "/images/800_6298f8f03a19e.png"
+      "image": "/images/ayurveda-yoga-at-the-falls.jpg",
+      "full": "/images/ayurveda-yoga-at-the-falls.jpg",
+      "gallery": [
+        "/images/ayurveda-yoga-in-the-garden.jpg",
+        "/images/ayurveda-treatment.jpg"
+      ],
+      "arrange": "Yoga sessions, Ayurveda consultations and treatments are available when Sara is in residence. Let us know your dates and what you are interested in, and we will arrange it for you."
     }
   ],
   "reviews": [
@@ -605,5 +610,18 @@
       "alt": "African mask on the wall at The Art House"
     }
   ],
-  "imageDims": {}
+  "imageDims": {
+    "ayurveda-yoga-at-the-falls.jpg": {
+      "width": 810,
+      "height": 1080
+    },
+    "ayurveda-yoga-in-the-garden.jpg": {
+      "width": 1080,
+      "height": 810
+    },
+    "ayurveda-treatment.jpg": {
+      "width": 810,
+      "height": 1080
+    }
+  }
 }

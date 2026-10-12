@@ -1,16 +1,15 @@
 import Link from 'next/link';
 import SmartImage from '../SmartImage';
 import SectionHeading from '../SectionHeading';
-import LineIcon from '../LineIcon';
 import { img } from '@/lib/assets';
 
 const CARDS = [
   {
-    href: '/the-art-house#outdoor-living',
-    title: 'Outdoor Living',
-    text: 'An outdoor bath beneath the African stars',
-    image: img('800_629b32ebe9f88.png'),
-    alt: 'Outdoor bath at The Art House',
+    href: '/things-to-do/ayurveda-and-yoga',
+    title: 'Yoga, Ayurveda and Relaxation Treatments',
+    text: 'Sara, your host, is an Ayurveda and Yoga Practitioner, India trained and qualified. When she is in residence, she can offer you bespoke yoga experiences and Ayurveda consultations. Beauty and relaxation treatments can be arranged in the privacy of The Art House.',
+    image: '/images/ayurveda-yoga-in-the-garden.jpg',
+    alt: 'Private yoga session in the garden at The Art House',
   },
   {
     href: '/explore#things-to-do',
@@ -43,7 +42,7 @@ export default function HomeExplore() {
                 <span className="explore-title">{c.title}</span>
                 <span className="explore-text">{c.text}</span>
                 <span className="explore-more">
-                  Explore <LineIcon name="arrow" />
+                  Explore
                 </span>
               </span>
             </Link>

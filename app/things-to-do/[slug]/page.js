@@ -27,7 +27,7 @@ export default function ActivityPage({ params }) {
     <main className="page-main inside">
       <div className="container activity-detail">
         <Link className="activity-back" href="/explore#things-to-do">
-          &larr; Back to Explore Victoria Falls
+          Back to Explore Victoria Falls
         </Link>
 
         <article>
@@ -50,14 +50,23 @@ export default function ActivityPage({ params }) {
               ))}
             </ul>
 
+            {activity.gallery && activity.gallery.length ? (
+              <div className="activity-gallery">
+                {activity.gallery.map((src) => (
+                  <SmartImage key={src} src={src} alt={activity.title} sizes="(max-width: 767px) 92vw, 33vw" />
+                ))}
+              </div>
+            ) : null}
+
             <aside className="activity-info">
               <h2>How to arrange it</h2>
-              <p>
+              {activity.arrange ? <p>{activity.arrange}</p> : null}
+              <p hidden={Boolean(activity.arrange)}>
                 The Art House team is glad to book this activity for you. We offer a comprehensive and highly
                 personalised activity booking service and can also assist with holiday planning, transfers and bookings
                 for surrounding destinations, all arranged on your behalf at no additional cost.
               </p>
-              <p>
+              <p hidden={Boolean(activity.arrange)}>
                 <strong>Please note:</strong> the details above are general information about the experience. Operators,
                 availability, schedules and pricing are confirmed on enquiry, we never confirm bookings online.
               </p>
@@ -77,7 +86,7 @@ export default function ActivityPage({ params }) {
         </article>
 
         <Link className="activity-back" href="/explore#things-to-do">
-          &larr; Back to Explore Victoria Falls
+          Back to Explore Victoria Falls
         </Link>
       </div>
     </main>
