@@ -3716,3 +3716,24 @@ textarea.form-control {
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------- Ayurveda and Yoga section (The Art House page) ---------- */
+.ayurveda-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.ayurveda-photos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  aspect-ratio: 3 / 4;
+}
+.ayurveda-photos img:first-child {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+.ayurveda-intro .around-intro-text p + p {
+  margin-top: 12px;
+}

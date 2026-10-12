@@ -1,6 +1,6 @@
 import WelcomeSection from '@/components/WelcomeSection';
 import QuickLook from '@/components/QuickLook';
-import OutdoorLiving from '@/components/OutdoorLiving';
+import AyurvedaYoga from '@/components/AyurvedaYoga';
 import FaqSection from '@/components/FaqSection';
 import Promo from '@/components/Promo';
 import { PROMOS } from '@/lib/site';
@@ -8,7 +8,7 @@ import { PROMOS } from '@/lib/site';
 export const metadata = {
   title: 'The Art House, 4 Bedroom Self-Catering Home, Victoria Falls',
   description:
-    'The Art House, Victoria Falls: a private 4 bedroom self-catering home with pool, sleeping 8. Quick look, outdoor living, rates from US$300 and answers to common questions.',
+    'The Art House, Victoria Falls: a private 4 bedroom self-catering home with pool, sleeping 8. Quick look, Ayurveda and yoga with your host, rates from US$300 and answers to common questions.',
   alternates: { canonical: '/the-art-house' },
 };
 
@@ -17,7 +17,7 @@ export default function TheArtHousePage() {
     <main className="page-main inside">
       <WelcomeSection headingLevel="h1" />
       <QuickLook />
-      <OutdoorLiving />
+      <AyurvedaYoga />
       <FaqSection alt />
       <Promo promo={PROMOS.waiting} shapeColor="var(--color-white)" />
     </main>

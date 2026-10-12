@@ -16,12 +16,12 @@ const OLD_URLS = [
   // The Journal page was removed.
   ['/articles', '/guest-reviews'],
   ['/contact-us', '/contact'],
-  ['/outdoor-living-at-its-finest', '/the-art-house#outdoor-living'],
+  ['/outdoor-living-at-its-finest', '/the-art-house#ayurveda-and-yoga'],
   ['/outdoor-living-at-its-finest/:slug', '/outdoor-living/:slug'],
   // The former dropdown sub-pages are now sections of two combined pages.
   ['/about', '/the-art-house'],
   ['/quick-look', '/the-art-house#quick-look'],
-  ['/outdoor-living', '/the-art-house#outdoor-living'],
+  ['/outdoor-living', '/the-art-house#ayurveda-and-yoga'],
   ['/faq', '/the-art-house#faq'],
   ['/whats-around', '/explore'],
   ['/things-to-do', '/explore#things-to-do'],
