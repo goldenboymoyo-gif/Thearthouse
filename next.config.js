@@ -112,6 +112,12 @@ const nextConfig = {
   async headers() {
     return [
       { source: '/:path*', headers: BASE_HEADERS },
+      // The temporary *.vercel.app address must not compete with the real domain in search results.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: '(?<sub>.*)\\.vercel\\.app' }],
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      },
       // Public pages (everything except the admin dashboard and the API, which
       // set their own stricter policies).
       { source: '/((?!admin|api).*)', headers: [{ key: 'Content-Security-Policy', value: CSP }] },

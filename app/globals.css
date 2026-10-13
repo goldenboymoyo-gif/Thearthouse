@@ -3737,3 +3737,112 @@ textarea.form-control {
 .ayurveda-intro .around-intro-text p + p {
   margin-top: 12px;
 }
+
+/* ---------- guest ratings strip ---------- */
+.ratings-strip ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 18px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ratings-strip li,
+.ratings-strip a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.ratings-strip a:hover {
+  text-decoration: underline;
+}
+.ratings-strip .ratings-asof {
+  margin: 6px 0 0;
+  font-size: 0.75rem;
+  opacity: 0.8;
+  text-align: center;
+}
+.ratings-strip.in-hero {
+  margin-top: 22px;
+  color: #fff;
+  pointer-events: auto;
+}
+.ratings-strip.in-hero li {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+.ratings-strip.page {
+  margin: 0 0 30px;
+}
+.ratings-strip.page li {
+  border: 1px solid var(--color-primary);
+  border-radius: 20px;
+  padding: 6px 14px;
+  color: var(--color-text);
+}
+.hero-direct {
+  margin: 14px 0 0;
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+.welcome-score {
+  font-size: 1rem;
+}
+.welcome-score a {
+  color: var(--color-primary);
+}
+.plan-map {
+  margin: 12px 0 0;
+  text-align: center;
+}
+.plan-map a {
+  color: var(--color-primary);
+}
+.featured-in {
+  text-align: center;
+  margin-top: 26px;
+}
+.faq-item summary .faq-q {
+  display: inline;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+}
+/* activity pages: Good to know */
+.activity-guide {
+  margin: 30px 0;
+}
+.activity-guide dl {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 18px;
+}
+.activity-guide dl > div {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 12px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 10px;
+}
+.activity-guide dt {
+  font-weight: 600;
+}
+.activity-guide dd {
+  margin: 0;
+  font-weight: 300;
+}
+@media (max-width: 600px) {
+  .activity-guide dl > div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .ratings-strip li,
+  .ratings-strip a {
+    font-size: 0.82rem;
+  }
+}

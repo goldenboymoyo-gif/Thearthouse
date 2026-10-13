@@ -2,7 +2,8 @@ import Section from './Section';
 import CTA from './CTA';
 import Icon from './Icon';
 import Stars from './Stars';
-import { REVIEWS, REVIEW_PLATFORMS, SITE } from '@/lib/site';
+import { FEATURED_ARTICLE, REVIEWS, REVIEW_PLATFORMS } from '@/lib/site';
+import RatingsStrip from './RatingsStrip';
 import SmartImage from './SmartImage';
 
 export default function Reviews({ headingLevel, cta = false }) {
@@ -11,6 +12,8 @@ export default function Reviews({ headingLevel, cta = false }) {
       <p className="section-subtitle">
         Discover what our guests have to say about their experiences at The Art House, Victoria Falls.
       </p>
+
+      {!cta ? <RatingsStrip variant="page" staff /> : null}
 
       <div className="reviews-grid">
         {REVIEWS.items.map((r) => (
@@ -22,7 +25,7 @@ export default function Reviews({ headingLevel, cta = false }) {
             <figcaption className="review-meta">
               {r.image ? (
                 <span className="review-photo">
-                  <SmartImage src={r.image} alt="" sizes="64px" />
+                  <SmartImage src={r.image} alt={`Photo of ${r.name}`} sizes="64px" />
                 </span>
               ) : null}
               <span className="review-who">
@@ -37,7 +40,7 @@ export default function Reviews({ headingLevel, cta = false }) {
 
       {!cta ? (
         <div className="review-platforms">
-          <h3>More reviews from our guests</h3>
+          <h2>More reviews from our guests</h2>
           <ul>
             {REVIEW_PLATFORMS.map((p) => (
               <li key={p.name}>
@@ -51,11 +54,14 @@ export default function Reviews({ headingLevel, cta = false }) {
         </div>
       ) : null}
 
-      <div className="section-cta row">
-        <a className="btn btn-xl" href={SITE.bookingUrl} target="_blank" rel="noopener noreferrer">
-          Book Your Stay
-        </a>
-      </div>
+      {!cta ? (
+        <p className="featured-in">
+          As featured in{' '}
+          <a href={FEATURED_ARTICLE.href} target="_blank" rel="noopener noreferrer">
+            {FEATURED_ARTICLE.name}
+          </a>
+        </p>
+      ) : null}
       {cta ? <CTA href="/guest-reviews">Read All Reviews</CTA> : null}
     </Section>
   );

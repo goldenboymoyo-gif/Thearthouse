@@ -23,7 +23,7 @@ export default function FaqSection({ headingLevel, limit, alt = false, id = 'faq
         {items.map((f, i) => (
           <details className="faq-item" key={f.q} open={i === 0}>
             <summary>
-              <span>{f.q}</span>
+              <h3 className="faq-q">{f.q}</h3>
               <span className="faq-toggle" aria-hidden="true" />
             </summary>
             <p>{f.a}</p>

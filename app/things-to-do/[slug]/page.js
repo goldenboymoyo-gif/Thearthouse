@@ -1,7 +1,9 @@
+import { pageMeta } from '@/lib/seo';
+import { ACTIVITY_GUIDES } from '@/lib/activity-guides';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import SmartImage from '@/components/SmartImage';
-import { CONTACT, SITE, THINGS_TO_DO } from '@/lib/site';
+import { CONTACT, IMAGE_ALTS, SITE, THINGS_TO_DO } from '@/lib/site';
 
 export function generateStaticParams() {
   return THINGS_TO_DO.activities.map((a) => ({ slug: a.slug }));
@@ -12,8 +14,12 @@ export function generateMetadata({ params }) {
   const activity = THINGS_TO_DO.activities.find((a) => a.slug === slug);
   if (!activity) return { title: 'Activity Not Found' };
   return {
-    title: `${activity.title} | The Art House Victoria Falls`,
-    description: `${activity.tagline}. Enquire with The Art House to arrange tours, activities and transfers in Victoria Falls.`,
+    ...pageMeta({
+      title: `${activity.title} in Victoria Falls`,
+      description: `${activity.tagline}. Stay at The Art House, a 35-minute walk from the Falls; we arrange it for you with no booking fee.`,
+      path: `/things-to-do/${activity.slug}`,
+      image: activity.full,
+    }),
     alternates: { canonical: `/things-to-do/${slug}` },
   };
 }
@@ -32,7 +38,7 @@ export default function ActivityPage({ params }) {
 
         <article>
           <header className="activity-hero">
-            <SmartImage src={activity.full} alt={activity.title} sizes="(max-width: 767px) 100vw, 1200px" priority />
+            <SmartImage src={activity.full} alt={IMAGE_ALTS[activity.full] || activity.title} sizes="(max-width: 767px) 100vw, 1200px" priority />
             <div className="activity-hero-caption">
               <span className="activity-kicker">Victoria Falls</span>
               <h1>{activity.title}</h1>
@@ -50,10 +56,26 @@ export default function ActivityPage({ params }) {
               ))}
             </ul>
 
+            {ACTIVITY_GUIDES[activity.slug] ? (
+              <section className="activity-guide">
+                <h2>Good to know</h2>
+                <dl>
+                  {ACTIVITY_GUIDES[activity.slug].facts.map(([label, value]) => (
+                    <div key={label}>
+                      <dt>{label}</dt>
+                      <dd>{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <h3>Our local tip</h3>
+                <p>{ACTIVITY_GUIDES[activity.slug].tip}</p>
+              </section>
+            ) : null}
+
             {activity.gallery && activity.gallery.length ? (
               <div className="activity-gallery">
                 {activity.gallery.map((src) => (
-                  <SmartImage key={src} src={src} alt={activity.title} sizes="(max-width: 767px) 92vw, 33vw" />
+                  <SmartImage key={src} src={src} alt={IMAGE_ALTS[src] || activity.title} sizes="(max-width: 767px) 92vw, 33vw" />
                 ))}
               </div>
             ) : null}
@@ -64,7 +86,8 @@ export default function ActivityPage({ params }) {
               <p hidden={Boolean(activity.arrange)}>
                 The Art House team is glad to book this activity for you. We offer a comprehensive and highly
                 personalised activity booking service and can also assist with holiday planning, transfers and bookings
-                for surrounding destinations, all arranged on your behalf at no additional cost.
+                for surrounding destinations. We arrange everything on your behalf at no additional cost: we do not charge
+                a booking fee, and you simply pay the operator&apos;s own price.
               </p>
               <p hidden={Boolean(activity.arrange)}>
                 <strong>Please note:</strong> the details above are general information about the experience. Operators,
@@ -78,6 +101,10 @@ export default function ActivityPage({ params }) {
                   Book Your Stay
                 </a>
               </div>
+              <p>
+                <Link href="/the-art-house">Stay at The Art House</Link>, a private 4 bedroom house with swimming pool, a
+                35-minute walk from the Falls.
+              </p>
               <p className="activity-contact">
                 Or reach us any time at {CONTACT.email} · {CONTACT.phone}
               </p>

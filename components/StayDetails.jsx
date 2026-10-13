@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import LineIcon from './LineIcon';
-import { DISTANCES, SITE, STAY_INFO } from '@/lib/site';
+import { CONTACT, DISTANCES, SITE, STAY_INFO } from '@/lib/site';
 
 const FACTS = [
   { icon: 'tag', label: 'Rates', value: `From ${STAY_INFO.rateFrom}`, sub: 'per night' },
@@ -20,10 +20,10 @@ export default function StayDetails({ actions = true }) {
         {FACTS.map((f) => (
           <li key={f.label} className="plan-fact">
             <LineIcon name={f.icon} className="plan-fact-icon" />
-            <span className="plan-fact-label">{f.label}</span>
+            <span className="plan-fact-label">{f.label}</span>{' '}
             <span className="plan-fact-value">
               {f.sub === 'from' || f.sub === 'by' ? `${f.sub === 'from' ? 'From' : 'By'} ${f.value}` : f.value}
-            </span>
+            </span>{' '}
             {f.sub !== 'from' && f.sub !== 'by' ? <span className="plan-fact-sub">{f.sub}</span> : null}
           </li>
         ))}
@@ -37,12 +37,17 @@ export default function StayDetails({ actions = true }) {
           {DISTANCES.map((d) => (
             <li key={d.place}>
               <LineIcon name={d.icon} className="plan-d-icon" />
-              <span className="plan-d-km">{d.distance}</span>
-              <span className="plan-d-place">{d.short}</span>
+              <span className="plan-d-km">{d.distance}</span>{' '}
+              <span className="plan-d-place">{d.short}</span>{' '}
               <span className="plan-d-note">{d.note.replace(/^about an? /, '≈ ')}</span>
             </li>
           ))}
         </ul>
+        <p className="plan-map">
+          <a href={CONTACT.mapsUrl} target="_blank" rel="noopener noreferrer">
+            View The Art House on Google Maps
+          </a>
+        </p>
       </div>
 
       {actions ? (

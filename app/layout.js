@@ -19,10 +19,9 @@ export const metadata = {
   metadataBase: new URL(SITE.url),
   title: {
     default: SITE.title,
-    template: '%s - The Art House Victoria Falls',
+    template: '%s | The Art House',
   },
   description: SITE.description,
-  keywords: SITE.keywords,
   alternates: { canonical: '/' },
   icons: { icon: SITE.favicon },
   openGraph: {
@@ -56,7 +55,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-ZA" dir="ltr" className={openSans.variable}>
+    <html lang="en-GB" dir="ltr" className={openSans.variable}>
       <head>
         <link rel="preconnect" href={SITE.url} />
         <script

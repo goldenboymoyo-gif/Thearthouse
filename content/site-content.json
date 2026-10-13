@@ -39,8 +39,8 @@
     },
     {
       "icon": "store",
-      "short": "Seven to Eleven",
-      "place": "Seven to Eleven convenience store",
+      "short": "7/11",
+      "place": "7/11 convenience store",
       "distance": "1.1 km",
       "note": "about a 15 minute walk or 2 minutes by car"
     },
@@ -65,11 +65,11 @@
     "image": "/images/2000_631a060b744a7.png",
     "paragraphs": [
       "Welcome to our beautiful family home, set in large, lush gardens in the heart of Victoria Falls, Zimbabwe. The Art House is available for private short-term hire and makes for a wonderfully quiet and comfortable self-catering experience when travelling with friends and family to Victoria Falls.",
-      "It is a private 4 bedroom self catering house with a swimming pool, in Victoria Falls, Zimbabwe. Sleeps 8, but we do have stretcher beds to accommodate more and a baby cot. Walking distance to the waterfall, with wifi, aircon and you can book direct.",
-      "The Art House is situated in the original quiet residential suburb of Victoria Falls, and is within easy walking distance of our town centre and magnificent waterfall. Feel free to stretch out on our rolling lawns surrounded by herbaceous beds and tropical gardens, whilst enjoying a dip in your own private swimming pool!",
+      "It is a private 4 bedroom self catering house with a swimming pool, in Victoria Falls, Zimbabwe. Sleeps 8, but we do have stretcher beds to accommodate more and a baby cot. A 35-minute walk to the waterfall, with wifi, aircon and you can book direct.",
+      "The Art House is situated in the original quiet residential suburb of Victoria Falls, and is a 25-minute walk from our town centre and a 35-minute walk from the magnificent waterfall. Feel free to stretch out on our rolling lawns surrounded by herbaceous beds and tropical gardens, whilst enjoying a dip in your own private swimming pool!",
       "With a passion for art, we’ve adorned the house with paintings by renowned African artists and craftsmen, inspired by our gorgeous surroundings. The Art House makes for a splendid entertainment and relaxation space, and our guests are encouraged to make themselves at home.",
-      "The four bedroomed house features one en-suite bathroom, a shared bathroom with a toilet, basin and shower, a separate guest toilet and outdoor hot tub and shower. There is also a braai/barbeque facility available for outdoor cooking and access to a seasonal kitchen garden. There is reliable wifi and the house is serviced daily. We have back up solar and water supply.",
-      "The Art House is only hired out as a whole unit, meaning you will have exclusive use of the property and all four bedrooms without sharing with any other guests. We would be glad to book your tours and activities for you at no additional cost, so please don't hesitate to let us know what you would like to see and do whilst in the area..."
+      "The four bedroomed house features 3 bathrooms: one en-suite bathroom, a shared guest bathroom with a toilet, basin and shower, and an outside bathroom with a hot tub and shower, plus a separate guest toilet. There is also a braai/barbeque facility available for outdoor cooking and access to a seasonal kitchen garden. There is reliable wifi and the house is serviced daily. We have back up solar and water supply.",
+      "The Art House is only hired out as a whole unit, meaning you will have exclusive use of the property and all four bedrooms without sharing with any other guests. We would be glad to book your tours and activities for you at no additional cost, so please don't hesitate to let us know what you would like to see and do whilst in the area."
     ]
   },
   "quickLook": [
@@ -84,7 +84,7 @@
     {
       "icon": "bath-tub5f22b39493951",
       "title": "3 Bathrooms",
-      "text": "1 en-suite bathroom, 1 guest bathroom and 1 outside bathroom",
+      "text": "1 en-suite, 1 shared guest bathroom and 1 outside bathroom, plus a separate guest toilet",
       "image": "/images/2000_6ab6807a07df9.jpg",
       "alt": "Indoor bathroom with shower at The Art House",
       "href": "/the-art-house#welcome"
@@ -125,7 +125,7 @@
   "faq": [
     {
       "q": "Where is The Art House?",
-      "a": "The Art House is at 360 Gibson Road, Victoria Falls, Zimbabwe, in the original quiet residential suburb of Victoria Falls. It is within easy walking distance of the town centre and the magnificent waterfall."
+      "a": "The Art House is at 360 Gibson Road, Victoria Falls, Zimbabwe, in the original quiet residential suburb of Victoria Falls. It is a 25-minute walk from the town centre and a 35-minute walk from the Falls."
     },
     {
       "q": "How far is The Art House from the Victoria Falls?",
@@ -141,7 +141,7 @@
     },
     {
       "q": "Where are the nearest shops?",
-      "a": "The Seven to Eleven convenience store is 1.1 km away (about a 15 minute walk or 2 minutes by car) and the Pick n Pay supermarket is 1.4 km away (about a 20 minute walk or 4 minutes by car)."
+      "a": "The 7/11 convenience store is 1.1 km away (about a 15 minute walk or 2 minutes by car) and the Pick n Pay supermarket is 1.4 km away (about a 20 minute walk or 4 minutes by car)."
     },
     {
       "q": "How many people does The Art House sleep?",
@@ -149,7 +149,7 @@
     },
     {
       "q": "How many bathrooms are there?",
-      "a": "There are 3 bathrooms: 1 en-suite bathroom, 1 guest bathroom and 1 outside bathroom, plus an outdoor hot tub and shower beneath the African stars."
+      "a": "There are 3 bathrooms: 1 en-suite bathroom, 1 shared guest bathroom and 1 outside bathroom with an outdoor hot tub and shower, plus a separate guest toilet."
     },
     {
       "q": "How much does it cost to stay at The Art House?",
@@ -176,8 +176,8 @@
       "a": "Yes, The Art House welcomes friendly pets, so no worries about bringing them along!"
     },
     {
-      "q": "Do you have backup power and water?",
-      "a": "Yes. The house has backup solar power and a backup water supply."
+      "q": "Is there backup power during load-shedding?",
+      "a": "Yes. The house has backup solar power and a backup water supply, so your stay is not disrupted by power cuts."
     },
     {
       "q": "Is there WiFi, air conditioning and a smart television?",
@@ -190,6 +190,22 @@
     {
       "q": "Can you book activities for us?",
       "a": "Yes. We would be glad to book your tours, activities and transfers for you at no additional cost, just let us know what you would like to see and do."
+    },
+    {
+      "q": "Is The Art House good for families?",
+      "a": "Yes. The Art House is ideal for families and groups of up to 8: you have the whole house, garden and swimming pool to yourselves, with stretcher beds for extra guests and a baby cot on request."
+    },
+    {
+      "q": "Is it safe to walk to the Falls?",
+      "a": "Yes, in daylight. The Falls are a 35-minute walk along town roads, and many guests enjoy it. After dark, or if you prefer, we are happy to arrange a short transfer for you."
+    },
+    {
+      "q": "Can you arrange airport transfers?",
+      "a": "Yes. We gladly arrange transfers from Victoria Falls International Airport, about a 22-minute drive, as well as transfers to the Falls and your activities."
+    },
+    {
+      "q": "Is The Art House suitable for a yoga retreat?",
+      "a": "Yes. Your host Sara is a qualified Ayurveda and Yoga Therapy practitioner and Yoga teacher. When she is in residence she offers private yoga sessions and Ayurveda consultations, and she is happy to discuss a retreat tailor-made to your group."
     },
     {
       "q": "How do I book?",

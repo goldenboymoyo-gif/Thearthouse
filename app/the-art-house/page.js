@@ -1,3 +1,4 @@
+import { pageMeta } from '@/lib/seo';
 import WelcomeSection from '@/components/WelcomeSection';
 import QuickLook from '@/components/QuickLook';
 import AyurvedaYoga from '@/components/AyurvedaYoga';
@@ -5,12 +6,12 @@ import FaqSection from '@/components/FaqSection';
 import Promo from '@/components/Promo';
 import { PROMOS } from '@/lib/site';
 
-export const metadata = {
-  title: 'The Art House, 4 Bedroom Self-Catering Home, Victoria Falls',
+export const metadata = pageMeta({
+  title: 'The Art House, 4 Bedroom Self-Catering Home with Swimming Pool',
   description:
-    'The Art House, Victoria Falls: a private 4 bedroom self-catering home with pool, sleeping 8. Quick look, Ayurveda and yoga with your host, rates from US$300 and answers to common questions.',
-  alternates: { canonical: '/the-art-house' },
-};
+    'A private 4 bedroom self-catering house with swimming pool in Victoria Falls, sleeping 8. Quick look, Ayurveda and yoga with your host Sara, rates from US$300 and answers to common questions.',
+  path: '/the-art-house',
+});
 
 export default function TheArtHousePage() {
   return (

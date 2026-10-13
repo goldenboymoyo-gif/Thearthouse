@@ -1,10 +1,11 @@
+import { pageMeta } from '@/lib/seo';
 import GallerySection from '@/components/GallerySection';
 
-export const metadata = {
-  title: 'Gallery',
-  description: 'Photographs of The Art House Victoria Falls, the house, bedrooms, gardens, veranda and swimming pool.',
-  alternates: { canonical: '/gallery' },
-};
+export const metadata = pageMeta({
+  title: 'Photo Gallery',
+  description: 'Photographs of The Art House Victoria Falls: the house, bedrooms, original African art, gardens, veranda and swimming pool.',
+  path: '/gallery',
+});
 
 export default function GalleryPage() {
   return (

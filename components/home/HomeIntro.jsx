@@ -15,16 +15,17 @@ export default function HomeIntro() {
           />
         </div>
         <div className="home-intro-text" data-aos="fade-up">
-          <span className="eyebrow">Welcome to The Art House</span>
-          <h2>A private family home in the heart of Victoria Falls</h2>
+          <span className="eyebrow">Your private home in Victoria Falls</span>
+          <h2>Welcome to The Art House</h2>
           <hr />
           <p>
-            Set in large, lush gardens in the original quiet suburb of Victoria Falls, The Art House is hired out as a whole
-            unit, so the house, the swimming pool and the gardens are yours alone.
+            The Art House is a private four bedroom self-catering house with a swimming pool at 360 Gibson Road, Victoria
+            Falls, Zimbabwe, a 35-minute walk from the Falls, sleeping up to 8 guests from US$300 per night.
           </p>
           <p>
-            Adorned with paintings by renowned African artists, it is within easy walking distance of the town centre and the
-            magnificent waterfall.
+            It brings together original art, generous living spaces, a peaceful garden and swimming pool, and a warm,
+            personal welcome. Settle in, explore the Falls and enjoy the freedom of a four bedroom self-catering retreat,
+            hired out as a whole so it is yours alone.
           </p>
           <Link className="text-link" href="/the-art-house">
             Discover The Art House

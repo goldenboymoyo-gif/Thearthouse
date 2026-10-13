@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Parallax from './Parallax';
 import Shape from './Shape';
 import { HERO_IMAGE, SITE } from '@/lib/site';
+import RatingsStrip from './RatingsStrip';
 
 // Top image of the home page: full-height photograph at 80% opacity over
 // black, parallax on scroll, a dark overlay for readability, the intro
@@ -13,8 +14,8 @@ export default function Hero() {
       <div className="hero-overlay" aria-hidden="true" />
       <div className="hero-content">
         <h1 className="hero-title">
-          <span className="hero-name">The Art House</span>
-          <span className="hero-place">Victoria Falls, Zimbabwe</span>
+          <span className="hero-name">The Art House</span>{' '}
+          <span className="hero-place">Victoria Falls, Zimbabwe</span>{' '}
           <span className="hero-tagline">4 Bedroom Self-Catering House with Swimming Pool</span>
         </h1>
         <p>Experience the art of living in Victoria Falls, comfort, nature and unforgettable experiences in your home away from home.</p>
@@ -26,6 +27,8 @@ export default function Hero() {
             Explore the Art House
           </Link>
         </div>
+        <p className="hero-direct">Book direct with no booking fees</p>
+        <RatingsStrip />
       </div>
       <Shape position="bottom" />
     </section>
