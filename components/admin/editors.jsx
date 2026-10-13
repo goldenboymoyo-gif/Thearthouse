@@ -56,7 +56,7 @@ export function StayEditor({ c, set, ctx }) {
     <Panel title="Rates, stay details & contact" intro="Shown in “Plan Your Stay”, Quick Look, the FAQ answers you write, the chatbot and the footer.">
       <Card title="Rates & times">
         <div className="adm-grid2">
-          <Field label="Rates from" {...rate} placeholder="US$300" hint="Also updates the rate sentence and FAQ answers." required />
+          <Field label="Rates from" {...rate} placeholder="US$350" hint="Also updates the rate sentence and FAQ answers." required />
           <Field label="Rate sentence" value={c.stay.rateNote} onChange={(v) => set((n) => (n.stay.rateNote = v))} required />
           <Field label="Check-in" {...checkIn} placeholder="2:00 pm" required />
           <Field label="Check-out" {...checkOut} placeholder="10:00 am" required />

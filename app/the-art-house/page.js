@@ -9,7 +9,7 @@ import { PROMOS } from '@/lib/site';
 export const metadata = pageMeta({
   title: 'The Art House, 4 Bedroom Self-Catering Home with Swimming Pool',
   description:
-    'A private 4 bedroom self-catering house with swimming pool in Victoria Falls, sleeping 8. Quick look, Ayurveda and yoga with your host Sara, rates from US$300 and answers to common questions.',
+    'A private 4 bedroom self-catering house with swimming pool in Victoria Falls, sleeping 8. Quick look, Ayurveda and yoga with your host Sara, rates from US$350 and answers to common questions.',
   path: '/the-art-house',
 });
 

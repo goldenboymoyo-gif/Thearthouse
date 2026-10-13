@@ -20,7 +20,7 @@ export default function HomeIntro() {
           <hr />
           <p>
             The Art House is a private four bedroom self-catering house with a swimming pool at 360 Gibson Road, Victoria
-            Falls, Zimbabwe, a 35-minute walk from the Falls, sleeping up to 8 guests from US$300 per night.
+            Falls, Zimbabwe, a 35-minute walk from the Falls, sleeping up to 8 guests from US$350 per night.
           </p>
           <p>
             It brings together original art, generous living spaces, a peaceful garden and swimming pool, and a warm,
