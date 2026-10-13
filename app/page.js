@@ -1,6 +1,7 @@
 import { pageMeta } from '@/lib/seo';
 import Hero from '@/components/Hero';
 import Promo from '@/components/Promo';
+import RatingsBar from '@/components/home/RatingsBar';
 import HomeHighlights from '@/components/home/HomeHighlights';
 import HomeIntro from '@/components/home/HomeIntro';
 import HomeWelcome from '@/components/home/HomeWelcome';
@@ -25,6 +26,7 @@ export default function HomePage() {
   return (
     <main className="page-main home">
       <Hero />
+      <RatingsBar />
       <HomeHighlights />
       <HomeIntro />
       <HomeWelcome />

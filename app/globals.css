@@ -3783,10 +3783,73 @@ textarea.form-control {
   color: var(--color-text);
 }
 .hero-direct {
-  margin: 14px 0 0;
-  color: #fff;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
+  margin: 22px 0 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+/* ---------- ratings band under the hero ---------- */
+.ratings-bar {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: -10px auto 0;
+  padding: 10px 15px 26px;
+  text-align: center;
+}
+.ratings-bar ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ratings-bar li + li {
+  border-left: 1px solid var(--color-border);
+}
+.ratings-bar a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 12px;
+  color: var(--color-text);
+  text-decoration: none;
+}
+.ratings-bar .rb-score {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+.ratings-bar .rb-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+}
+.ratings-bar a:hover .rb-score {
+  text-decoration: underline;
+}
+.ratings-bar .rb-asof {
+  margin: 12px 0 0;
+  font-size: 0.72rem;
+  color: #8a8a8a;
+}
+@media (max-width: 700px) {
+  .ratings-bar ul {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 14px;
+  }
+  .ratings-bar li:nth-child(3) {
+    border-left: 0;
+  }
+  .ratings-bar .rb-score {
+    font-size: 1.1rem;
+  }
+  .ratings-bar .rb-label {
+    font-size: 0.7rem;
+  }
 }
 .welcome-score {
   font-size: 1rem;

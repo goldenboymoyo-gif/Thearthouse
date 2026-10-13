@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Parallax from './Parallax';
 import Shape from './Shape';
 import { HERO_IMAGE, SITE } from '@/lib/site';
-import RatingsStrip from './RatingsStrip';
 
 // Top image of the home page: full-height photograph at 80% opacity over
 // black, parallax on scroll, a dark overlay for readability, the intro
@@ -27,8 +26,7 @@ export default function Hero() {
             Explore the Art House
           </Link>
         </div>
-        <p className="hero-direct">Book direct with no booking fees</p>
-        <RatingsStrip />
+        <p className="hero-direct">Book direct, no booking fees</p>
       </div>
       <Shape position="bottom" />
     </section>
