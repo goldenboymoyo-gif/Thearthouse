@@ -11,7 +11,7 @@ export default function WelcomeSection({ preview = false, headingLevel }) {
   return (
     <Section id="welcome" title={WELCOME.title} headingLevel={headingLevel}>
       <div className="welcome-block">
-        <div className="welcome-image" style={{ backgroundImage: `url(${WELCOME.image})` }} role="img" aria-label="The Art House veranda" />
+        <div className="welcome-image" style={{ backgroundImage: `url(${WELCOME.image})` }} role="img" aria-label="The Art House and its deep tropical garden" />
         <div className="welcome-text">
           <div>
             <p>{text}</p>
