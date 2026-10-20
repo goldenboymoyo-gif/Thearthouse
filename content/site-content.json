@@ -77,48 +77,48 @@
       "icon": "bed-side5f22b49a15295",
       "title": "4 Bedrooms",
       "text": "Sleeps 8 in 2 Kings, 1 Double & 1 Twin",
-      "image": "/images/2000_6298dda6dad20.jpg",
-      "alt": "King bedroom at The Art House, Victoria Falls",
+      "image": "/images/ah-2775.jpg",
+      "alt": "King bedroom opening onto the garden",
       "href": "/the-art-house#welcome"
     },
     {
       "icon": "bath-tub5f22b39493951",
       "title": "3 Bathrooms",
       "text": "1 en-suite, 1 shared guest bathroom and 1 outside bathroom, plus a separate guest toilet",
-      "image": "/images/2000_6ab6807a07df9.jpg",
-      "alt": "Indoor bathroom with shower at The Art House",
+      "image": "/images/ah-2935.jpg",
+      "alt": "Bathroom with walk-in shower",
       "href": "/the-art-house#welcome"
     },
     {
       "icon": "swimming5f22b32463ba4",
       "title": "Swimming Pool",
       "text": "Plunge, cool down, relax!",
-      "image": "/images/2000_6ab680a390ba3.jpg",
-      "alt": "Private swimming pool and garden at The Art House, Victoria Falls",
+      "image": "/images/ah-3020.jpg",
+      "alt": "Private swimming pool at The Art House",
       "href": "/gallery"
     },
     {
       "icon": "mouse-pointer",
       "title": "WiFi & Netflix",
       "text": "Enjoy staying connected!",
-      "image": "/images/2000_6298dde1354a3.jpg",
-      "alt": "Lounge with TV for Netflix at The Art House",
+      "image": "/images/ah-2855.jpg",
+      "alt": "Lounge with TV for Netflix",
       "href": "/the-art-house#welcome"
     },
     {
       "icon": "dog-leash5f22834a141ba",
       "title": "Pet Friendly",
       "text": "No worries to bring them along!",
-      "image": "/images/2000_629a589b6ecad.jpg",
-      "alt": "Guests and their dog relaxing by the pool at The Art House",
+      "image": "/images/ah-3039.jpg",
+      "alt": "One of the friendly resident dogs",
       "href": "/the-art-house#faq"
     },
     {
       "icon": "snowflake-o",
       "title": "Air Conditioned",
       "text": "Our rooms are fitted with efficient eco-friendly air conditioning units",
-      "image": "/images/2000_6298ddadb945b.jpg",
-      "alt": "Air-conditioned double bedroom at The Art House",
+      "image": "/images/ah-2880.jpg",
+      "alt": "Air-conditioned twin bedroom",
       "href": "/the-art-house#welcome"
     }
   ],
@@ -380,130 +380,208 @@
   ],
   "gallery": [
     {
-      "src": "/images/2000_6298dda6dad20.jpg",
-      "width": 2000,
-      "height": 1240,
-      "alt": "King bedroom opening onto the garden at The Art House, Victoria Falls"
+      "src": "/images/ah-2785.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Bright lounge with sofas and African art at The Art House"
     },
     {
-      "src": "/images/2000_6298dda94b79a.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Lounge with sofas, piano and African art at The Art House"
+      "src": "/images/ah-3193.jpg",
+      "width": 1024,
+      "height": 1536,
+      "alt": "Cosy sofa beneath original artwork"
     },
     {
-      "src": "/images/2000_6298ddadb945b.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Double bedroom with original artwork at The Art House"
+      "src": "/images/ah-2855.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Lounge with TV and garden views"
     },
     {
-      "src": "/images/2000_6298ddadb801c.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "The Art House veranda and rolling lawn, Victoria Falls"
+      "src": "/images/ah-2790.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Dining room with arched doorway and artwork"
     },
     {
-      "src": "/images/2000_6298ddae94b03.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Fully equipped self-catering kitchen at The Art House"
+      "src": "/images/ah-2800.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Dining area opening to the kitchen"
     },
     {
-      "src": "/images/2000_6298ddae9468e.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Garden path and tropical plants outside The Art House"
+      "src": "/images/ah-2810.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Self-catering kitchen at The Art House"
     },
     {
-      "src": "/images/2000_6298ddaf3d3e0.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Shaded courtyard with garden furniture at The Art House"
+      "src": "/images/ah-2815.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Fully equipped kitchen with gas stove and fridge"
     },
     {
-      "src": "/images/2000_6298ddaf95b84.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Dining room with pendant lights and paintings at The Art House"
+      "src": "/images/ah-2760.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "King bedroom with mosquito net"
     },
     {
-      "src": "/images/2000_6298ddafb73b6.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Open-plan dining room leading to the lounge at The Art House"
+      "src": "/images/ah-2775.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "King bedroom opening onto the garden"
     },
     {
-      "src": "/images/2000_6298ddb00ccd1.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Guests gathering for dinner on the veranda at dusk"
+      "src": "/images/ah-2870.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Bedroom with mosquito nets and garden views"
     },
     {
-      "src": "/images/2000_6298ddda14036.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Lounge opening onto the veranda at The Art House"
+      "src": "/images/ah-2880.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Twin bedroom at The Art House"
     },
     {
-      "src": "/images/2000_6298dddaa1ced.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "King bedroom with garden doors at The Art House"
+      "src": "/images/ah-2900.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Double bedroom with doors to the garden"
     },
     {
-      "src": "/images/2000_6298dddac9d51.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Lounge with piano and garden views at The Art House"
+      "src": "/images/ah-2925.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "En-suite bathroom with shower"
     },
     {
-      "src": "/images/2000_6298dddb433ff.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Bedroom with doors onto the veranda at The Art House"
+      "src": "/images/ah-2930.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Shared guest bathroom"
     },
     {
-      "src": "/images/2000_6298ddde136da.jpg",
-      "width": 2000,
-      "height": 1238,
-      "alt": "Twin bedroom at The Art House, Victoria Falls"
+      "src": "/images/ah-2935.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Bathroom with walk-in shower"
     },
     {
-      "src": "/images/2000_6298ddde13347.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Evening dinner table set on the veranda at The Art House"
+      "src": "/images/2000_6ab6808160d4a.jpg",
+      "width": 724,
+      "height": 1086,
+      "alt": "Separate guest toilet"
     },
     {
-      "src": "/images/2000_6298dddf80ed6.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Covered veranda lounge overlooking the garden"
+      "src": "/images/ah-2840.jpg",
+      "width": 1024,
+      "height": 1536,
+      "alt": "Laundry with washing machine"
     },
     {
-      "src": "/images/2000_6298dde1354a3.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Lounge with TV and sofas at The Art House"
+      "src": "/images/ah-2970.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Shady veranda outside the bedrooms"
     },
     {
-      "src": "/images/2000_6298dde170bf8.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Twin bedroom with garden window at The Art House"
+      "src": "/images/ah-2980.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Veranda lounge with ceiling fans"
     },
     {
-      "src": "/images/2000_6298dde1bd043.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Outdoor dining table on the veranda at sunset"
+      "src": "/images/ah-2995.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Veranda lounge looking onto the garden"
     },
     {
-      "src": "/images/2000_6298dde89185b.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Veranda seating overlooking the tropical garden"
+      "src": "/images/ah-3000.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Long veranda along the house"
+    },
+    {
+      "src": "/images/ah-2990.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Outdoor dining table on the patio"
+    },
+    {
+      "src": "/images/ah-3010.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Private swimming pool with loungers"
+    },
+    {
+      "src": "/images/ah-3015.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Swimming pool surrounded by tropical garden"
+    },
+    {
+      "src": "/images/ah-3020.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Swimming pool and rock garden"
+    },
+    {
+      "src": "/images/ah-3005.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "The Art House in its tropical garden"
+    },
+    {
+      "src": "/images/ah-3030.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Lawn in front of The Art House"
+    },
+    {
+      "src": "/images/ah-2820.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Garden path through the trees"
+    },
+    {
+      "src": "/images/ah-2825.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Courtyard with potted plants"
+    },
+    {
+      "src": "/images/ah-2945.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Garden seating under the trees"
+    },
+    {
+      "src": "/images/ah-2965.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Garden chairs on the lawn"
+    },
+    {
+      "src": "/images/ah-3035.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Garden chairs in a quiet corner"
+    },
+    {
+      "src": "/images/ah-3037.jpg",
+      "width": 1024,
+      "height": 1536,
+      "alt": "Outdoor shower in the garden"
+    },
+    {
+      "src": "/images/ah-3038.jpg",
+      "width": 1024,
+      "height": 1536,
+      "alt": "Outdoor bath in a private garden enclosure"
     },
     {
       "src": "/images/2000_629a0d5cb916c.jpg",
@@ -512,100 +590,28 @@
       "alt": "Outdoor shower and bath in the garden at The Art House"
     },
     {
-      "src": "/images/2000_629a0d5db05a4.jpg",
-      "width": 2000,
-      "height": 1333,
-      "alt": "Guests enjoying the private pool and braai at The Art House"
-    },
-    {
       "src": "/images/2000_629a0d5e0f31e.jpg",
       "width": 2000,
       "height": 1333,
       "alt": "Outdoor bath surrounded by tropical garden"
     },
     {
-      "src": "/images/2000_6ab6803b778d9.jpg",
-      "width": 724,
-      "height": 1086,
-      "alt": "Sitting room with leather sofas and artwork"
+      "src": "/images/ah-3039.jpg",
+      "width": 1024,
+      "height": 1537,
+      "alt": "One of the friendly resident dogs"
     },
     {
-      "src": "/images/2000_6ab6804ccc956.jpg",
-      "width": 768,
-      "height": 1024,
-      "alt": "Courtyard with wrought-iron table and chairs"
+      "src": "/images/ah-3382.jpg",
+      "width": 1024,
+      "height": 683,
+      "alt": "Resident dog saying hello"
     },
     {
-      "src": "/images/2000_6ab680558f660.jpg",
-      "width": 724,
-      "height": 1086,
-      "alt": "Dining table with benches and African art"
-    },
-    {
-      "src": "/images/2000_6ab6806da74d5.jpg",
-      "width": 768,
-      "height": 1024,
-      "alt": "Bedroom with en-suite bathroom and mosquito net"
-    },
-    {
-      "src": "/images/2000_6ab6807a07df9.jpg",
-      "width": 724,
-      "height": 1086,
-      "alt": "Indoor bathroom with walk-in shower"
-    },
-    {
-      "src": "/images/2000_6ab6808160d4a.jpg",
-      "width": 724,
-      "height": 1086,
-      "alt": "Guest bathroom with toilet and basin"
-    },
-    {
-      "src": "/images/2000_6ab68089ae4aa.jpg",
-      "width": 768,
-      "height": 1024,
-      "alt": "Double bedroom with mosquito net and dressing table"
-    },
-    {
-      "src": "/images/2000_6ab680937e026.jpg",
-      "width": 724,
-      "height": 1086,
-      "alt": "Double bed with woven wall art and mosquito net"
-    },
-    {
-      "src": "/images/2000_6ab6809cedc0a.jpg",
-      "width": 1086,
-      "height": 724,
-      "alt": "Veranda lounge chairs looking onto the garden"
-    },
-    {
-      "src": "/images/2000_6ab680a390ba3.jpg",
-      "width": 724,
-      "height": 1086,
-      "alt": "Private swimming pool with loungers"
-    },
-    {
-      "src": "/images/2000_6ab680aa875bc.jpg",
-      "width": 768,
-      "height": 1024,
-      "alt": "Outdoor bath lit up at night under the stars"
-    },
-    {
-      "src": "/images/2000_6ab680bc87df9.jpg",
-      "width": 1086,
-      "height": 724,
-      "alt": "The Art House exterior and garden path"
-    },
-    {
-      "src": "/images/2000_6ab680cae1263.jpg",
-      "width": 1086,
-      "height": 724,
-      "alt": "The Art House set in lush tropical gardens"
-    },
-    {
-      "src": "/images/2000_6ab680d6c44ab.jpg",
-      "width": 1086,
-      "height": 724,
-      "alt": "Tropical garden plants at The Art House"
+      "src": "/images/2000_6298ddaf3d3e0.jpg",
+      "width": 2000,
+      "height": 1333,
+      "alt": "Shaded courtyard with garden furniture at The Art House"
     },
     {
       "src": "/images/2000_6ab680ded055f.jpg",
@@ -614,16 +620,70 @@
       "alt": "Colourful sun-face artwork at The Art House"
     },
     {
-      "src": "/images/2000_6ab680f5bf596.jpg",
-      "width": 724,
-      "height": 1086,
-      "alt": "Front of The Art House with potted plants"
-    },
-    {
       "src": "/images/2000_6ab6811204c0c.jpg",
       "width": 724,
       "height": 1086,
       "alt": "African mask on the wall at The Art House"
+    },
+    {
+      "src": "/images/garden-1.jpg",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Yellow orchids in the garden"
+    },
+    {
+      "src": "/images/garden-2.jpg",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Desert rose in flower"
+    },
+    {
+      "src": "/images/garden-3.jpg",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Herbs and greens in the vegetable garden"
+    },
+    {
+      "src": "/images/garden-4.jpg",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Seasonal vegetables growing in the garden"
+    },
+    {
+      "src": "/images/garden-5.jpg",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Pawpaw tree against a blue sky"
+    },
+    {
+      "src": "/images/garden-6.jpg",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Path through the trees"
+    },
+    {
+      "src": "/images/garden-7.jpg",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Desert rose blooming in the garden"
+    },
+    {
+      "src": "/images/garden-8.jpg",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Heliconia flowers in the garden"
+    },
+    {
+      "src": "/images/garden-9.jpg",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Heliconia in the tropical garden"
+    },
+    {
+      "src": "/images/garden-10.jpg",
+      "width": 1200,
+      "height": 1600,
+      "alt": "Indigenous plants in the garden"
     }
   ],
   "imageDims": {
@@ -638,6 +698,186 @@
     "ayurveda-treatment.jpg": {
       "width": 810,
       "height": 1080
+    },
+    "ah-2785.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-3193.jpg": {
+      "width": 1024,
+      "height": 1536
+    },
+    "ah-2855.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2790.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2800.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2810.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2815.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2760.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2775.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2870.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2880.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2900.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2925.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2930.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2935.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2840.jpg": {
+      "width": 1024,
+      "height": 1536
+    },
+    "ah-2970.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2980.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2995.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-3000.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2990.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-3010.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-3015.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-3020.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-3005.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-3030.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2820.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2825.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2945.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-2965.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-3035.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "ah-3037.jpg": {
+      "width": 1024,
+      "height": 1536
+    },
+    "ah-3038.jpg": {
+      "width": 1024,
+      "height": 1536
+    },
+    "ah-3039.jpg": {
+      "width": 1024,
+      "height": 1537
+    },
+    "ah-3382.jpg": {
+      "width": 1024,
+      "height": 683
+    },
+    "garden-1.jpg": {
+      "width": 1200,
+      "height": 1600
+    },
+    "garden-2.jpg": {
+      "width": 1200,
+      "height": 1600
+    },
+    "garden-3.jpg": {
+      "width": 1200,
+      "height": 1600
+    },
+    "garden-4.jpg": {
+      "width": 1200,
+      "height": 1600
+    },
+    "garden-5.jpg": {
+      "width": 1200,
+      "height": 1600
+    },
+    "garden-6.jpg": {
+      "width": 1200,
+      "height": 1600
+    },
+    "garden-7.jpg": {
+      "width": 1200,
+      "height": 1600
+    },
+    "garden-8.jpg": {
+      "width": 1200,
+      "height": 1600
+    },
+    "garden-9.jpg": {
+      "width": 1200,
+      "height": 1600
+    },
+    "garden-10.jpg": {
+      "width": 1200,
+      "height": 1600
     }
   }
 }

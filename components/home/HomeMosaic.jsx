@@ -4,10 +4,10 @@ import SectionHeading from '../SectionHeading';
 import { img } from '@/lib/assets';
 
 const PHOTOS = [
-  { file: '2000_6298dde1bd043.jpg', alt: 'Outdoor dining table on the veranda at sunset', cls: 'big' },
-  { file: '2000_6298dda6dad20.jpg', alt: 'King bedroom opening onto the garden at The Art House' },
-  { file: '2000_6ab680a390ba3.jpg', alt: 'Private swimming pool with loungers', cls: 'tall' },
-  { file: '2000_6298dda94b79a.jpg', alt: 'Lounge with sofas, piano and African art at The Art House' },
+  { file: 'ah-2980.jpg', alt: 'Veranda lounge with ceiling fans at The Art House', cls: 'big' },
+  { file: 'ah-2775.jpg', alt: 'King bedroom opening onto the garden at The Art House' },
+  { file: 'ah-3037.jpg', alt: 'Outdoor shower in the garden', cls: 'tall' },
+  { file: 'ah-3010.jpg', alt: 'Private swimming pool with loungers' },
 ];
 
 // A photo mosaic instead of a long gallery: four pictures and a link to all of them.

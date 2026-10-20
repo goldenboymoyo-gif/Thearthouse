@@ -33,8 +33,8 @@ export default function HomeWelcome() {
         </div>
         <div className="home-intro-media" data-aos="fade-up">
           <SmartImage
-            src={img('2000_6298ddb00ccd1.jpg')}
-            alt="Guests gathering for dinner on the veranda at dusk, The Art House"
+            src={img('ah-2990.jpg')}
+            alt="Outdoor dining table on the patio at The Art House"
             sizes="(max-width: 767px) 92vw, 50vw"
           />
         </div>

@@ -9,8 +9,8 @@ export default function HomeIntro() {
       <div className="container home-intro-grid">
         <div className="home-intro-media" data-aos="fade-up">
           <SmartImage
-            src={img('2000_6298ddadb801c.jpg')}
-            alt="The Art House veranda and rolling lawn, Victoria Falls"
+            src={img('ah-2995.jpg')}
+            alt="Veranda lounge looking onto the garden at The Art House"
             sizes="(max-width: 767px) 92vw, 50vw"
           />
         </div>
